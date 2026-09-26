@@ -488,6 +488,95 @@ export const FAQ = [
    L('On purpose. Progress is meant to be a steady trickle. Rifts, red rifts and the forge are where it comes from.', 'Di proposito. Il progresso deve essere lento e costante. Arriva da rift, rift rosse e forgia.')],
   [L('Can I build as high as I want?', 'Posso costruire alto quanto voglio?'),
    L('Climb above y = 219 on blocks and a meteorite drops on you.', 'Sali sopra y = 219 sui blocchi e ti cade addosso una meteora.')],
+  [L('Can I use a minimap?', 'Posso usare una minimappa?'),
+   L('No — minimaps and maps of any kind are banned. Waypoints are allowed.', 'No — minimappe e mappe di qualsiasi tipo sono vietate. I waypoint sono permessi.')],
+  [L('What happens if I log out mid-fight?', 'Cosa succede se esco durante un combattimento?'),
+   L('A Zombie spawns in your place. Killing it counts as killing you — your loot drops.', 'Al tuo posto compare uno Zombie. Ucciderlo vale come uccidere te — il tuo bottino cade.')],
   [L('Where are the rules?', 'Dove sono le regole?'),
-   L('Rules and announcements live in the Discord.', 'Regole e annunci sono sul Discord.')],
+   L('On the Rules page, and in the Discord.', 'Nella pagina Regole, e sul Discord.')],
 ];
+
+// ── Special mechanics ───────────────────────────────────────────────────────
+export const DIMENSIONS = [
+  { key: 'nether', icon: '🔥', name: L('The Nether', 'Il Nether'), opensAfterHours: 5,
+    text: L('Locked for the first 5 hours after launch, then opens automatically.', 'Bloccato per le prime 5 ore dal lancio, poi si apre da solo.') },
+  { key: 'end', icon: '🌌', name: L('The End', 'L\'End'), opensAfterHours: 7 * 24,
+    text: L('Opens exactly 7 days after launch.', 'Si apre esattamente 7 giorni dopo il lancio.') },
+];
+
+export const MECHANICS = [
+  { icon: '🔨', title: L('The Mace', 'La Mazza'),
+    text: L('There is only one Mace on the entire server. It is unique: no other copy can be crafted or obtained.',
+            'Esiste una sola Mazza su tutto il server. È unica: nessun\'altra copia si può craftare o ottenere.') },
+  { icon: '💎', title: L('No crystal or anchor PvP', 'Niente crystal o anchor PvP'),
+    text: L('End Crystals and Respawn Anchors can\'t be used to damage players.',
+            'I Cristalli dell\'End e le Ancore di rinascita non possono danneggiare i giocatori.') },
+  { icon: '⛓️', title: L('Netherite armor is disabled', 'Armatura di netherite disattivata'),
+    text: L('Armor can\'t be upgraded to netherite at the smithing table — there are other ways to get it. Netherite tools and weapons are crafted as normal.',
+            'L\'armatura non si può potenziare in netherite al tavolo da forgiatura — ci sono altri modi per ottenerla. Strumenti e armi di netherite si craftano normalmente.') },
+  { icon: '🫥', title: L('Invisible kills are anonymous', 'Uccisioni invisibili anonime'),
+    text: L('Kill a player while invisible and your name is hidden from the death message.',
+            'Se uccidi un giocatore mentre sei invisibile, il tuo nome non compare nel messaggio di morte.') },
+  { icon: '🩳', title: L('Naked players are protected', 'I giocatori nudi sono protetti'),
+    text: L('A player wearing zero armor pieces can\'t be killed by other players. To be killable you need at least stone-tier weapons (a pickaxe doesn\'t count).',
+            'Un giocatore senza nessun pezzo d\'armatura non può essere ucciso da altri giocatori. Per essere uccidibile servono almeno armi di pietra (il piccone non conta).') },
+  { icon: '🧑‍🌾', title: L('Endless villager trades', 'Scambi infiniti coi villager'),
+    text: L('Villager trades restock infinitely — they never lock.', 'Gli scambi dei villager si rigenerano all\'infinito — non si bloccano mai.') },
+];
+
+export const COMBAT_RULES = L([
+  'Ender Pearl cooldown: <b>35 seconds</b>.',
+  'Golden Apple cooldown: <b>1 second</b>.',
+  '<b>Combat logging</b> spawns a Zombie in your place. Killing it counts exactly like killing you: it drops your loot and is a valid kill for your attacker.',
+], [
+  'Cooldown delle Perle di ender: <b>35 secondi</b>.',
+  'Cooldown delle Mele d\'oro: <b>1 secondo</b>.',
+  '<b>Uscire in combattimento</b> fa comparire uno Zombie al tuo posto. Ucciderlo vale esattamente come uccidere te: lascia il tuo bottino e conta come uccisione valida per chi ti attaccava.',
+]);
+
+// ── Rules ───────────────────────────────────────────────────────────────────
+export const RULES_DISCORD = L([
+  'Mutual respect: no serious insults, racism, NSFW or discriminatory content.',
+  'No spamming, flooding, or advertising other servers/Discords without permission.',
+  'Use channels for their intended purpose (help in the help channel, etc.).',
+  'No doxxing or sharing others\' personal info.',
+  'Staff decisions are final. If you disagree, open a ticket instead of arguing publicly.',
+  'Keep nicknames and avatars appropriate (no NSFW or offensive images).',
+  'PvP being intense in-game doesn\'t excuse toxic behavior in Discord chat.',
+], [
+  'Rispetto reciproco: niente insulti gravi, razzismo, contenuti NSFW o discriminatori.',
+  'Niente spam, flood o pubblicità di altri server/Discord senza permesso.',
+  'Usa i canali per il loro scopo (aiuto nel canale aiuto, ecc.).',
+  'Niente doxxing o condivisione di dati personali altrui.',
+  'Le decisioni dello staff sono definitive. Se non sei d\'accordo, apri un ticket invece di discutere in pubblico.',
+  'Nickname e avatar appropriati (niente immagini NSFW o offensive).',
+  'Un PvP intenso in gioco non giustifica comportamenti tossici nella chat di Discord.',
+]);
+
+export const RULES_GAME = L([
+  '<b>PvP is allowed everywhere</b> except explicitly marked safe zones (if any). No complaints about being killed or looted.',
+  '<b>No cheat clients</b>, X-ray, hacked clients or unfair-advantage mods. No minimaps or maps of any kind — waypoints are allowed. <b>Permanent ban.</b>',
+  'No lag machines or intentional TPS-crashing farms.',
+  'No item duping or bug exploiting — report bugs to staff instead.',
+  'Respect other players\' builds: raiding and stealing are allowed, but pointless destructive griefing (random TNT spam, wiping whole builds for no reason) is not.',
+  'No alt accounts to get around the whitelist, bans or rules.',
+  'Staff can step in for bug abuse or behavior that ruins the experience for everyone.',
+  'If you hold a unique weapon and don\'t log in for 5 days, you lose it. (Logging in and leaving right after does not count.)',
+  'Contracts are binding on the signer and the book owner: breaking one has consequences from the admins. To count, a contract must contain the word "contract" somewhere in its text and be signed by the second party.',
+  '<b>Using an Elytra to run away is prohibited</b> (temp-ban and death).',
+  'Max team size is 5. Every team must be created with the in-game team system; teams not registered in-game, or with extra members, will be punished.',
+  'Killing a teammate for their bounty is illegal.',
+], [
+  '<b>Il PvP è permesso ovunque</b> tranne nelle zone sicure segnalate (se ce ne sono). Niente lamentele se vieni ucciso o derubato.',
+  '<b>Niente client di cheat</b>, X-ray, client hackerati o mod che danno vantaggi. Niente minimappe o mappe di alcun tipo — i waypoint sono permessi. <b>Ban permanente.</b>',
+  'Niente lag machine o farm che fanno crollare i TPS di proposito.',
+  'Niente duplicazione di oggetti o sfruttamento di bug — segnalali allo staff.',
+  'Rispetta le costruzioni altrui: raid e furti sono permessi, ma il grief distruttivo senza senso (TNT a caso, radere al suolo intere costruzioni senza motivo) no.',
+  'Niente account secondari per aggirare whitelist, ban o regole.',
+  'Lo staff può intervenire per abusi di bug o comportamenti che rovinano l\'esperienza a tutti.',
+  'Se hai un\'arma unica e non entri per 5 giorni, la perdi. (Entrare e uscire subito dopo non conta.)',
+  'I contratti vincolano chi firma e il proprietario del libro: romperne uno ha conseguenze dagli admin. Per essere valido, un contratto deve contenere la parola "contratto" nel testo ed essere firmato dalla seconda parte.',
+  '<b>È vietato usare l\'Elytra per scappare</b> (ban temporaneo e morte).',
+  'Massimo 5 persone per team. Ogni team va creato con il sistema di team in gioco; team non registrati in gioco, o con membri in più, verranno puniti.',
+  'Uccidere un compagno di team per la sua taglia è illegale.',
+]);

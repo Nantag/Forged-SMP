@@ -428,6 +428,23 @@ kbd { background: var(--panel2); border: 1px solid var(--line2); border-bottom-w
 .notfound h1 { font-size: 7rem; color: var(--corrupt); }
 .notfound p { color: var(--text2); margin: 1rem 0 1.5rem; }
 
+/* ── Rules ───────────────────────────────────────────────────────────────── */
+.end-count { margin-top: .6rem; font: 600 .9rem var(--mono); color: #c9b3ff; }
+.end-count b { color: var(--text); }
+.dim-top { display: flex; align-items: center; gap: .7rem; margin-bottom: .4rem; }
+.dim-top .item-icon { margin: 0; }
+.dim-top h3 { margin: 0; }
+.dim-nether { border-top: 3px solid #ff5a2e; }
+.dim-end { border-top: 3px solid #c9b3ff; }
+.dim-state { font-family: var(--mono); color: var(--text2); }
+.dim-state b { color: var(--text); }
+.dim-open { color: var(--ok); font-weight: 600; }
+.combat { border-left: 3px solid var(--danger); }
+.rules-list { margin: 0; padding: 0; list-style: none; counter-reset: r; display: grid; gap: .5rem; }
+.rules-list li { counter-increment: r; position: relative; background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: .8rem 1rem .8rem 3.2rem; color: var(--text2); }
+.rules-list li::before { content: counter(r, decimal-leading-zero); position: absolute; left: 1rem; top: .8rem; font: 700 .95rem var(--mono); color: var(--ember); }
+.rules-list b { color: var(--text); }
+
 /* ── Footer / toast ──────────────────────────────────────────────────────── */
 .footer { border-top: 1px solid var(--line); background: var(--bg2); margin-top: 2rem; }
 .footer-inner { max-width: var(--maxw); margin: 0 auto; padding: 2.2rem clamp(16px, 3vw, 32px); display: grid; grid-template-columns: 1.2fr 1.5fr 1fr; gap: 2rem; }
@@ -440,7 +457,7 @@ kbd { background: var(--panel2); border: 1px solid var(--line2); border-bottom-w
 .toast.show { opacity: 1; transform: translate(-50%, 0); }
 
 /* ── Responsive ──────────────────────────────────────────────────────────── */
-@media (max-width: 1080px) {
+@media (max-width: 1180px) {
   .menu-btn { display: flex; }
   .nav {
     position: fixed; top: 61px; left: 0; right: 0; bottom: 0; z-index: 49;

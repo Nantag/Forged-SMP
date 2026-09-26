@@ -2,6 +2,7 @@ import {
   SITE, NEWS, PILLARS, RARITIES, RACES, ANOMALY_GLITCH, WEAPONS, RACE_BOSSES, RIFT_BOSSES,
   RIFT_KINDS, RIFT_TIERS, RIFT_ROOMS, RIFT_CHALLENGES, RIFT_RELICS, KEY_FRAME, WEAPON_RIFTS,
   FORGE, TEAM_COMMANDS, TEAM_PERKS, BOUNTY_RULES, TOURNAMENT, ITEM_GROUPS, COMMANDS, CONTROLS, FAQ,
+  DIMENSIONS, MECHANICS, COMBAT_RULES, RULES_DISCORD, RULES_GAME,
 } from './data.js';
 
 // ── Language ─────────────────────────────────────────────────────────────────
@@ -17,7 +18,7 @@ const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 // UI copy (game facts live in data.js)
 const U = {
   home: L('Home', 'Home'), races: L('Races', 'Razze'), weapons: L('Weapons', 'Armi'), rift: L('The Rift', 'La Rift'),
-  forge: L('Forge', 'Forgia'), bosses: L('Bosses', 'Boss'), pvp: L('PvP', 'PvP'), items: L('Items', 'Oggetti'), join: L('Join', 'Entra'),
+  forge: L('Forge', 'Forgia'), bosses: L('Bosses', 'Boss'), pvp: L('PvP', 'PvP'), items: L('Items', 'Oggetti'), rules: L('Rules', 'Regole'), join: L('Join', 'Entra'),
   tagline: L('Something in this world is wrong. Forge anyway.', 'Qualcosa in questo mondo non va. Forgia comunque.'),
   eyebrow: L('Minecraft Java · Story-driven survival SMP', 'Minecraft Java · SMP survival a storia'),
   intro: L('A heavily customised survival server built on around forty of our own plugins — made to be played, recorded and watched.',
@@ -126,7 +127,18 @@ const U = {
   joinLead: L('Everything you need to get on the server and find your way around.', 'Tutto ciò che serve per entrare e orientarsi.'),
   version: L('Version', 'Versione'),
   commands: L('Commands', 'Comandi'), controls: L('Controls', 'Controlli'), faq: L('FAQ', 'Domande frequenti'),
-  rules: L('Rules', 'Regole'), rulesT: L('The server rules are posted in the Discord. Read them before you play.', 'Le regole del server sono sul Discord. Leggile prima di giocare.'),
+  rulesT: L('Read the rules and the special mechanics before you play — PvP is allowed everywhere.', 'Leggi le regole e le meccaniche speciali prima di giocare — il PvP è permesso ovunque.'),
+  readRules: L('Read the rules', 'Leggi le regole'),
+  rulesLead: L('How this server differs from vanilla, and the rules for the server and the Discord. Staff decisions are final — if you disagree, open a ticket.',
+               'In cosa questo server è diverso dal vanilla, e le regole per il server e il Discord. Le decisioni dello staff sono definitive — se non sei d\'accordo, apri un ticket.'),
+  mechanics: L('Special mechanics', 'Meccaniche speciali'),
+  dimensions: L('Dimensions', 'Dimensioni'),
+  open: L('Open', 'Aperto'), opensIn: L('Opens in', 'Si apre tra'),
+  inCombat: L('While in combat', 'Durante il combattimento'),
+  inCombatT: L('These apply only while you\'re flagged as in combat. Outside of combat, vanilla behavior applies.', 'Valgono solo mentre sei segnalato come in combattimento. Fuori dal combattimento vale il comportamento vanilla.'),
+  gameRules: L('In-game rules', 'Regole in gioco'),
+  discordRules: L('Discord rules', 'Regole del Discord'),
+  endOpens: L('The End opens in', 'L\'End si apre tra'),
   notFound: L('This page slipped through a rift.', 'Questa pagina è finita in una rift.'),
   back: L('Back home', 'Torna alla home'),
 };
@@ -209,6 +221,7 @@ PAGES.home = () => `
       </div>
     </div>
     <p class="since"><span class="live-dot"></span>${u('liveSince')} · <b>${u('day')} ${dayNumber()}</b></p>
+    ${openAt(DIMENSIONS[1]) > Date.now() ? `<p class="end-count" data-end>🌌 ${u('endOpens')} <b>${countdown(openAt(DIMENSIONS[1]) - Date.now())}</b></p>` : ''}
   </section>
 
   ${section(u('pillarsTitle'), `
@@ -698,10 +711,54 @@ PAGES.join = () => `
       <li><span class="step-n">02</span><div><h3>${u('step2')}</h3><p>${u('step2t')}</p></div></li>
       <li><span class="step-n">03</span><div><h3>${u('step3')}</h3><p>${u('step3t')}</p></div></li>
     </ol>`)}
-  ${section(u('rules'), `<div class="card"><p>${u('rulesT')}</p><a class="btn btn-ghost" href="${SITE.discord}" target="_blank" rel="noopener">${u('discordBtn')} ↗</a></div>`)}
+  ${section(u('rules'), `<div class="card"><p>${u('rulesT')}</p><a class="btn btn-ghost" href="#/rules">${u('readRules')} →</a></div>`)}
   ${section(u('commands'), `<div class="cmd-table">${COMMANDS.map(([c, d]) => `<div><code>${esc(c)}</code><span>${esc(t(d))}</span></div>`).join('')}</div>`)}
   ${section(u('controls'), `<div class="controls">${CONTROLS.map(([k, v]) => `<div><kbd>${t(k)}</kbd><span>${t(v)}</span></div>`).join('')}</div>`)}
   ${section(u('faq'), `<div class="faq">${FAQ.map(([q, a]) => `<details class="card"><summary>${esc(t(q))}</summary><p>${esc(t(a))}</p></details>`).join('')}</div>`)}
+`;
+
+const openAt = d => new Date(new Date(SITE.launch).getTime() + d.opensAfterHours * 3600000);
+function countdown(ms) {
+  const s = Math.max(0, Math.floor(ms / 1000));
+  const d = Math.floor(s / 86400), h = Math.floor(s % 86400 / 3600), m = Math.floor(s % 3600 / 60), sec = s % 60;
+  return (d ? `${d}d ` : '') + `${h}h ${String(m).padStart(2, '0')}m ${String(sec).padStart(2, '0')}s`;
+}
+const dimState = d => {
+  const left = openAt(d) - Date.now();
+  return left <= 0 ? `<span class="dim-open">● ${u('open')}</span>` : `${u('opensIn')} <b>${countdown(left)}</b>`;
+};
+function tickCountdowns() {
+  const tick = () => {
+    document.querySelectorAll('[data-dim]').forEach(el => { el.innerHTML = dimState(DIMENSIONS.find(d => d.key === el.dataset.dim)); });
+    document.querySelectorAll('[data-end]').forEach(el => {
+      const left = openAt(DIMENSIONS.find(d => d.key === 'end')) - Date.now();
+      if (left <= 0) el.remove(); else el.querySelector('b').textContent = countdown(left);
+    });
+  };
+  tick();
+  const id = setInterval(tick, 1000);
+  cleanupFns.push(() => clearInterval(id));
+}
+
+PAGES.rules = () => `
+  ${head(u('rules'), u('rulesLead'))}
+
+  ${section(u('dimensions'), `
+    <div class="grid g2">
+      ${DIMENSIONS.map(d => `
+        <div class="card dim dim-${d.key}"><div class="dim-top"><span class="item-icon" aria-hidden="true">${d.icon}</span><h3>${esc(t(d.name))}</h3></div>
+          <p>${esc(t(d.text))}</p><p class="dim-state" data-dim="${d.key}">${dimState(d)}</p></div>`).join('')}
+    </div>`)}
+
+  ${section(u('mechanics'), `
+    <div class="grid g3">
+      ${MECHANICS.map(m => `<div class="card"><div class="item-icon" aria-hidden="true">${m.icon}</div><h3>${esc(t(m.title))}</h3><p>${esc(t(m.text))}</p></div>`).join('')}
+    </div>
+    <h3 class="sub">⚔️ ${u('inCombat')}</h3>
+    <div class="card combat"><p class="muted">${u('inCombatT')}</p>${list(COMBAT_RULES)}</div>`, 'mechanics')}
+
+  ${section(u('gameRules'), `<ol class="rules-list">${t(RULES_GAME).map(r => `<li>${r}</li>`).join('')}</ol>`, 'game')}
+  ${section(u('discordRules'), `<ol class="rules-list">${t(RULES_DISCORD).map(r => `<li>${esc(r)}</li>`).join('')}</ol>`, 'discord')}
 `;
 
 PAGES.notfound = () => `
@@ -714,7 +771,8 @@ PAGES.notfound = () => `
 // ── Page behaviour ───────────────────────────────────────────────────────────
 const MOUNT = {};
 
-MOUNT.home = () => loadStatus();
+MOUNT.home = () => { loadStatus(); tickCountdowns(); };
+MOUNT.rules = () => tickCountdowns();
 MOUNT.join = () => loadStatus();
 
 MOUNT.races = () => {
@@ -940,7 +998,7 @@ function decode(el) {
 }
 
 // ── Chrome: nav, footer, language ────────────────────────────────────────────
-const NAV = ['home', 'races', 'weapons', 'rift', 'forge', 'bosses', 'pvp', 'items', 'join'];
+const NAV = ['home', 'races', 'weapons', 'rift', 'forge', 'bosses', 'pvp', 'items', 'rules', 'join'];
 let cleanupFns = [];
 
 function renderChrome(page) {
