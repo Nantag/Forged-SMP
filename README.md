@@ -1,0 +1,30 @@
+# Forged SMP — website
+
+Public site for **Forged SMP**, a story-driven Minecraft survival server. Static HTML/CSS/ES modules, no build step, bilingual (Italian / English).
+
+## Run locally
+
+```bash
+python3 -m http.server 8080   # then open http://localhost:8080
+```
+
+(ES modules don't load from `file://`, so use any local HTTP server.)
+
+## Deploy (GitHub Pages)
+
+Settings → Pages → *Deploy from a branch* → pick the branch and `/ (root)`. `.nojekyll` is already in place. Pages use hash routes (`#/races`, `#/rift` …), so no 404 setup is needed.
+
+## Editing content
+
+**Every game fact lives in [`js/data.js`](js/data.js)**: races, weapons, bosses, rift numbers, forge grades and buffs, items, commands, FAQ, news. Each text is `{ en, it }`.
+
+- **Server address:** set `SITE.ip`. Until then the site says "address on Discord". Once set, the live player count shows up automatically (via api.mcsrvstat.us).
+- **News:** add an entry at the top of `NEWS`.
+- **Tournament results:** add `{ date, mode, champion, mvp }` objects to `TOURNAMENT.results`.
+- After changing numbers, bump `SITE.updated` (shown in the footer).
+
+Page layout and interface text (headings, buttons) live in [`js/app.js`](js/app.js); styles in [`css/style.css`](css/style.css).
+
+## Spoilers
+
+The site intentionally keeps story content off the public pages: The Anomaly, its weapon, boss and weapon rift are shown redacted. Don't add hidden or scripted mechanics here.
