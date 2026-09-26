@@ -1,6 +1,6 @@
 # Forged SMP — website
 
-Public site for **Forged SMP**, a story-driven Minecraft survival server. Static HTML/CSS/ES modules, no build step, bilingual (Italian / English).
+Public site for **Forged SMP**, a story-driven Minecraft survival server. Static HTML/CSS/ES modules, no build step. English-only; the Italian copy is kept in the code and comes back by setting `MULTILANG = true` in `js/app.js`.
 
 ## Run locally
 

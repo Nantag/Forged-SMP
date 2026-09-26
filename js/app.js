@@ -7,9 +7,14 @@ import {
 
 // ── Language ─────────────────────────────────────────────────────────────────
 const L = (en, it) => ({ en, it });
+// The site is English-only for now. Italian copy is kept in every { en, it }
+// pair: set MULTILANG = true to bring back the IT/EN toggle.
+const MULTILANG = false;
 let lang = 'en';
-try { lang = localStorage.getItem('forged-lang') || ''; } catch { /* storage blocked */ }
-if (lang !== 'en' && lang !== 'it') lang = (navigator.language || '').toLowerCase().startsWith('it') ? 'it' : 'en';
+if (MULTILANG) {
+  try { lang = localStorage.getItem('forged-lang') || ''; } catch { /* storage blocked */ }
+  if (lang !== 'en' && lang !== 'it') lang = (navigator.language || '').toLowerCase().startsWith('it') ? 'it' : 'en';
+}
 
 const t = o => o == null ? '' : typeof o === 'string' || Array.isArray(o) ? o : (o[lang] ?? o.en);
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -1006,7 +1011,9 @@ function renderChrome(page) {
   document.getElementById('nav').innerHTML = NAV.map(p =>
     `<a href="#/${p === 'home' ? '' : p}" class="${p === page ? 'on' : ''}"${p === page ? ' aria-current="page"' : ''}>${u(p)}</a>`).join('')
     + `<a class="nav-discord" href="${SITE.discord}" target="_blank" rel="noopener">${discordIcon()} Discord</a>`;
-  document.getElementById('lang').innerHTML = `<span class="${lang === 'it' ? 'on' : ''}">IT</span><span class="${lang === 'en' ? 'on' : ''}">EN</span>`;
+  const langBtn = document.getElementById('lang');
+  langBtn.hidden = !MULTILANG;
+  langBtn.innerHTML = `<span class="${lang === 'it' ? 'on' : ''}">IT</span><span class="${lang === 'en' ? 'on' : ''}">EN</span>`;
   document.getElementById('footer').innerHTML = `
     <div class="footer-inner">
       <div class="footer-brand"><span class="glitch" data-text="FORGED SMP">FORGED SMP</span><p class="muted small">${u('tagline')}</p></div>
