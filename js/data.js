@@ -10,7 +10,7 @@ const L = (en, it) => ({ en, it });
 export const SITE = {
   name:     'Forged SMP',
   discord:  'https://discord.gg/TE95wjjEhD',
-  ip:       '',                 // ← server address, e.g. 'play.forgedsmp.net' (empty = "ask on Discord")
+  ip:       '212.100.172.180:19016',   // server address (empty = "ask on Discord")
   version:  'Java Edition 26.2',
   launch:   '2026-09-23T18:30:00+02:00',
   updated:  '2026-09-26',
