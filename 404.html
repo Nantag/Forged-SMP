@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <title>Forged SMP</title>
+  <meta name="robots" content="noindex" />
+  <script>
+    // Mistyped path (e.g. /races): send it to the matching hash route of the app
+    var base = location.pathname.split('/').slice(0, 2).join('/') + '/';
+    var page = location.pathname.slice(base.length).replace(/\/+$/, '');
+    location.replace(base + (page ? '#/' + page : ''));
+  </script>
+</head>
+<body style="background:#08070b"></body>
+</html>
