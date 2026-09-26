@@ -1,7 +1,7 @@
 import {
   SITE, NEWS, PILLARS, RARITIES, RACES, ANOMALY_GLITCH, WEAPONS, RACE_BOSSES, RIFT_BOSSES,
   RIFT_KINDS, RIFT_TIERS, RIFT_ROOMS, RIFT_CHALLENGES, RIFT_RELICS, KEY_FRAME, WEAPON_RIFTS,
-  FORGE, TEAM_COMMANDS, TEAM_PERKS, BOUNTY_RULES, TOURNAMENT, ITEM_GROUPS, COMMANDS, CONTROLS, FAQ,
+  FORGE, TEAM_COMMANDS, TEAM_PERKS, BOUNTY_RULES, ITEM_GROUPS, COMMANDS, CONTROLS, FAQ,
   DIMENSIONS, MECHANICS, COMBAT_RULES, RULES_DISCORD, RULES_GAME,
 } from './data.js';
 
@@ -105,7 +105,7 @@ const U = {
   raceBossesT: L('One per race (Humans have none). Each fights as its race, holding a copy of its weapon, and uses its abilities in later phases.',
                  'Uno per razza (gli Umani non ne hanno). Ognuno combatte come la sua razza, con una copia della sua arma, e ne usa le abilità nelle fasi avanzate.'),
   // pvp
-  pvpLead: L('PvP is on — with rules. Teams for your crew, bounties with real items, a daily hour where nobody can hide, and a full tournament system.',
+  pvpLead: L('PvP is on — with rules. Teams for your crew, bounties with real items, and a daily hour where nobody can hide.',
              'Il PvP è attivo — con regole. Team per il tuo gruppo, taglie con oggetti veri, un\'ora al giorno in cui nessuno può nascondersi e un sistema di tornei completo.'),
   teams: L('Teams', 'Team'), teamsT: L('Up to 5 players. No stat boosts — only teamplay tools.', 'Fino a 5 giocatori. Nessun bonus alle statistiche — solo strumenti di squadra.'),
   bounties: L('Bounties', 'Taglie'), bountiesT: L('Put real items on someone\'s head. Whoever kills them next gets every item, instantly.', 'Metti oggetti veri sulla testa di qualcuno. Chi lo uccide per primo prende tutto, all\'istante.'),
@@ -272,19 +272,6 @@ PAGES.races = () => `
           <span class="odds-pct">${r.chance}%</span>
           <span class="odds-in">${u('oneIn')} ${Math.round(100 / r.chance).toLocaleString(lang)}</span>
         </div>`).join('')}
-    </div>
-
-    <div class="card roller" id="roller">
-      <div class="roller-head">
-        <h3>${u('tryRoll')}</h3>
-        <span class="muted small">${u('rollNote')}</span>
-      </div>
-      <div class="roller-window" aria-live="polite"><div class="roller-result" id="roll-out">?</div></div>
-      <div class="roller-pips" id="roll-pips"><i></i><i></i><i></i></div>
-      <div class="roller-btns">
-        <button class="btn btn-primary" id="roll-btn" type="button">${u('rollBtn')}</button>
-        <button class="btn btn-ghost" id="roll-confirm" type="button" disabled>${u('confirm')}</button>
-      </div>
     </div>`)}
 
   ${section(u('races'), `
@@ -371,17 +358,14 @@ PAGES.rift = () => `
   ${head(u('rift'), u('riftLead'), 'PvE · ENDGAME')}
 
   ${section(u('gettingIn'), `
-    <div class="grid g3">
+    <div class="grid g2">
       <div class="card"><h3>🌀 ${t(L('Random portals', 'Portali casuali'))}</h3>
         <p>${t(L('A tear in the air opens near a random player — about one every ~75 minutes across the server. Everyone within ~250 blocks is told the direction. It stays open 15 minutes. Click it to ready up: everyone who clicks within 20 seconds goes in together, up to 4.',
                  'Uno squarcio nell\'aria si apre vicino a un giocatore a caso — circa uno ogni ~75 minuti su tutto il server. Chi è entro ~250 blocchi riceve la direzione. Resta aperto 15 minuti. Cliccalo per prepararti: chi clicca entro 20 secondi entra insieme, fino a 4.'))}</p></div>
-      <div class="card"><h3>🗝️ ${t(L('Rift Key', 'Rift Key'))}</h3>
-        <p>${t(L('2 Echo Shards + an Ender Eye + an Amethyst Shard, shapeless. Right-click: a portal opens in front of you for 5 minutes. A key only ever opens an ordinary rift.',
-                 '2 Frammenti di eco + un Occhio di ender + un Frammento di ametista, senza forma. Tasto destro: si apre un portale davanti a te per 5 minuti. Una chiave apre solo rift ordinarie.'))}</p>
+      <div class="card"><h3>🗝️ ${t(L('Rift Key: join to help', 'Rift Key: entra per aiutare'))}</h3>
+        <p>${t(L('A Rift Key lets you — and allies within 8 blocks — enter a rift someone else has already started, to help them. It can\'t open a rift on its own. A 60-minute key cooldown applies. Craft: 2 Echo Shards + an Ender Eye + an Amethyst Shard, shapeless.',
+                 'Una Rift Key fa entrare te — e gli alleati entro 8 blocchi — in una rift già avviata da altri, per aiutarli. Da sola non apre rift. Si applica un cooldown di 60 minuti. Craft: 2 Frammenti di eco + un Occhio di ender + un Frammento di ametista, senza forma.'))}</p>
         <div class="shapeless" aria-label="Rift Key recipe"><span>🔷</span><span>🔷</span><span>👁️</span><span>💜</span><b>→</b><span>🗝️</span></div></div>
-      <div class="card"><h3>🤝 ${t(L('Reinforcements', 'Rinforzi'))}</h3>
-        <p>${t(L('A Rift Key can also pull you — and allies within 8 blocks — into a rift someone else has running. A 60-minute key cooldown applies.',
-                 'Una Rift Key può anche portare te — e gli alleati entro 8 blocchi — in una rift già avviata da altri. Si applica un cooldown di 60 minuti.'))}</p></div>
     </div>`)}
 
   ${section(u('kinds'), `
@@ -449,10 +433,9 @@ PAGES.rift = () => `
     </div>`)}
 
   ${section(u('modifiers'), `
-    <div class="grid g3">
+    <div class="grid g2">
       <div class="card stat"><div class="stat-big">×1.35</div><h3>${t(L('Solo bonus', 'Bonus solo'))}</h3><p>${t(L('Finish a rift alone — nobody else ever enters — for more loot and XP.', 'Completa una rift da solo — nessun altro entra mai — per più bottino e XP.'))}</p></div>
       <div class="card stat"><div class="stat-big">−15%</div><h3>${t(L('Streak fatigue', 'Affaticamento'))}</h3><p>${t(L('Each rift boss you killed in the last hour cuts your next rift\'s loot by 15%, down to 40%.', 'Ogni boss di rift ucciso nell\'ultima ora riduce il bottino della prossima del 15%, fino al 40%.'))}</p></div>
-      <div class="card stat"><div class="stat-big">5 min</div><h3>${t(L('Pity', 'Aiuto'))}</h3><p>${t(L('A party stuck on one room for 5 minutes, or knocked down again and again, faces progressively weaker mobs (never the boss).', 'Un gruppo bloccato in una stanza per 5 minuti, o abbattuto più volte, affronta mob sempre più deboli (mai il boss).'))}</p></div>
     </div>
     <h3 class="sub">${u('challenges')}</h3>
     <p>${t(L('Optional goals shown on floating boards above the start room, vaults and shrines. Every one kept when the boss falls adds to your loot and XP multiplier — <b>one broken by anyone is lost for the whole party.</b>',
@@ -535,23 +518,9 @@ PAGES.forge = () => `
         <h3>${u('grades')}</h3>
         <div class="grades">
           ${FORGE.grades.map(g => `
-            <div class="grade" style="--c:${g.color}"><div class="grade-pts">${g.min}–${g.max}</div><div><b>${esc(t(g.name))}</b><p>${esc(t(g.text))}</p></div></div>`).join('')}
+            <div class="grade${g.min == null ? ' no-pts' : ''}" style="--c:${g.color}">${g.min == null ? '' : `<div class="grade-pts">${g.min}–${g.max}</div>`}<div><b>${esc(t(g.name))}</b><p>${esc(t(g.text))}</p></div></div>`).join('')}
         </div>
       </div>
-    </div>`)}
-
-  ${section(u('tryForge'), `
-    <div class="card forge-demo" id="forge-demo">
-      <p class="muted small">${u('forgeDemoNote')}</p>
-      <div class="fd-track" id="fd-track" aria-hidden="true"></div>
-      <div class="fd-status">
-        <span id="fd-left"></span>
-        <span id="fd-points"></span>
-        <span id="fd-timer" class="fd-timer"></span>
-      </div>
-      <div class="fd-strikes" id="fd-strikes" aria-hidden="true"></div>
-      <div class="fd-result" id="fd-result" aria-live="polite"></div>
-      <button class="btn btn-primary" id="fd-btn" type="button">🔨 ${u('start')}</button>
     </div>`)}
 
   ${section(u('heat'), `
@@ -661,32 +630,7 @@ PAGES.pvp = () => `
     <div class="grid g2">
       <div class="card"><h3>📡 ${u('tracking')}</h3><p>${u('trackingT')}</p></div>
       <div class="card"><h3>🧭 ${u('tracker')}</h3><p>${u('trackerT')}</p></div>
-    </div>
-    <div class="card sky"><h3>☄️ ${u('skyLimit')}</h3><p>${u('skyLimitT')}</p></div>`, 'tracking')}
-
-  ${section(u('tournaments'), `
-    <p>${u('tournamentsT')}</p>
-    <h3 class="sub">${u('modes')}</h3>
-    <div class="grid g4">${TOURNAMENT.modes.map(([m, d]) => `<div class="card mode"><div class="mode-tag">${m}</div><p>${esc(t(d))}</p></div>`).join('')}</div>
-    <h3 class="sub">${u('styles')}</h3>
-    <div class="grid g4">${TOURNAMENT.styles.map(([i, n, d]) => `<div class="card"><h3>${i} ${esc(t(n))}</h3><p>${esc(t(d))}</p></div>`).join('')}</div>
-    <div class="grid g2">
-      <div><h3 class="sub">${u('arenas')}</h3><div class="card">${list(TOURNAMENT.arenas)}</div></div>
-      <div><h3 class="sub">${t(L('How it works', 'Come funziona'))}</h3><div class="card">${list(TOURNAMENT.notes)}</div></div>
-    </div>
-    <h3 class="sub">${u('prizes')}</h3>
-    <p class="muted">${u('prizesT')}</p>
-    <div class="grid g3">
-      ${TOURNAMENT.prizes.map(([m, names, d]) => `
-        <div class="card prize"><div class="mode-tag">${m}</div><ul class="prize-list">${names.map(n => `<li>🏅 ${esc(n)}</li>`).join('')}</ul><p class="muted small">${esc(t(d))}</p></div>`).join('')}
-    </div>
-    <h3 class="sub">🏆 ${u('hallOfFame')}</h3>
-    ${TOURNAMENT.results.length ? `
-      <div class="table-wrap"><table class="table">
-        <thead><tr><th>${u('date')}</th><th>${u('mode')}</th><th>${u('champion')}</th><th>MVP</th></tr></thead>
-        <tbody>${TOURNAMENT.results.map(r => `<tr><td>${esc(r.date)}</td><td>${esc(r.mode)}</td><td>${esc(r.champion)}</td><td>${esc(r.mvp || '—')}</td></tr>`).join('')}</tbody>
-      </table></div>` : `<div class="card empty">${u('noResults')}</div>`}
-  `, 'tournaments')}
+    </div>`, 'tracking')}
 `;
 
 PAGES.items = () => `
@@ -788,53 +732,6 @@ MOUNT.races = () => {
     document.querySelectorAll('.race').forEach(card => { card.hidden = f !== 'all' && card.dataset.rarity !== f; });
   }));
 
-  // roller
-  const out = document.getElementById('roll-out');
-  const pips = [...document.querySelectorAll('#roll-pips i')];
-  const btn = document.getElementById('roll-btn');
-  const confirmBtn = document.getElementById('roll-confirm');
-  let spins = 0, current = null, busy = false;
-
-  const pick = () => {
-    let x = Math.random() * 100, acc = 0;
-    for (const r of RARITIES) { acc += r.chance; if (x < acc) { const pool = RACES.filter(rc => rc.rarity === r.key); return pool[Math.floor(Math.random() * pool.length)]; } }
-    return RACES[0];
-  };
-  const show = (r, final) => {
-    const rar = RARITY[r.rarity];
-    out.style.setProperty('--c', rar.color);
-    out.className = 'roller-result' + (final ? ' final' : '') + (r.glitch ? ' is-glitch' : '');
-    out.innerHTML = `<span class="rr-icon">${r.icon}</span><span class="rr-name">${raceName(r)}</span><span class="rr-rar">${esc(t(rar.name))}</span>`;
-  };
-  const reset = () => {
-    spins = 0; current = null;
-    out.className = 'roller-result'; out.textContent = '?';
-    pips.forEach(p => p.className = '');
-    btn.textContent = u('rollBtn'); confirmBtn.disabled = true;
-  };
-  const lock = () => {
-    out.classList.add('locked');
-    btn.textContent = u('rollAgain'); confirmBtn.disabled = true;
-    pips.forEach((p, i) => { if (i >= spins) p.className = 'skip'; });
-  };
-
-  btn.addEventListener('click', () => {
-    if (busy) return;
-    if (spins >= 3 || out.classList.contains('locked')) { reset(); return; }
-    busy = true; confirmBtn.disabled = true;
-    const final = pick();
-    let n = 0; const total = reduceMotion ? 1 : 16;
-    const tick = () => {
-      n++;
-      if (n < total) { show(RACES[Math.floor(Math.random() * 12)], false); setTimeout(tick, 40 + n * n * 1.2); return; }
-      current = final; show(final, true);
-      pips[spins].className = 'used'; spins++;
-      busy = false;
-      if (spins >= 3) lock(); else confirmBtn.disabled = false;
-    };
-    tick();
-  });
-  confirmBtn.addEventListener('click', () => { if (current) lock(); });
 };
 
 MOUNT.rift = () => {
@@ -893,97 +790,7 @@ MOUNT.forge = () => {
   };
   range.addEventListener('input', upd); upd();
 
-  forgeDemo();
 };
-
-// Forge minigame demo: 7 strikes, green = 2 pts, yellow = 1 pt
-function forgeDemo() {
-  const SLOTS = 15;
-  const track = document.getElementById('fd-track');
-  const btn = document.getElementById('fd-btn');
-  const strikesEl = document.getElementById('fd-strikes');
-  const leftEl = document.getElementById('fd-left');
-  const ptsEl = document.getElementById('fd-points');
-  const timerEl = document.getElementById('fd-timer');
-  const resEl = document.getElementById('fd-result');
-  const demo = document.getElementById('forge-demo');
-
-  track.innerHTML = Array.from({ length: SLOTS }, () => '<span class="fd-slot"></span>').join('') + '<div class="fd-hammer" id="fd-hammer">🔨</div>';
-  const slots = [...track.querySelectorAll('.fd-slot')];
-  const hammer = document.getElementById('fd-hammer');
-
-  let running = false, target = 7, pos = 0, dir = 1, speed = 7, strikes = [], last = 0, strikeStart = 0, raf = 0;
-
-  const placeTarget = () => {
-    target = 1 + Math.floor(Math.random() * (SLOTS - 2));
-    slots.forEach((s, i) => s.className = 'fd-slot' + (i === target ? ' green' : Math.abs(i - target) === 1 ? ' yellow' : ''));
-  };
-  const status = () => {
-    const pts = strikes.reduce((a, b) => a + b, 0);
-    leftEl.textContent = `${FORGE.strikes - strikes.length} ${u('strikesLeft')}`;
-    ptsEl.textContent = `${u('points')}: ${pts}/14`;
-    strikesEl.innerHTML = Array.from({ length: FORGE.strikes }, (_, i) =>
-      `<i class="${i < strikes.length ? ['miss', 'half', 'full'][strikes[i]] : ''}"></i>`).join('');
-  };
-  const finish = () => {
-    running = false; cancelAnimationFrame(raf);
-    const pts = strikes.reduce((a, b) => a + b, 0);
-    const g = FORGE.grades.find(g => pts >= g.min && pts <= g.max);
-    resEl.innerHTML = `<span class="fd-grade" style="--c:${g.color}">${esc(t(g.name))}</span> <span>${pts}/14 — ${esc(t(g.text))}</span>`;
-    demo.classList.toggle('botched', g.key === 'botched');
-    demo.classList.toggle('flawless', g.key === 'flawless');
-    btn.textContent = '🔨 ' + u('start');
-    timerEl.textContent = '';
-  };
-  const strike = () => {
-    if (!running) return;
-    const slot = Math.round(pos);
-    const d = Math.abs(slot - target);
-    const val = d === 0 ? 2 : d === 1 ? 1 : 0;
-    strikes.push(val);
-    slots[slot]?.classList.add('hit');
-    track.classList.remove('shake'); void track.offsetWidth; track.classList.add('shake');
-    if (strikes.length === 1) speed = 11;
-    speed += 0.8;
-    status();
-    if (strikes.length >= FORGE.strikes) return finish();
-    placeTarget(); strikeStart = performance.now();
-  };
-  const frame = now => {
-    const dt = Math.min(0.05, (now - last) / 1000); last = now;
-    pos += dir * speed * dt;
-    if (pos >= SLOTS - 1) { pos = SLOTS - 1; dir = -1; }
-    if (pos <= 0) { pos = 0; dir = 1; }
-    hammer.style.left = `calc(${(pos + 0.5) / SLOTS * 100}% - 0.6em)`;
-    const left = FORGE.timeout - (now - strikeStart) / 1000;
-    timerEl.textContent = `${Math.max(0, left).toFixed(1)}s`;
-    if (left <= 0) {                     // timed out → miss
-      strikes.push(0); status();
-      if (strikes.length >= FORGE.strikes) return finish();
-      placeTarget(); strikeStart = now;
-    }
-    if (running) raf = requestAnimationFrame(frame);
-  };
-  const start = () => {
-    strikes = []; pos = 0; dir = 1; speed = 7; running = true;
-    demo.classList.remove('botched', 'flawless');
-    resEl.textContent = '';
-    btn.textContent = '🔨 ' + u('strike');
-    placeTarget(); status();
-    last = strikeStart = performance.now();
-    raf = requestAnimationFrame(frame);
-  };
-
-  btn.addEventListener('click', () => running ? strike() : start());
-  track.addEventListener('pointerdown', () => running && strike());
-  const key = e => {
-    if (!document.body.contains(demo)) { removeEventListener('keydown', key); return; }
-    if (e.code === 'Space' && running) { e.preventDefault(); strike(); }
-  };
-  addEventListener('keydown', key);
-  cleanupFns.push(() => { running = false; cancelAnimationFrame(raf); removeEventListener('keydown', key); });
-  status();
-}
 
 // ── Decode effect on headings (readable within ~0.4s) ────────────────────────
 const GLYPHS = '▓▒░█▚▞#%&@$<>/\\';

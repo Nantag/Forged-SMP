@@ -346,6 +346,7 @@ kbd { background: var(--panel2); border: 1px solid var(--line2); border-bottom-w
 .grades { display: grid; gap: .5rem; }
 .grade { display: grid; grid-template-columns: 64px 1fr; gap: .8rem; align-items: center; padding: .6rem .7rem; border-radius: 8px; background: color-mix(in srgb, var(--c) 8%, var(--bg2)); border-left: 3px solid var(--c); }
 .grade-pts { font: 700 1rem var(--mono); color: var(--c); }
+.grade.no-pts { grid-template-columns: 1fr; }
 .grade b { color: var(--c); }
 .grade p { font-size: .86rem; margin: 0; }
 

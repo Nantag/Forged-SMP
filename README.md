@@ -20,7 +20,6 @@ Settings → Pages → *Deploy from a branch* → pick the branch and `/ (root)`
 
 - **Server address:** set `SITE.ip`. Until then the site says "address on Discord". Once set, the live player count shows up automatically (via api.mcsrvstat.us).
 - **News:** add an entry at the top of `NEWS`.
-- **Tournament results:** add `{ date, mode, champion, mvp }` objects to `TOURNAMENT.results`.
 - After changing numbers, bump `SITE.updated` (shown in the footer).
 
 Page layout and interface text (headings, buttons) live in [`js/app.js`](js/app.js); styles in [`css/style.css`](css/style.css).

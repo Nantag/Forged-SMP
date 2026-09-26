@@ -49,11 +49,11 @@ export const PILLARS = [
     text: L('There is very little netherite on purpose. Progress is a steady trickle, not a flood.',
             'La netherite è pochissima, di proposito. Si progredisce goccia a goccia, non a valanga.') },
   { icon: '⚔️', page: 'pvp', title: L('PvP with rules', 'PvP con regole'),
-    text: L('Teams, bounties on real items, a daily Tracking Hour and a full tournament system.',
-            'Team, taglie con oggetti veri, una Tracking Hour giornaliera e un sistema di tornei completo.') },
+    text: L('Teams, bounties on real items and a daily Tracking Hour when nobody can hide.',
+            'Team, taglie con oggetti veri e una Tracking Hour giornaliera in cui nessuno può nascondersi.') },
   { icon: '🤖', page: 'bosses', title: L('Bosses with real AI', 'Boss con vera IA'),
-    text: L('Fake players with real combat AI power bosses, dungeon guardians and tournament bots.',
-            'Finti giocatori con vera IA da combattimento animano boss, guardiani dei dungeon e bot dei tornei.') },
+    text: L('Fake players with real combat AI power bosses, dungeon guardians and world events.',
+            'Finti giocatori con vera IA da combattimento animano boss, guardiani dei dungeon ed eventi nel mondo.') },
 ];
 
 // ── Rarities ────────────────────────────────────────────────────────────────
@@ -298,18 +298,18 @@ export const WEAPON_RIFTS = [
 export const FORGE = {
   cost:     L('1 Ancient Debris per attempt', '1 Detrito antico per tentativo'),
   burn:     10,     // minutes a meteor stays lit
-  strikes:  7,
+  strikes:  5,
   timeout:  6,      // seconds before a strike counts as a miss
   heatMin:  50,
-  // points are out of 14 (2 per strike: green = 2, yellow = 1, miss = 0)
+  // min/max = point ranges; null until the thresholds for 5 strikes are confirmed
   grades: [
-    { key: 'flawless', min: 12, max: 14, color: '#c07bff', name: L('Flawless', 'Impeccabile'),
+    { key: 'flawless', min: null, max: null, color: '#c07bff', name: L('Flawless', 'Impeccabile'),
       text: L('Two buffs: the first at top strength, the second at the middle tier. Server-wide announcement.', 'Due potenziamenti: il primo al massimo, il secondo al livello medio. Annuncio a tutto il server.') },
-    { key: 'good', min: 9, max: 11, color: '#5fe36a', name: L('Good', 'Buono'),
+    { key: 'good', min: null, max: null, color: '#5fe36a', name: L('Good', 'Buono'),
       text: L('One buff at middle strength.', 'Un potenziamento di forza media.') },
-    { key: 'okay', min: 5, max: 8, color: '#ffd84a', name: L('Okay', 'Discreto'),
+    { key: 'okay', min: null, max: null, color: '#ffd84a', name: L('Okay', 'Discreto'),
       text: L('One buff at the weakest strength.', 'Un potenziamento debole.') },
-    { key: 'botched', min: 0, max: 4, color: '#ff4a4a', name: L('Botched', 'Rovinato'),
+    { key: 'botched', min: null, max: null, color: '#ff4a4a', name: L('Botched', 'Rovinato'),
       text: L('No buff, and the piece is ruined (1 durability, can never be forged again).', 'Nessun potenziamento e il pezzo è rovinato (1 di durabilità, non si potrà mai più forgiare).') },
   ],
   // [name, okay, good, flawless] at full heat
@@ -381,47 +381,6 @@ export const BOUNTY_RULES = L([
   '/bounty list apre un menu con tutti quelli che hanno una taglia (anteprima in sola lettura). /bounty list <giocatore> dà un riepilogo. /bounty cancel <giocatore> ritira la tua.',
 ]);
 
-export const TOURNAMENT = {
-  modes: [
-    ['1v1', L('Bracket, first to N wins per match; a rolling animation picks each pairing.', 'Tabellone, vince chi arriva prima a N vittorie; un\'animazione sceglie gli accoppiamenti.')],
-    ['2v2', L('Pick your partner in a menu (/duo); the rest are paired randomly.', 'Scegli il partner da un menu (/duo); gli altri vengono accoppiati a caso.')],
-    ['FFA', L('Everyone at once with a set number of lives. Last one standing wins.', 'Tutti contro tutti con un numero di vite. Vince l\'ultimo in piedi.')],
-    ['Team FFA', L('Teams of two in a free-for-all.', 'Squadre da due in un tutti contro tutti.')],
-  ],
-  styles: [
-    ['🎒', L('Kits', 'Kit'), L('A set kit, or several kits rolled before every game.', 'Un kit fisso, o più kit estratti prima di ogni partita.')],
-    ['🏹', L('Bow PvP', 'Bow PvP'), L('A duel on two floating islands with an Infinity + Punch II bow each.', 'Un duello su due isole volanti, ognuno con un arco Infinità + Contraccolpo II.')],
-    ['🌳', L('Vanilla PvP', 'Vanilla PvP'), L('A flat field with one oak tree per fighter. Craft your own gear.', 'Un campo piatto con una quercia per combattente. Ti crei l\'equipaggiamento.')],
-    ['🎽', L('Your own inventory', 'Il tuo inventario'), L('Fight with your SMP gear — restored untouched afterwards.', 'Combatti con la tua roba dell\'SMP — restituita intatta dopo.')],
-  ],
-  arenas: L(['Classic — tiled floor, glass wall', 'Overworld — hills, trees, boulders and ponds', 'Hell — lava pits, magma and soul sand under a red sky'],
-            ['Classica — pavimento a piastrelle, muro di vetro', 'Overworld — colline, alberi, massi e laghetti', 'Inferno — pozze di lava, magma e sabbia delle anime sotto un cielo rosso']),
-  notes: L([
-    'Your inventory, health and position are saved and restored afterwards.',
-    'Race powers are switched off in the arena — everyone fights as a plain Human.',
-    'Redemption round: two of the fallen fight; the winner is back in.',
-    'Bots fill empty slots, from rookie to expert — never beyond what a real player can do.',
-    'A podium camera with fireworks and an MVP for most damage dealt.',
-  ], [
-    'Inventario, vita e posizione vengono salvati e restituiti dopo.',
-    'I poteri di razza sono spenti nell\'arena — tutti combattono da semplici Umani.',
-    'Round di redenzione: due eliminati si sfidano; il vincitore rientra.',
-    'I bot riempiono i posti vuoti, da principiante a esperto — mai oltre ciò che può fare un vero giocatore.',
-    'Una telecamera sul podio con fuochi d\'artificio e un MVP per chi infligge più danni.',
-  ]),
-  prizes: [
-    ['1v1', ['Champion\'s Crown', 'Duelist\'s Second Wind', 'Contender\'s Boon'],
-      L('Crown: netherite helmet, +3 hearts, +1 damage. Second Wind: reusable full heal + shield (10 min cooldown). Boon: single-use Strength/Speed/Resistance.',
-        'Corona: elmo di netherite, +3 cuori, +1 danno. Second Wind: cura completa + scudo riutilizzabile (cooldown 10 min). Boon: Forza/Velocità/Resistenza monouso.')],
-    ['2v2', ['Champions\' Aegis', 'MVP\'s Medal', 'Runner-up\'s Stride', 'Partners\' Rally'],
-      L('Aegis: diamond chestplate, +2 hearts, +1 toughness.', 'Aegis: corazza di diamante, +2 cuori, +1 robustezza.')],
-    ['FFA', ['Survivor\'s Emblem', 'Battle Tonic', 'Field Ration', 'Slayer\'s Spark', 'Arena Ration'],
-      L('Slayer\'s Spark goes to most knockouts; every fighter gets an Arena Ration.', 'Slayer\'s Spark va a chi fa più eliminazioni; ogni combattente riceve una Arena Ration.')],
-  ],
-  // Fill in after each tournament: { date, mode, champion, mvp }
-  results: [],
-};
-
 // ── Items ───────────────────────────────────────────────────────────────────
 export const ITEM_GROUPS = [
   { name: L('Race items', 'Oggetti di razza'), items: [
@@ -448,7 +407,7 @@ export const ITEM_GROUPS = [
   { name: L('Tools', 'Strumenti'), items: [
     ['🛠️', 'Wifi Crafting Table / Enderchest', L('A portable crafting table and ender chest — right-click to open anywhere.', 'Un banco da lavoro e un ender chest portatili — tasto destro per aprirli ovunque.')],
     ['🌀', 'Wifi Portal', L('A one-time round trip into the Nether and back, as long as you haven\'t been fighting recently.', 'Un viaggio di andata e ritorno nel Nether, monouso, se non hai combattuto di recente.')],
-    ['🗝️', 'Rift Key', L('2 Echo Shards, an Ender Eye and an Amethyst Shard, shapeless. Opens a rift portal for 5 minutes, or pulls you into a running rift as reinforcements.', '2 Frammenti di eco, un Occhio di ender e un Frammento di ametista, senza forma. Apre un portale per 5 minuti, o ti porta come rinforzo in una rift in corso.')],
+    ['🗝️', 'Rift Key', L('2 Echo Shards, an Ender Eye and an Amethyst Shard, shapeless. Lets you join a rift someone else has already started, to help them.', '2 Frammenti di eco, un Occhio di ender e un Frammento di ametista, senza forma. Ti fa entrare in una rift già avviata da altri, per aiutarli.')],
     ['🧭', 'Tracker', L('Staff-given compass. Pick an online player: they\'re warned, and a minute later it locks onto them for 5 minutes. Then it\'s consumed.', 'Bussola data dallo staff. Scegli un giocatore online: viene avvisato e un minuto dopo la bussola lo segue per 5 minuti. Poi si consuma.')],
     ['👁️', 'Sight Vial', L('Craftable. Toggles teammate glow for your whole team.', 'Craftabile. Attiva il bagliore dei compagni per tutto il team.')],
   ]},
@@ -468,7 +427,6 @@ export const COMMANDS = [
   ['/rift top [cleared|bosses|rooms|deaths]', L('Server rankings.', 'Classifiche del server.')],
   ['/rift perks', L('Your race\'s rift perk.', 'Il vantaggio della tua razza nelle rift.')],
   ['/race …', L('Race info.', 'Info sulle razze.')],
-  ['/duo · /duo <player> · /tournament join [id]', L('Tournament partner and joining.', 'Partner e iscrizione ai tornei.')],
 ];
 
 export const CONTROLS = [
@@ -486,8 +444,6 @@ export const FAQ = [
    L('No. Every piece gets exactly one forge, ever — except a Flawless chestplate, sword or pickaxe, which can take a second pass on a rare Cold Forge.', 'No. Ogni pezzo si forgia una volta sola — tranne corazza, spada o piccone Impeccabili, che possono avere un secondo passaggio su una rara Forgia Fredda.')],
   [L('Why is there so little netherite?', 'Perché c\'è così poca netherite?'),
    L('On purpose. Progress is meant to be a steady trickle. Rifts, red rifts and the forge are where it comes from.', 'Di proposito. Il progresso deve essere lento e costante. Arriva da rift, rift rosse e forgia.')],
-  [L('Can I build as high as I want?', 'Posso costruire alto quanto voglio?'),
-   L('Climb above y = 219 on blocks and a meteorite drops on you.', 'Sali sopra y = 219 sui blocchi e ti cade addosso una meteora.')],
   [L('Can I use a minimap?', 'Posso usare una minimappa?'),
    L('No — minimaps and maps of any kind are banned. Waypoints are allowed.', 'No — minimappe e mappe di qualsiasi tipo sono vietate. I waypoint sono permessi.')],
   [L('What happens if I log out mid-fight?', 'Cosa succede se esco durante un combattimento?'),
@@ -517,9 +473,6 @@ export const MECHANICS = [
   { icon: '🫥', title: L('Invisible kills are anonymous', 'Uccisioni invisibili anonime'),
     text: L('Kill a player while invisible and your name is hidden from the death message.',
             'Se uccidi un giocatore mentre sei invisibile, il tuo nome non compare nel messaggio di morte.') },
-  { icon: '🩳', title: L('Naked players are protected', 'I giocatori nudi sono protetti'),
-    text: L('A player wearing zero armor pieces can\'t be killed by other players. To be killable you need at least stone-tier weapons (a pickaxe doesn\'t count).',
-            'Un giocatore senza nessun pezzo d\'armatura non può essere ucciso da altri giocatori. Per essere uccidibile servono almeno armi di pietra (il piccone non conta).') },
   { icon: '🧑‍🌾', title: L('Endless villager trades', 'Scambi infiniti coi villager'),
     text: L('Villager trades restock infinitely — they never lock.', 'Gli scambi dei villager si rigenerano all\'infinito — non si bloccano mai.') },
 ];
