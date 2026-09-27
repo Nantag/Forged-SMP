@@ -59,9 +59,11 @@ const U = {
                  'Un\'arma distintiva per razza. Chiunque può raccoglierle, ma ognuna mostra tutto il suo potenziale solo in mano alla propria razza.'),
   wsLive: L('Live from the server', 'In diretta dal server'),
   wsUpdated: L('updated {t}', 'aggiornato {t}'),
-  wsHeldBy: L('Held by', 'In mano a'),
+  wsOwnedBy: L('Owned by', 'Di'),
+  wsCarried: L('carrying it', 'ce l\'ha addosso'),
   wsStashed: L('Stashed away', 'Messa al sicuro'),
-  wsStashedT: L('not with anyone right now', 'non ce l\'ha nessuno addosso'),
+  wsStashedT: L('stashed away', 'messa al sicuro'),
+  wsNoOwner: L('owner unknown', 'proprietario sconosciuto'),
   wsDestroyed: L('Destroyed', 'Distrutta'),
   wsConquered: L('Vault conquered', 'Caveau conquistato'),
   wsConqueredT: L('not seen yet', 'non ancora vista'),
@@ -70,7 +72,7 @@ const U = {
   wsSeen: L('seen {t}', 'vista {t}'),
   wsJustNow: L('just now', 'adesso'),
   wsAgo: L('{t} ago', '{t} fa'),
-  wsCounts: L('{held} held · {stashed} stashed · {free} unclaimed', '{held} in mano · {stashed} al sicuro · {free} non reclamate'),
+  wsCounts: L('{held} carried · {stashed} stashed · {free} unclaimed', '{held} addosso · {stashed} al sicuro · {free} non reclamate'),
   sameRace: L('Your race', 'La tua razza'), sameRaceT: L('Full passive and both abilities.', 'Passiva completa ed entrambe le abilità.'),
   otherRace: L('Another race', 'Altra razza'), otherRaceT: L('A weaker passive and the first ability only.', 'Passiva più debole e solo la prima abilità.'),
   apLegend: L('🛡️❌ Abilities hit straight through armor. Fast, light weapons trade base damage for this. Totems still work normally.',
@@ -231,18 +233,20 @@ function ago(ms) {
 }
 
 function weaponStatusHtml(info) {
+  // Who owns it, never where it is: the file carries no positions, and none are shown.
   const alive = (info.copies || []).filter(c => c.state !== 'destroyed');
   const seen = alive.length ? Math.max(...alive.map(c => c.seen || 0)) : 0;
+  const owners = [...new Set(alive.filter(c => c.owner).sort((a, b) => (a.state === 'held' ? 0 : 1) - (b.state === 'held' ? 0 : 1)).map(c => c.owner))];
+  const ownedBy = owners.length ? `${u('wsOwnedBy')} ${owners.map(n => `<b>${esc(n)}</b>`).join(', ')}` : '';
   const sub = text => `<span class="ws-sub">${text}</span>`;
+  const seenAgo = fillIn(u('wsSeen'), { t: ago(seen) });
   switch (info.state) {
-    case 'held': {
-      const held = alive.filter(c => c.state === 'held' && c.holder);
-      const names = [...new Set(held.map(c => c.holder))].map(n => `<b>${esc(n)}</b>`).join(', ');
-      const last = Math.max(...held.map(c => c.seen || 0));
-      return `<span class="ws-icon" aria-hidden="true">⚔️</span><span>${u('wsHeldBy')} ${names}</span>${sub(fillIn(u('wsSeen'), { t: ago(last) }))}`;
-    }
+    case 'held':
+      return `<span class="ws-icon" aria-hidden="true">⚔️</span><span>${ownedBy}</span>${sub(u('wsCarried') + ' · ' + seenAgo)}`;
     case 'stashed':
-      return `<span class="ws-icon" aria-hidden="true">📦</span><span>${u('wsStashed')}</span>${sub(u('wsStashedT') + ' · ' + fillIn(u('wsSeen'), { t: ago(seen) }))}`;
+      return ownedBy
+        ? `<span class="ws-icon" aria-hidden="true">📦</span><span>${ownedBy}</span>${sub(u('wsStashedT') + ' · ' + seenAgo)}`
+        : `<span class="ws-icon" aria-hidden="true">📦</span><span>${u('wsStashed')}</span>${sub(u('wsNoOwner') + ' · ' + seenAgo)}`;
     case 'destroyed':
       return `<span class="ws-icon" aria-hidden="true">💀</span><span>${u('wsDestroyed')}</span>`;
     case 'conquered':
