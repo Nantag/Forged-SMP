@@ -11,6 +11,8 @@ export const SITE = {
   name:     'Forged SMP',
   discord:  'https://discord.gg/TE95wjjEhD',
   ip:       '212.100.172.180:19016',   // server address (empty = "ask on Discord")
+  // Where each race weapon is: a file the server's WeaponTracker plugin keeps up to date (empty = hide it)
+  weaponStatus: 'https://raw.githubusercontent.com/Nantag/forged-smp-data/main/weapons.json',
   version:  'Java Edition 26.2',
   launch:   '2026-09-23T18:30:00+02:00',
   updated:  '2026-09-26',
@@ -70,68 +72,69 @@ export const RARITIES = [
 export const ANOMALY_GLITCH = 'T̸h̷e̶ ̴A̵n̷o̸m̶a̴l̷y̶';
 
 // ── Races ───────────────────────────────────────────────────────────────────
+// id: the race's name on the server, used to match the live weapon status (SITE.weaponStatus).
 export const RACES = [
-  { key: 'human', icon: '🙂', rarity: 'common', name: L('Human', 'Human'),
+  { key: 'human', id: 'HUMAN', icon: '🙂', rarity: 'common', name: L('Human', 'Human'),
     effects: L(['The baseline. No perks, no penalties.'],
                ['La base. Nessun vantaggio, nessuna penalità.']),
     perk: L('More XP from everything you kill.', 'Più XP da tutto ciò che uccidi.') },
 
-  { key: 'swift', icon: '💨', rarity: 'uncommon', name: L('Swift-Blooded', 'Swift-Blooded'),
+  { key: 'swift', id: 'SWIFT_BLOODED', icon: '💨', rarity: 'uncommon', name: L('Swift-Blooded', 'Swift-Blooded'),
     effects: L(['Quick on your feet and quick with a blade.', 'Always swims like you have Dolphin\'s Grace.', 'Costs half a heart.'],
                ['Veloce a piedi e con la lama.', 'Nuota sempre come con la Grazia del delfino.', 'Costa mezzo cuore.']),
     perk: L('Speed I for the whole run.', 'Velocità I per tutta la run.') },
 
-  { key: 'ember', icon: '🔥', rarity: 'uncommon', name: L('Emberborn', 'Emberborn'),
+  { key: 'ember', id: 'EMBERBORN', icon: '🔥', rarity: 'uncommon', name: L('Emberborn', 'Emberborn'),
     effects: L(['Fire and lava can\'t hurt you.', 'Furnaces near you cook faster.', 'Rain makes you noticeably squishier.'],
                ['Fuoco e lava non ti feriscono.', 'Le fornaci vicino a te cuociono più in fretta.', 'La pioggia ti rende molto più fragile.']),
     perk: L('Sets what you hit on fire.', 'Dà fuoco a ciò che colpisci.') },
 
-  { key: 'stone', icon: '🪨', rarity: 'rare', name: L('Stonekin', 'Stonekin'),
+  { key: 'stone', id: 'STONEKIN', icon: '🪨', rarity: 'rare', name: L('Stonekin', 'Stonekin'),
     effects: L(['A heart tougher, a little slower.', 'Ores sometimes drop extra.', 'Level up 30% faster.', 'Sinks like a boulder in water.'],
                ['Un cuore in più, un po\' più lento.', 'I minerali a volte droppano di più.', 'Sali di livello il 30% più in fretta.', 'In acqua affonda come un macigno.']),
     perk: L('You take less damage.', 'Subisci meno danni.') },
 
-  { key: 'verdant', icon: '🌿', rarity: 'rare', name: L('Verdant-Touched', 'Verdant-Touched'),
+  { key: 'verdant', id: 'VERDANT_TOUCHED', icon: '🌿', rarity: 'rare', name: L('Verdant-Touched', 'Verdant-Touched'),
     effects: L(['Regenerates passively, forever.', 'Food fills you up more.', 'Crops grow faster just for you being nearby.'],
                ['Rigenera passivamente, per sempre.', 'Il cibo sazia di più.', 'I raccolti crescono più in fretta se sei vicino.']),
     perk: L('Every cleared room heals you, and your party a bit.', 'Ogni stanza completata cura te e un po\' il tuo gruppo.') },
 
-  { key: 'frost', icon: '❄️', rarity: 'rare', name: L('Frostveil', 'Frostveil'),
+  { key: 'frost', id: 'FROSTVEIL', icon: '❄️', rarity: 'rare', name: L('Frostveil', 'Frostveil'),
     effects: L(['Chilling Aura: hostile mobs near you slow down.', 'Immune to cold, walks on powder snow.', 'Fire hurts a bit more; floats upward in water.'],
                ['Aura Gelida: i mob ostili vicini rallentano.', 'Immune al freddo, cammina sulla neve polverosa.', 'Il fuoco fa un po\' più male; in acqua galleggia verso l\'alto.']),
     perk: L('Slows what you hit.', 'Rallenta ciò che colpisci.') },
 
-  { key: 'void', icon: '☠️', rarity: 'epic', name: L('Voidkin', 'Voidkin'),
+  { key: 'void', id: 'VOIDKIN', icon: '☠️', rarity: 'epic', name: L('Voidkin', 'Voidkin'),
     effects: L(['Open your ender chest anywhere (sneak + right-click).', 'Ender pearls with no cooldown; 1 in 4 comes back.', 'Endermen ignore you; no chorus fruit cooldown.', 'Falling into the void sends you back where you fell from (long cooldown).', 'Costs half a heart.'],
                ['Apri l\'ender chest ovunque (shift + tasto destro).', 'Perle di ender senza cooldown; 1 su 4 ritorna.', 'Gli Enderman ti ignorano; niente cooldown sui frutti di chorus.', 'Cadere nel vuoto ti riporta da dove sei caduto (cooldown lungo).', 'Costa mezzo cuore.']),
     perk: L('Once per run, a killing blow leaves you on a sliver of health.', 'Una volta per run, un colpo letale ti lascia con un filo di vita.') },
 
-  { key: 'storm', icon: '⚡', rarity: 'epic', name: L('Stormcaller', 'Stormcaller'),
+  { key: 'storm', id: 'STORMCALLER', icon: '⚡', rarity: 'epic', name: L('Stormcaller', 'Stormcaller'),
     effects: L(['Lightning-proof.', '+50% damage while it\'s storming.', 'Sneak + right-click with a trident calls three real bolts on your target.'],
                ['Immune ai fulmini.', '+50% danni durante i temporali.', 'Shift + tasto destro con un tridente evoca tre fulmini veri sul bersaglio.']),
     perk: L('Your hits sometimes call down a bolt.', 'I tuoi colpi a volte evocano un fulmine.') },
 
-  { key: 'iron', icon: '⚙️', rarity: 'legendary', name: L('Ironclad', 'Ironclad'),
+  { key: 'iron', id: 'IRONCLAD', icon: '⚙️', rarity: 'legendary', name: L('Ironclad', 'Ironclad'),
     effects: L(['Gear wears out slower.', 'No anvil job ever costs more than 30 levels — nothing is "Too Expensive!".', 'Moves a little slower.'],
                ['L\'equipaggiamento si consuma più lentamente.', 'Nessun lavoro all\'incudine costa più di 30 livelli — mai "Troppo costoso!".', 'Si muove un po\' più lentamente.']),
     perk: L('You take less damage.', 'Subisci meno danni.') },
 
-  { key: 'blood', icon: '🩸', rarity: 'legendary', name: L('Bloodforged', 'Bloodforged'),
+  { key: 'blood', id: 'BLOODFORGED', icon: '🩸', rarity: 'legendary', name: L('Bloodforged', 'Bloodforged'),
     effects: L(['Every melee hit heals you a little.', 'Immune to poison, weakness and wither.', 'A Totem brings you back at full health.', 'Food regenerates you slower.'],
                ['Ogni colpo in mischia ti cura un po\'.', 'Immune a veleno, debolezza e wither.', 'Un Totem ti riporta a vita piena.', 'Il cibo ti rigenera più lentamente.']),
     perk: L('Kills heal you.', 'Le uccisioni ti curano.') },
 
-  { key: 'aether', icon: '✨', rarity: 'divine', name: L('Aetherborn', 'Aetherborn'),
+  { key: 'aether', id: 'AETHERBORN', icon: '✨', rarity: 'divine', name: L('Aetherborn', 'Aetherborn'),
     effects: L(['Glides like an elytra without wearing one.', 'With a real elytra: a long powered boost on every takeoff, free of charge.', 'No fall damage and an extra heart.', 'Projectiles hurt more.'],
                ['Plana come con un\'elytra anche senza indossarla.', 'Con un\'elytra vera: una lunga spinta a ogni decollo, gratis.', 'Niente danni da caduta e un cuore in più.', 'I proiettili fanno più male.']),
     perk: L('No fall damage.', 'Niente danni da caduta.') },
 
-  { key: 'abyss', icon: '🌑', rarity: 'divine', name: L('Abyssborn', 'Abyssborn'),
+  { key: 'abyss', id: 'ABYSSBORN', icon: '🌑', rarity: 'divine', name: L('Abyssborn', 'Abyssborn'),
     effects: L(['Permanent night vision.', 'Turns invisible on its own when the light gets low.', 'Hostile mobs lose you in the dark — and you see them glow faintly.'],
                ['Visione notturna permanente.', 'Diventa invisibile da solo quando la luce cala.', 'I mob ostili ti perdono al buio — e tu li vedi brillare debolmente.']),
     perk: L('You see in the dark.', 'Vedi al buio.') },
 
-  { key: 'anomaly', icon: '🌀', rarity: 'singularity', name: L('The Anomaly', 'The Anomaly'), glitch: true,
+  { key: 'anomaly', id: 'THE_ANOMALY', icon: '🌀', rarity: 'singularity', name: L('The Anomaly', 'The Anomaly'), glitch: true,
     effects: L(['[ RECORD ▓▓▓▓▓▓▓ — 1 in 10,000 — REMAINDER OF ENTRY CORRUPTED ]', 'Nobody who has rolled it has explained it the same way twice.'],
                ['[ REGISTRO ▓▓▓▓▓▓▓ — 1 su 10.000 — RESTO DELLA VOCE CORROTTO ]', 'Nessuno che l\'abbia tirata l\'ha mai spiegata due volte allo stesso modo.']),
     perk: L('▓▓▓ [REDACTED]', '▓▓▓ [OSCURATO]') },

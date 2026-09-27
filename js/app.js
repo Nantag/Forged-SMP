@@ -57,6 +57,20 @@ const U = {
   // weapons
   weaponsLead: L('One signature weapon per race. Anyone can pick any of them up, but each one only shows its full potential in the hands of its own race.',
                  'Un\'arma distintiva per razza. Chiunque può raccoglierle, ma ognuna mostra tutto il suo potenziale solo in mano alla propria razza.'),
+  wsLive: L('Live from the server', 'In diretta dal server'),
+  wsUpdated: L('updated {t}', 'aggiornato {t}'),
+  wsHeldBy: L('Held by', 'In mano a'),
+  wsStashed: L('Stashed away', 'Messa al sicuro'),
+  wsStashedT: L('not with anyone right now', 'non ce l\'ha nessuno addosso'),
+  wsDestroyed: L('Destroyed', 'Distrutta'),
+  wsConquered: L('Vault conquered', 'Caveau conquistato'),
+  wsConqueredT: L('not seen yet', 'non ancora vista'),
+  wsUnclaimed: L('Unclaimed', 'Non reclamata'),
+  wsSealed: L('its weapon rift is still sealed', 'la sua weapon rift è ancora sigillata'),
+  wsSeen: L('seen {t}', 'vista {t}'),
+  wsJustNow: L('just now', 'adesso'),
+  wsAgo: L('{t} ago', '{t} fa'),
+  wsCounts: L('{held} held · {stashed} stashed · {free} unclaimed', '{held} in mano · {stashed} al sicuro · {free} non reclamate'),
   sameRace: L('Your race', 'La tua razza'), sameRaceT: L('Full passive and both abilities.', 'Passiva completa ed entrambe le abilità.'),
   otherRace: L('Another race', 'Altra razza'), otherRaceT: L('A weaker passive and the first ability only.', 'Passiva più debole e solo la prima abilità.'),
   apLegend: L('🛡️❌ Abilities hit straight through armor. Fast, light weapons trade base damage for this. Totems still work normally.',
@@ -206,6 +220,71 @@ async function loadStatus() {
   } catch { el.innerHTML = `<span class="dot"></span>—`; }
 }
 
+// ── Live weapon status (written by the server's WeaponTracker plugin) ───────
+const RACE_BY_ID = Object.fromEntries(RACES.filter(r => r.id).map(r => [r.id, r]));
+const fillIn = (s, vars) => s.replace(/\{(\w+)\}/g, (_, k) => vars[k] ?? '');
+function ago(ms) {
+  const min = Math.max(0, Math.round((Date.now() - ms) / 60000));
+  if (min < 2) return u('wsJustNow');
+  const span = min < 60 ? `${min} min` : min < 48 * 60 ? `${Math.round(min / 60)} h` : `${Math.round(min / 1440)} ${t(L('days', 'giorni'))}`;
+  return fillIn(u('wsAgo'), { t: span });
+}
+
+function weaponStatusHtml(info) {
+  const alive = (info.copies || []).filter(c => c.state !== 'destroyed');
+  const seen = alive.length ? Math.max(...alive.map(c => c.seen || 0)) : 0;
+  const sub = text => `<span class="ws-sub">${text}</span>`;
+  switch (info.state) {
+    case 'held': {
+      const held = alive.filter(c => c.state === 'held' && c.holder);
+      const names = [...new Set(held.map(c => c.holder))].map(n => `<b>${esc(n)}</b>`).join(', ');
+      const last = Math.max(...held.map(c => c.seen || 0));
+      return `<span class="ws-icon" aria-hidden="true">⚔️</span><span>${u('wsHeldBy')} ${names}</span>${sub(fillIn(u('wsSeen'), { t: ago(last) }))}`;
+    }
+    case 'stashed':
+      return `<span class="ws-icon" aria-hidden="true">📦</span><span>${u('wsStashed')}</span>${sub(u('wsStashedT') + ' · ' + fillIn(u('wsSeen'), { t: ago(seen) }))}`;
+    case 'destroyed':
+      return `<span class="ws-icon" aria-hidden="true">💀</span><span>${u('wsDestroyed')}</span>`;
+    case 'conquered':
+      return `<span class="ws-icon" aria-hidden="true">🔓</span><span>${u('wsConquered')}</span>${sub(u('wsConqueredT'))}`;
+    case 'unclaimed':
+      return `<span class="ws-icon" aria-hidden="true">🔒</span><span>${u('wsUnclaimed')}</span>${info.vaultConquered === false ? sub(u('wsSealed')) : ''}`;
+    default:
+      return '';
+  }
+}
+
+async function loadWeaponStatus() {
+  if (!SITE.weaponStatus) return;
+  let data;
+  try {
+    const res = await fetch(SITE.weaponStatus, { cache: 'no-cache' });
+    if (!res.ok) return;
+    data = await res.json();
+  } catch { return; } // no file yet, or offline: the page just shows no status
+  if (!data || typeof data.weapons !== 'object') return;
+  const counts = { held: 0, stashed: 0, free: 0 };
+  for (const [id, info] of Object.entries(data.weapons)) {
+    const race = RACE_BY_ID[id];
+    if (!race || race.glitch || !info) continue;
+    const el = document.querySelector(`[data-weapon-status="${race.key}"]`);
+    const html = weaponStatusHtml(info);
+    if (!el || !html) continue;
+    el.innerHTML = html;
+    el.className = `w-status ${info.state}`;
+    el.hidden = false;
+    if (info.state === 'held') counts.held++;
+    else if (info.state === 'stashed') counts.stashed++;
+    else if (info.state === 'unclaimed' || info.state === 'conquered') counts.free++;
+  }
+  const live = document.getElementById('weapon-live');
+  if (live && data.updated) {
+    live.innerHTML = `<span><span class="dot"></span><b>${u('wsLive')}</b></span><span>${fillIn(u('wsCounts'), counts)}</span>`
+      + `<span class="muted">${fillIn(u('wsUpdated'), { t: ago(data.updated) })}</span>`;
+    live.hidden = false;
+  }
+}
+
 const dayNumber = () => Math.max(1, Math.floor((Date.now() - new Date(SITE.launch)) / 86400000) + 1);
 
 // ── Pages ────────────────────────────────────────────────────────────────────
@@ -325,6 +404,7 @@ PAGES.weapons = () => {
     ${CONTROLS.map(([k, v]) => `<div><kbd>${t(k)}</kbd><span>${t(v)}</span></div>`).join('')}
   </div>
   <p class="note">${u('apLegend')}</p>
+  <p class="w-live" id="weapon-live" hidden></p>
 
   <div class="grid g2 weapon-grid">
     ${sorted.map(w => {
@@ -344,6 +424,7 @@ PAGES.weapons = () => {
             <div class="dmg-num" title="${u('damage')}">${w.dmg.toFixed(1)}${w.ap ? '<span class="ap" title="Armor piercing">🛡️❌</span>' : ''}</div>
           </div>
           <div class="dmg-bar" aria-hidden="true"><span style="width:${(w.dmg / maxDmg) * 100}%"></span></div>
+          <div class="w-status" data-weapon-status="${w.race}" hidden></div>
           <dl class="abilities">
             <div><dt>${u('passive')}</dt><dd>${esc(t(w.passive))}</dd></div>
             <div><dt>${u('ability1')} <kbd>⇧ + RMB</kbd></dt><dd>${esc(t(w.a1))}</dd></div>
@@ -723,6 +804,7 @@ const MOUNT = {};
 MOUNT.home = () => { loadStatus(); tickCountdowns(); };
 MOUNT.rules = () => tickCountdowns();
 MOUNT.join = () => loadStatus();
+MOUNT.weapons = () => loadWeaponStatus();
 
 MOUNT.races = () => {
   // filter

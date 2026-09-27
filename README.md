@@ -19,6 +19,7 @@ Settings → Pages → *Deploy from a branch* → pick the branch and `/ (root)`
 **Every game fact lives in [`js/data.js`](js/data.js)**: races, weapons, bosses, rift numbers, forge grades and buffs, items, commands, FAQ, news. Each text is `{ en, it }`.
 
 - **Server address:** set `SITE.ip`. Until then the site says "address on Discord". Once set, the live player count shows up automatically (via api.mcsrvstat.us).
+- **Live weapon status:** `SITE.weaponStatus` is the `weapons.json` the server's WeaponTracker plugin writes to the `Nantag/forged-smp-data` repository. The Weapons page reads it and shows, on each card, who holds that weapon, or whether it's stashed, destroyed or unclaimed. Each race's `id` in `RACES` is its name on the server, which is how the two are matched. Set `weaponStatus` to `''` to hide it; while the file doesn't exist yet the page simply shows no status.
 - **News:** add an entry at the top of `NEWS`.
 - After changing numbers, bump `SITE.updated` (shown in the footer).
 
