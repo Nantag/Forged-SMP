@@ -183,7 +183,7 @@ export const WEAPONS = [
     passive: L('Extra damage against low-health targets.', 'Danno extra contro bersagli a poca vita.'),
     a1: L('Marks your target for a few seconds of bonus damage.', 'Marchia il bersaglio per qualche secondo di danno bonus.'),
     a2: L('Instantly finishes off anything already critically low.', 'Finisce all\'istante chiunque sia già a vita critica.') },
-  { race: 'aether', icon: '🪽', name: 'Angelic Dagger', dmg: 5.5, ap: true,
+  { race: 'aether', icon: '🪽', name: 'Angelic Longsword', dmg: 5.5, ap: true,
     passive: L('If you\'re close to death, your next landed hit heals you.', 'Se sei vicino alla morte, il prossimo colpo a segno ti cura.'),
     a1: L('A blinding dash.', 'Uno scatto accecante.'),
     a2: L('Brief invulnerability plus a few guaranteed critical hits.', 'Breve invulnerabilità più qualche colpo critico garantito.') },
