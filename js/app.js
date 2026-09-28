@@ -65,6 +65,7 @@ const U = {
   wsStashedT: L('stashed away', 'messa al sicuro'),
   wsNoOwner: L('owner unknown', 'proprietario sconosciuto'),
   wsDestroyed: L('Destroyed', 'Distrutta'),
+  wsReopened: L('its weapon rift is open again', 'la sua weapon rift è di nuovo aperta'),
   wsConquered: L('Vault conquered', 'Caveau conquistato'),
   wsConqueredT: L('not seen yet', 'non ancora vista'),
   wsUnclaimed: L('Unclaimed', 'Non reclamata'),
@@ -248,7 +249,7 @@ function weaponStatusHtml(info) {
         ? `<span class="ws-icon" aria-hidden="true">📦</span><span>${ownedBy}</span>${sub(u('wsStashedT') + ' · ' + seenAgo)}`
         : `<span class="ws-icon" aria-hidden="true">📦</span><span>${u('wsStashed')}</span>${sub(u('wsNoOwner') + ' · ' + seenAgo)}`;
     case 'destroyed':
-      return `<span class="ws-icon" aria-hidden="true">💀</span><span>${u('wsDestroyed')}</span>`;
+      return `<span class="ws-icon" aria-hidden="true">💀</span><span>${u('wsDestroyed')}</span>${info.vaultConquered === false ? sub(u('wsReopened')) : ''}`;
     case 'conquered':
       return `<span class="ws-icon" aria-hidden="true">🔓</span><span>${u('wsConquered')}</span>${sub(u('wsConqueredT'))}`;
     case 'unclaimed':
