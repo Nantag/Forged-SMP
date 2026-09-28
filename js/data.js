@@ -24,8 +24,8 @@ export const NEWS = [
     date: '2026-09-28',
     title: L('Calamity nights', 'Notti di calamità'),
     body: L(
-      'Now and then a night is not an ordinary night. A Blood Moon brings stronger monsters and red rifts, a Starfall drops stars full of loot and meteors you can forge on for free, and a Thin Veil lets the rift press through. Nobody sleeps until dawn. <a href="#/rules/calamity">What each night does</a>.',
-      'Ogni tanto una notte non è una notte qualunque. Una Blood Moon porta mostri più forti e rift rosse, una Starfall fa cadere stelle piene di bottino e meteore su cui forgiare gratis, e un Thin Veil fa passare la rift. Nessuno dorme fino all\'alba. <a href="#/rules/calamity">Cosa fa ogni notte</a>.'),
+      'Now and then a night is not an ordinary night. A Blood Moon brings stronger monsters and red rifts, a Starfall drops stars full of loot and meteors you can forge on for free, and a Thin Veil lets the rift press through. Nobody sleeps until dawn. <a href="#/calamity">What each night does</a>.',
+      'Ogni tanto una notte non è una notte qualunque. Una Blood Moon porta mostri più forti e rift rosse, una Starfall fa cadere stelle piene di bottino e meteore su cui forgiare gratis, e un Thin Veil fa passare la rift. Nessuno dorme fino all\'alba. <a href="#/calamity">Cosa fa ogni notte</a>.'),
   },
   {
     date: '2026-09-25',
@@ -63,6 +63,9 @@ export const PILLARS = [
   { icon: '🤖', page: 'bosses', title: L('Bosses with real AI', 'Boss con vera IA'),
     text: L('Fake players with real combat AI power bosses, dungeon guardians and world events.',
             'Finti giocatori con vera IA da combattimento animano boss, guardiani dei dungeon ed eventi nel mondo.') },
+  { icon: '🌘', page: 'calamity', title: L('Calamity nights', 'Notti di calamità'),
+    text: L('Now and then a night turns: a Blood Moon, a Starfall or a Thin Veil. Stronger monsters, falling stars, rifts tearing open, and nobody sleeps.',
+            'Ogni tanto una notte cambia: Blood Moon, Starfall o Thin Veil. Mostri più forti, stelle cadenti, rift che si aprono, e nessuno dorme.') },
 ];
 
 // ── Rarities ────────────────────────────────────────────────────────────────

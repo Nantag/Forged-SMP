@@ -155,8 +155,9 @@ const U = {
                'In cosa questo server è diverso dal vanilla, e le regole per il server e il Discord. Le decisioni dello staff sono definitive — se non sei d\'accordo, apri un ticket.'),
   mechanics: L('Special mechanics', 'Meccaniche speciali'),
   dimensions: L('Dimensions', 'Dimensioni'),
-  calamity: L('Calamity nights', 'Notti di calamità'),
-  calamityT: L('Now and then a night is not an ordinary night. There are three kinds, and a Blood Moon is the most common.', 'Ogni tanto una notte non è una notte qualunque. Ce ne sono di tre tipi, e la Blood Moon è la più comune.'),
+  calamity: L('Calamity', 'Calamità'), calamityTitle: L('Calamity nights', 'Notti di calamità'),
+  calHow: L('How it works', 'Come funziona'), calNights: L('The three nights', 'Le tre notti'),
+  calamityT: L('Now and then a night is not an ordinary night. A Blood Moon, a Starfall or a Thin Veil rises at dusk, and nobody sleeps until dawn.', 'Ogni tanto una notte non è una notte qualunque. Al tramonto sorge una Blood Moon, una Starfall o un Thin Veil, e nessuno dorme fino all\'alba.'),
   calShare: L('Of calamities', 'Delle calamità'), calPortals: L('Portal every', 'Portale ogni'), calLoot: L('Rift loot', 'Bottino rift'),
   calMore: L('Calamity nights open many more.', 'Le notti di calamità ne aprono molti di più.'),
   calStar: L('During a Starfall, star-touched meteors fall too: forging on them is free.', 'Durante una Starfall cadono anche meteore toccate dalle stelle: forgiarci sopra è gratis.'),
@@ -453,7 +454,7 @@ PAGES.rift = () => `
       <div class="card"><h3>🌀 ${t(L('Random portals', 'Portali casuali'))}</h3>
         <p>${t(L('A tear in the air opens near a random player — about one every ~75 minutes across the server. Everyone within ~250 blocks is told the direction. It stays open 15 minutes. Click it to ready up: everyone who clicks within 20 seconds goes in together, up to 4.',
                  'Uno squarcio nell\'aria si apre vicino a un giocatore a caso — circa uno ogni ~75 minuti su tutto il server. Chi è entro ~250 blocchi riceve la direzione. Resta aperto 15 minuti. Cliccalo per prepararti: chi clicca entro 20 secondi entra insieme, fino a 4.'))}
-          <a href="#/rules/calamity">${u('calMore')}</a></p></div>
+          <a href="#/calamity">${u('calMore')}</a></p></div>
       <div class="card"><h3>🗝️ ${t(L('Rift Key: join to help', 'Rift Key: entra per aiutare'))}</h3>
         <p>${t(L('A Rift Key lets you — and allies within 8 blocks — enter a rift someone else has already started, to help them. It can\'t open a rift on its own. A 60-minute key cooldown applies. Craft: 2 Echo Shards + an Ender Eye + an Amethyst Shard, shapeless.',
                  'Una Rift Key fa entrare te — e gli alleati entro 8 blocchi — in una rift già avviata da altri, per aiutarli. Da sola non apre rift. Si applica un cooldown di 60 minuti. Craft: 2 Frammenti di eco + un Occhio di ender + un Frammento di ametista, senza forma.'))}</p>
@@ -587,7 +588,7 @@ PAGES.forge = () => `
   ${section(u('findMeteor'), `
     <div class="grid g3">
       <div class="card"><h3>☄️ ${t(L('The crash', 'L\'impatto'))}</h3><p>${t(L('Meteors fall on their own, landing 30–80 blocks from a random online player. Staff can also call them.', 'Le meteore cadono da sole, a 30–80 blocchi da un giocatore online a caso. Anche lo staff può evocarle.'))}
-          <a href="#/rules/calamity">${u('calStar')}</a></p></div>
+          <a href="#/calamity">${u('calStar')}</a></p></div>
       <div class="card"><h3>🧭 ${t(L('The rumble', 'Il boato'))}</h3><p>${t(L('Everyone within ~250 blocks hears thunder and gets the direction on their action bar (north-east, south…) — never the distance or coordinates.', 'Chi è entro ~250 blocchi sente un tuono e riceve la direzione sull\'action bar (nord-est, sud…) — mai distanza o coordinate.'))}</p></div>
       <div class="card"><h3>⏳ ${t(L('The burn', 'Lo spegnimento'))}</h3><p>${t(L(`It burns for about ${FORGE.burn} minutes; the glowing magma core cools to blackstone as it goes.`, `Brucia per circa ${FORGE.burn} minuti; il nucleo di magma si raffredda in pietranera.`))}</p></div>
     </div>`)}
@@ -792,9 +793,23 @@ PAGES.rules = () => `
           <p>${esc(t(d.text))}</p><p class="dim-state" data-dim="${d.key}">${dimState(d)}</p></div>`).join('')}
     </div>`)}
 
-  ${section(u('calamity'), `
-    <p>${u('calamityT')}</p>
-    <div class="card">${list(CALAMITY.rules)}</div>
+  ${section(u('mechanics'), `
+    <div class="grid g3">
+      ${MECHANICS.map(m => `<div class="card"><div class="item-icon" aria-hidden="true">${m.icon}</div><h3>${esc(t(m.title))}</h3><p>${esc(t(m.text))}</p></div>`).join('')}
+    </div>
+    <h3 class="sub">⚔️ ${u('inCombat')}</h3>
+    <div class="card combat"><p class="muted">${u('inCombatT')}</p>${list(COMBAT_RULES)}</div>`, 'mechanics')}
+
+  ${section(u('gameRules'), `<ol class="rules-list">${t(RULES_GAME).map(r => `<li>${r}</li>`).join('')}</ol>`, 'game')}
+  ${section(u('discordRules'), `<ol class="rules-list">${t(RULES_DISCORD).map(r => `<li>${esc(r)}</li>`).join('')}</ol>`, 'discord')}
+`;
+
+PAGES.calamity = () => `
+  ${head(u('calamityTitle'), u('calamityT'), 'WORLD EVENTS')}
+
+  ${section(u('calHow'), `<div class="card">${list(CALAMITY.rules)}</div>`)}
+
+  ${section(u('calNights'), `
     <div class="kinds nights">
       ${CALAMITY.nights.map(n => `
         <article class="card kind night" style="--c:${n.color}">
@@ -807,17 +822,7 @@ PAGES.rules = () => `
           </div>
           ${list(n.effects)}
         </article>`).join('')}
-    </div>`, 'calamity')}
-
-  ${section(u('mechanics'), `
-    <div class="grid g3">
-      ${MECHANICS.map(m => `<div class="card"><div class="item-icon" aria-hidden="true">${m.icon}</div><h3>${esc(t(m.title))}</h3><p>${esc(t(m.text))}</p></div>`).join('')}
-    </div>
-    <h3 class="sub">⚔️ ${u('inCombat')}</h3>
-    <div class="card combat"><p class="muted">${u('inCombatT')}</p>${list(COMBAT_RULES)}</div>`, 'mechanics')}
-
-  ${section(u('gameRules'), `<ol class="rules-list">${t(RULES_GAME).map(r => `<li>${r}</li>`).join('')}</ol>`, 'game')}
-  ${section(u('discordRules'), `<ol class="rules-list">${t(RULES_DISCORD).map(r => `<li>${esc(r)}</li>`).join('')}</ol>`, 'discord')}
+    </div>`)}
 `;
 
 PAGES.notfound = () => `
@@ -921,7 +926,7 @@ function decode(el) {
 }
 
 // ── Chrome: nav, footer, language ────────────────────────────────────────────
-const NAV = ['home', 'races', 'weapons', 'rift', 'forge', 'bosses', 'pvp', 'items', 'rules', 'join'];
+const NAV = ['home', 'races', 'weapons', 'rift', 'forge', 'calamity', 'bosses', 'pvp', 'items', 'rules', 'join'];
 let cleanupFns = [];
 
 function renderChrome(page) {
