@@ -15,11 +15,18 @@ export const SITE = {
   weaponStatus: 'https://raw.githubusercontent.com/Nantag/forged-smp-data/main/weapons.json',
   version:  'Java Edition 26.2',
   launch:   '2026-09-23T18:30:00+02:00',
-  updated:  '2026-09-26',
+  updated:  '2026-09-28',
 };
 
 // ── News (newest first) ─────────────────────────────────────────────────────
 export const NEWS = [
+  {
+    date: '2026-09-28',
+    title: L('Calamity nights', 'Notti di calamità'),
+    body: L(
+      'Now and then a night is not an ordinary night. A Blood Moon brings stronger monsters and red rifts, a Starfall drops stars full of loot and meteors you can forge on for free, and a Thin Veil lets the rift press through. Nobody sleeps until dawn. <a href="#/rules/calamity">What each night does</a>.',
+      'Ogni tanto una notte non è una notte qualunque. Una Blood Moon porta mostri più forti e rift rosse, una Starfall fa cadere stelle piene di bottino e meteore su cui forgiare gratis, e un Thin Veil fa passare la rift. Nessuno dorme fino all\'alba. <a href="#/rules/calamity">Cosa fa ogni notte</a>.'),
+  },
   {
     date: '2026-09-25',
     title: L('Weapon Rifts are open', 'Aperte le Weapon Rift'),
@@ -462,6 +469,65 @@ export const DIMENSIONS = [
   { key: 'end', icon: '🌌', name: L('The End', 'L\'End'), opensAfterHours: 7 * 24,
     text: L('Opens exactly 7 days after launch.', 'Si apre esattamente 7 giorni dopo il lancio.') },
 ];
+
+// ── Calamity nights ─────────────────────────────────────────────────────────
+// From the Calamity plugin's config: roll chance, the weights (share), each night's buffs and intervals.
+export const CALAMITY = {
+  rules: L([
+    'At dusk a night has a <b>1 in 5</b> chance of becoming a calamity, with at least <b>two ordinary nights</b> between two calamities.',
+    'It lasts <b>until dawn</b>. Everyone in the Overworld sees it rise, and the whole server is told.',
+    '<b>Nobody sleeps through it</b>: beds refuse everyone until it is over.',
+    'Only the Overworld is touched. The Nether and the End carry on as usual.',
+    'A rift that opens during a calamity keeps its bonus to the end of the run, even past dawn. More portals can be open at once on these nights.',
+  ], [
+    'Al tramonto una notte ha <b>1 possibilità su 5</b> di diventare una calamità, con almeno <b>due notti normali</b> tra una calamità e l\'altra.',
+    'Dura <b>fino all\'alba</b>. Chi è nell\'Overworld la vede sorgere, e tutto il server viene avvisato.',
+    '<b>Nessuno la salta dormendo</b>: i letti rifiutano tutti finché non finisce.',
+    'Tocca solo l\'Overworld. Nether ed End vanno avanti come sempre.',
+    'Una rift aperta durante una calamità tiene il suo bonus fino alla fine della run, anche dopo l\'alba. In queste notti possono esserci più portali aperti insieme.',
+  ]),
+  nights: [
+    { key: 'blood-moon', icon: '🩸', color: '#ff3b3b', name: 'Blood Moon', rising: 'THE BLOOD MOON RISES',
+      share: '45%', portals: '5 min', loot: '+50%',
+      effects: L([
+        'A <b>red full moon</b>, and red at the edges of your sight.',
+        'Monsters spawn <b>twice as thick</b>, with +50% health, +35% damage and +15% speed.',
+        'They pay <b>double XP</b>, and about 1 in 50 drops a <b>forge rune</b>.',
+        '<b>Rift:</b> a portal tears open near someone every 5 minutes, mostly <b>red rifts</b>. Rifts opened tonight have tougher, more numerous mobs and pay +50% loot and XP.',
+      ], [
+        'Una <b>luna piena rossa</b>, e rosso ai bordi della vista.',
+        'I mostri compaiono <b>il doppio</b>, con +50% di vita, +35% di danno e +15% di velocità.',
+        'Danno <b>il doppio dell\'XP</b>, e circa 1 su 50 lascia una <b>runa della forgia</b>.',
+        '<b>Rift:</b> ogni 5 minuti si apre un portale vicino a qualcuno, per lo più <b>rift rosse</b>. Le rift aperte stanotte hanno mob più forti e numerosi e danno +50% di bottino e XP.',
+      ]) },
+    { key: 'starfall', icon: '🌠', color: '#ffd84a', name: 'Starfall', rising: 'THE SKY IS BREAKING',
+      share: '35%', portals: '10 min', loot: '+30%',
+      effects: L([
+        '<b>Shooting stars</b> streak across the sky.',
+        'Every 40 seconds a <b>star falls</b> near someone, under a column of light. It leaves glowing loot for whoever gets there first: XP bottles, lapis, amethyst, emeralds, gold, sometimes diamonds or a forge rune.',
+        '<b>Forge:</b> <b>star-touched meteors</b> fall every 4 minutes. Forging on one <b>costs nothing</b>, and each forging takes only half as much heat out of it.',
+        '<b>Rift:</b> a portal opens every 10 minutes, now and then an anomaly. Rifts opened tonight pay +30% loot and +25% XP.',
+      ], [
+        '<b>Stelle cadenti</b> attraversano il cielo.',
+        'Ogni 40 secondi una <b>stella cade</b> vicino a qualcuno, sotto una colonna di luce. Lascia bottino luccicante per chi arriva per primo: bottiglie di XP, lapislazzuli, ametista, smeraldi, oro, a volte diamanti o una runa della forgia.',
+        '<b>Forgia:</b> ogni 4 minuti cadono <b>meteore toccate dalle stelle</b>. Forgiarci sopra <b>non costa nulla</b>, e ogni forgiatura toglie solo metà del calore.',
+        '<b>Rift:</b> ogni 10 minuti si apre un portale, a volte un\'anomalia. Le rift aperte stanotte danno +30% di bottino e +25% di XP.',
+      ]) },
+    { key: 'thin-veil', icon: '🌫️', color: '#b56cff', name: 'Thin Veil', rising: 'THE VEIL GROWS THIN',
+      share: '20%', portals: '3 min', loot: '+25%',
+      effects: L([
+        'The rift presses through: purple motes drift around you, and something whispers nearby.',
+        '3 in 10 natural monster spawns are <b>endermen</b> instead.',
+        '<b>Rift:</b> a portal opens every 3 minutes, <b>half of them anomalies</b>. Rifts opened tonight are a little tougher and pay +25% loot and +30% XP.',
+        '<b>Forge:</b> <b>Cold Forge</b> meteors fall every 7 minutes.',
+      ], [
+        'La rift preme per passare: particelle viola ti fluttuano intorno, e qualcosa sussurra lì vicino.',
+        '3 mostri naturali su 10 compaiono come <b>enderman</b>.',
+        '<b>Rift:</b> ogni 3 minuti si apre un portale, <b>metà sono anomalie</b>. Le rift aperte stanotte sono un po\' più dure e danno +25% di bottino e +30% di XP.',
+        '<b>Forgia:</b> ogni 7 minuti cadono meteore da <b>Forgia Fredda</b>.',
+      ]) },
+  ],
+};
 
 export const MECHANICS = [
   { icon: '🔨', title: L('The Mace', 'La Mazza'),

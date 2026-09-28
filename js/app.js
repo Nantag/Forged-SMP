@@ -2,7 +2,7 @@ import {
   SITE, NEWS, PILLARS, RARITIES, RACES, ANOMALY_GLITCH, WEAPONS, RACE_BOSSES, RIFT_BOSSES,
   RIFT_KINDS, RIFT_TIERS, RIFT_ROOMS, RIFT_CHALLENGES, RIFT_RELICS, KEY_FRAME, WEAPON_RIFTS,
   FORGE, TEAM_COMMANDS, TEAM_PERKS, BOUNTY_RULES, ITEM_GROUPS, COMMANDS, CONTROLS, FAQ,
-  DIMENSIONS, MECHANICS, COMBAT_RULES, RULES_DISCORD, RULES_GAME,
+  DIMENSIONS, CALAMITY, MECHANICS, COMBAT_RULES, RULES_DISCORD, RULES_GAME,
 } from './data.js';
 
 // ── Language ─────────────────────────────────────────────────────────────────
@@ -155,6 +155,11 @@ const U = {
                'In cosa questo server è diverso dal vanilla, e le regole per il server e il Discord. Le decisioni dello staff sono definitive — se non sei d\'accordo, apri un ticket.'),
   mechanics: L('Special mechanics', 'Meccaniche speciali'),
   dimensions: L('Dimensions', 'Dimensioni'),
+  calamity: L('Calamity nights', 'Notti di calamità'),
+  calamityT: L('Now and then a night is not an ordinary night. There are three kinds, and a Blood Moon is the most common.', 'Ogni tanto una notte non è una notte qualunque. Ce ne sono di tre tipi, e la Blood Moon è la più comune.'),
+  calShare: L('Of calamities', 'Delle calamità'), calPortals: L('Portal every', 'Portale ogni'), calLoot: L('Rift loot', 'Bottino rift'),
+  calMore: L('Calamity nights open many more.', 'Le notti di calamità ne aprono molti di più.'),
+  calStar: L('During a Starfall, star-touched meteors fall too: forging on them is free.', 'Durante una Starfall cadono anche meteore toccate dalle stelle: forgiarci sopra è gratis.'),
   open: L('Open', 'Aperto'), opensIn: L('Opens in', 'Si apre tra'),
   inCombat: L('While in combat', 'Durante il combattimento'),
   inCombatT: L('These apply only while you\'re flagged as in combat. Outside of combat, vanilla behavior applies.', 'Valgono solo mentre sei segnalato come in combattimento. Fuori dal combattimento vale il comportamento vanilla.'),
@@ -447,7 +452,8 @@ PAGES.rift = () => `
     <div class="grid g2">
       <div class="card"><h3>🌀 ${t(L('Random portals', 'Portali casuali'))}</h3>
         <p>${t(L('A tear in the air opens near a random player — about one every ~75 minutes across the server. Everyone within ~250 blocks is told the direction. It stays open 15 minutes. Click it to ready up: everyone who clicks within 20 seconds goes in together, up to 4.',
-                 'Uno squarcio nell\'aria si apre vicino a un giocatore a caso — circa uno ogni ~75 minuti su tutto il server. Chi è entro ~250 blocchi riceve la direzione. Resta aperto 15 minuti. Cliccalo per prepararti: chi clicca entro 20 secondi entra insieme, fino a 4.'))}</p></div>
+                 'Uno squarcio nell\'aria si apre vicino a un giocatore a caso — circa uno ogni ~75 minuti su tutto il server. Chi è entro ~250 blocchi riceve la direzione. Resta aperto 15 minuti. Cliccalo per prepararti: chi clicca entro 20 secondi entra insieme, fino a 4.'))}
+          <a href="#/rules/calamity">${u('calMore')}</a></p></div>
       <div class="card"><h3>🗝️ ${t(L('Rift Key: join to help', 'Rift Key: entra per aiutare'))}</h3>
         <p>${t(L('A Rift Key lets you — and allies within 8 blocks — enter a rift someone else has already started, to help them. It can\'t open a rift on its own. A 60-minute key cooldown applies. Craft: 2 Echo Shards + an Ender Eye + an Amethyst Shard, shapeless.',
                  'Una Rift Key fa entrare te — e gli alleati entro 8 blocchi — in una rift già avviata da altri, per aiutarli. Da sola non apre rift. Si applica un cooldown di 60 minuti. Craft: 2 Frammenti di eco + un Occhio di ender + un Frammento di ametista, senza forma.'))}</p>
@@ -580,7 +586,8 @@ PAGES.forge = () => `
 
   ${section(u('findMeteor'), `
     <div class="grid g3">
-      <div class="card"><h3>☄️ ${t(L('The crash', 'L\'impatto'))}</h3><p>${t(L('Meteors fall on their own, landing 30–80 blocks from a random online player. Staff can also call them.', 'Le meteore cadono da sole, a 30–80 blocchi da un giocatore online a caso. Anche lo staff può evocarle.'))}</p></div>
+      <div class="card"><h3>☄️ ${t(L('The crash', 'L\'impatto'))}</h3><p>${t(L('Meteors fall on their own, landing 30–80 blocks from a random online player. Staff can also call them.', 'Le meteore cadono da sole, a 30–80 blocchi da un giocatore online a caso. Anche lo staff può evocarle.'))}
+          <a href="#/rules/calamity">${u('calStar')}</a></p></div>
       <div class="card"><h3>🧭 ${t(L('The rumble', 'Il boato'))}</h3><p>${t(L('Everyone within ~250 blocks hears thunder and gets the direction on their action bar (north-east, south…) — never the distance or coordinates.', 'Chi è entro ~250 blocchi sente un tuono e riceve la direzione sull\'action bar (nord-est, sud…) — mai distanza o coordinate.'))}</p></div>
       <div class="card"><h3>⏳ ${t(L('The burn', 'Lo spegnimento'))}</h3><p>${t(L(`It burns for about ${FORGE.burn} minutes; the glowing magma core cools to blackstone as it goes.`, `Brucia per circa ${FORGE.burn} minuti; il nucleo di magma si raffredda in pietranera.`))}</p></div>
     </div>`)}
@@ -784,6 +791,23 @@ PAGES.rules = () => `
         <div class="card dim dim-${d.key}"><div class="dim-top"><span class="item-icon" aria-hidden="true">${d.icon}</span><h3>${esc(t(d.name))}</h3></div>
           <p>${esc(t(d.text))}</p><p class="dim-state" data-dim="${d.key}">${dimState(d)}</p></div>`).join('')}
     </div>`)}
+
+  ${section(u('calamity'), `
+    <p>${u('calamityT')}</p>
+    <div class="card">${list(CALAMITY.rules)}</div>
+    <div class="kinds nights">
+      ${CALAMITY.nights.map(n => `
+        <article class="card kind night" style="--c:${n.color}">
+          <h3><span aria-hidden="true">${n.icon}</span> ${esc(n.name)}</h3>
+          <p class="night-rising">${esc(n.rising)}</p>
+          <div class="kind-stats">
+            <div><span>${u('calShare')}</span><b>${n.share}</b></div>
+            <div><span>${u('calPortals')}</span><b>${n.portals}</b></div>
+            <div><span>${u('calLoot')}</span><b>${n.loot}</b></div>
+          </div>
+          ${list(n.effects)}
+        </article>`).join('')}
+    </div>`, 'calamity')}
 
   ${section(u('mechanics'), `
     <div class="grid g3">

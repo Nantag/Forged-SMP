@@ -307,6 +307,9 @@ kbd { background: var(--panel2); border: 1px solid var(--line2); border-bottom-w
 .kind-stats div { background: var(--bg2); border-radius: 8px; padding: .45rem .5rem; text-align: center; }
 .kind-stats span { display: block; font: 600 .62rem var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
 .kind-stats b { font-family: var(--mono); font-size: .95rem; }
+.nights { margin-top: 1rem; }
+.night-rising { font: 700 .72rem var(--mono); letter-spacing: .14em; color: var(--c); opacity: .85; margin-top: .15rem; }
+.night .ticks li::before { color: var(--c); }
 
 .tiers { display: grid; grid-template-columns: repeat(5, 1fr); gap: .5rem; margin-top: 1rem; }
 .tier { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: .9rem; position: relative; overflow: hidden; }
