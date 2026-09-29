@@ -166,7 +166,7 @@ const U = {
   inCombatT: L('These apply only while you\'re flagged as in combat. Outside of combat, vanilla behavior applies.', 'Valgono solo mentre sei segnalato come in combattimento. Fuori dal combattimento vale il comportamento vanilla.'),
   gameRules: L('In-game rules', 'Regole in gioco'),
   discordRules: L('Discord rules', 'Regole del Discord'),
-  endOpens: L('The End opens in', 'L\'End si apre tra'),
+  endOpens: L('The End fight in', 'Battaglia dell\'End tra'),
   notFound: L('This page slipped through a rift.', 'Questa pagina è finita in una rift.'),
   back: L('Back home', 'Torna alla home'),
 };
@@ -760,7 +760,7 @@ PAGES.join = () => `
   ${section(u('faq'), `<div class="faq">${FAQ.map(([q, a]) => `<details class="card"><summary>${esc(t(q))}</summary><p>${esc(t(a))}</p></details>`).join('')}</div>`)}
 `;
 
-const openAt = d => new Date(new Date(SITE.launch).getTime() + d.opensAfterHours * 3600000);
+const openAt = d => d.opensAt ? new Date(d.opensAt) : new Date(new Date(SITE.launch).getTime() + d.opensAfterHours * 3600000);
 function countdown(ms) {
   const s = Math.max(0, Math.floor(ms / 1000));
   const d = Math.floor(s / 86400), h = Math.floor(s % 86400 / 3600), m = Math.floor(s % 3600 / 60), sec = s % 60;

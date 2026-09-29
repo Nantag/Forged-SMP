@@ -15,11 +15,18 @@ export const SITE = {
   weaponStatus: 'https://raw.githubusercontent.com/Nantag/forged-smp-data/main/weapons.json',
   version:  'Java Edition 26.2',
   launch:   '2026-09-23T18:30:00+02:00',
-  updated:  '2026-09-28',
+  updated:  '2026-09-29',
 };
 
 // ── News (newest first) ─────────────────────────────────────────────────────
 export const NEWS = [
+  {
+    date: '2026-09-29',
+    title: L('The End fight: Saturday 3 October, 17:30', 'Battaglia dell\'End: sabato 3 ottobre, 17:30'),
+    body: L(
+      'The End now opens with the End fight on Saturday 3 October at 17:30 (Italian time). Get your gear ready.',
+      'L\'End ora si apre con la battaglia dell\'End sabato 3 ottobre alle 17:30 (ora italiana). Preparate l\'equipaggiamento.'),
+  },
   {
     date: '2026-09-28',
     title: L('Calamity nights', 'Notti di calamità'),
@@ -469,8 +476,8 @@ export const FAQ = [
 export const DIMENSIONS = [
   { key: 'nether', icon: '🔥', name: L('The Nether', 'Il Nether'), opensAfterHours: 5,
     text: L('Locked for the first 5 hours after launch, then opens automatically.', 'Bloccato per le prime 5 ore dal lancio, poi si apre da solo.') },
-  { key: 'end', icon: '🌌', name: L('The End', 'L\'End'), opensAfterHours: 7 * 24,
-    text: L('Opens exactly 7 days after launch.', 'Si apre esattamente 7 giorni dopo il lancio.') },
+  { key: 'end', icon: '🌌', name: L('The End', 'L\'End'), opensAt: '2026-10-03T17:30:00+02:00',
+    text: L('Opens with the End fight on Saturday 3 October at 17:30 (Italian time).', 'Si apre con la battaglia dell\'End sabato 3 ottobre alle 17:30 (ora italiana).') },
 ];
 
 // ── Calamity nights ─────────────────────────────────────────────────────────
