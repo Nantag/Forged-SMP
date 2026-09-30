@@ -417,6 +417,7 @@ export const ITEM_GROUPS = [
     ['🥾', 'Blast Boots', L('Cuts explosion damage dramatically.', 'Riduce drasticamente i danni da esplosione.')],
     ['🥚', 'Dragon Egg', L('[ENTRY REDACTED]', '[VOCE OSCURATA]'), true],
     ['🎩', 'Vanishing Cap', L('Full invisibility, name and all, for a couple of minutes on a long cooldown.', 'Invisibilità totale, nome compreso, per un paio di minuti con un cooldown lungo.')],
+    ['🕰️', 'The Stopped Clock', L('A boss reward — whoever lands the killing blow takes it. Right-click: time stops for everyone else within 8 blocks, players and bots alike. For 4 seconds they can\'t move, swing, shoot, eat or use anything (they can still look around, and still be hit). You aren\'t frozen. Reusable, 2-minute cooldown. A boss can never be stopped by it.', 'Ricompensa di un boss — la prende chi sferra il colpo mortale. Tasto destro: il tempo si ferma per tutti gli altri nel raggio di 8 blocchi, giocatori e bot. Per 4 secondi non possono muoversi, colpire, sparare, mangiare né usare nulla (possono ancora guardarsi intorno e subire colpi). Tu non sei bloccato. Riutilizzabile, cooldown di 2 minuti. Un boss non può mai essere fermato.')],
   ]},
   { name: L('Consumables', 'Consumabili'), items: [
     ['🕊️', 'Elixir of Flight', L('Temporary creative-style flight.', 'Volo temporaneo come in creativa.')],
