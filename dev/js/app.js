@@ -1,5 +1,5 @@
 import {
-  SITE, NEWS, PILLARS, RARITIES, RACES, ANOMALY_GLITCH, GEM_TIERS, GEMS, OTHER_UNIQUES, RACE_BOSSES, RIFT_BOSSES,
+  SITE, NEWS, PILLARS, RARITIES, RACES, ANOMALY_GLITCH, GEM_TIERS, GEMS, OTHER_UNIQUES, GUARDIANS, RIFT_BOSSES, SEASON,
   RIFT_KINDS, RIFT_TIERS, RIFT_ROOMS, RIFT_CHALLENGES, RIFT_RELICS, GEM_KEY_FRAMES, GEM_VAULTS,
   FORGE, TEAM_COMMANDS, TEAM_PERKS, BOUNTY_RULES, ITEM_GROUPS, COMMANDS, CONTROLS, FAQ,
   DIMENSIONS, CALAMITY, MECHANICS, COMBAT_RULES, RULES_DISCORD, RULES_GAME,
@@ -25,7 +25,7 @@ const U = {
   home: L('Home', 'Home'), races: L('Races', 'Razze'), gems: L('Gems', 'Gemme'), rift: L('The Rift', 'La Rift'),
   forge: L('Forge', 'Forgia'), bosses: L('Bosses', 'Boss'), pvp: L('PvP', 'PvP'), items: L('Items', 'Oggetti'), rules: L('Rules', 'Regole'), join: L('Join', 'Entra'),
   tagline: L('Something in this world is wrong. Forge anyway.', 'Qualcosa in questo mondo non va. Forgia comunque.'),
-  eyebrow: L('Minecraft Java · Story-driven survival SMP', 'Minecraft Java · SMP survival a storia'),
+  eyebrow: L('Minecraft Java · Story-driven survival SMP · Season 3', 'Minecraft Java · SMP survival a storia · Stagione 3'),
   intro: L('A heavily customised survival server built on around forty of our own plugins — made to be played, recorded and watched.',
            'Un server survival pesantemente personalizzato, costruito su una quarantina di plugin nostri — fatto per essere giocato, registrato e guardato.'),
   discordBtn: L('Join the Discord', 'Entra nel Discord'),
@@ -34,19 +34,21 @@ const U = {
   addressDiscord: L('Address on Discord', 'Indirizzo sul Discord'),
   copy: L('Copy', 'Copia'), copied: L('Copied!', 'Copiato!'),
   online: L('online', 'online'), offline: L('Offline', 'Offline'), players: L('players', 'giocatori'),
-  liveSince: L('Live since 23 September 2026', 'Online dal 23 settembre 2026'),
+  seasonName: L('Season 3', 'Stagione 3'),
+  seasonSoon: L('starting soon — the date comes on Discord', 'in arrivo — la data arriva sul Discord'),
+  seasonIn: L('starts in', 'inizia tra'),
   day: L('Day', 'Giorno'),
   pillarsTitle: L('What makes it different', 'Cosa lo rende diverso'),
   stepsTitle: L('Get in, in three steps', 'Entra in tre passi'),
   step1: L('Join the Discord', 'Entra nel Discord'), step1t: L('Rules, announcements and the server guide live there.', 'Lì trovi regole, annunci e la guida del server.'),
   step2: L('Connect', 'Connettiti'), step2t: L(`Launch Minecraft ${SITE.version} and add the server address.`, `Avvia Minecraft ${SITE.version} e aggiungi l'indirizzo del server.`),
-  step3: L('Roll your race', 'Tira la tua razza'), step3t: L('Three spins the moment you join. The last one is yours — for good.', 'Tre giri appena entri. L\'ultimo è tuo — per sempre.'),
+  step3: L('Roll your race', 'Tira la tua razza'), step3t: L('Three spins once the grace hour is over. The last one is yours for the season.', 'Tre giri finita l\'ora di tregua. L\'ultimo è tuo per tutta la stagione.'),
   news: L('Latest news', 'Ultime novità'),
   updated: L('Last updated', 'Ultimo aggiornamento'),
   notMojang: L('Not an official Minecraft product. Not approved by or associated with Mojang or Microsoft.', 'Non è un prodotto ufficiale Minecraft. Non approvato né associato a Mojang o Microsoft.'),
   // races
-  racesLead: L('Everyone rolls a permanent race the moment they join: three spins in a roll screen, and the last one you land on is yours (or confirm early). Rarer races are stronger.',
-               'Ognuno tira una razza permanente appena entra: tre giri nella schermata di tiro, e l\'ultima su cui atterri è tua (o conferma prima). Le razze più rare sono più forti.'),
+  racesLead: L('Everyone rolls a race for the season when the grace hour ends: three spins in a roll screen, and the last one you land on is yours (or confirm early). Rarer races are stronger. Three races also have an active on Sneak + F.',
+               'Ognuno tira una razza per la stagione quando finisce l\'ora di tregua: tre giri nella schermata di tiro, e l\'ultima su cui atterri è tua (o conferma prima). Le razze più rare sono più forti. Tre razze hanno anche un\'attiva su Shift + F.'),
   odds: L('Roll odds', 'Probabilità'), oneIn: L('1 in', '1 su'),
   tryRoll: L('Try a roll', 'Prova un tiro'), rollBtn: L('Spin', 'Gira'), spinsLeft: L('spins left', 'giri rimasti'),
   rollAgain: L('Start over', 'Ricomincia'), lockedIn: L('Locked in', 'Confermata'), confirm: L('Confirm', 'Conferma'),
@@ -59,7 +61,7 @@ const U = {
               'Quindici gemme, e ne esiste una sola per tipo. Tredici si vincono nei caveau delle gemme della Rift; le due Cromatiche compaiono solo agli eventi. Portane una ed è tua: F per il suo potere, Shift + F per l\'altro.'),
   gemRules: L('How gems work', 'Come funzionano le gemme'),
   gemTiersT: L('Tiers', 'Rarità'),
-  gemOpens: L('vaults open on day {d}', 'caveau aperti dal giorno {d}'),
+  gemOpens: L('vaults open {d}', 'caveau aperti {d}'),
   gemNoVault: L('no vault — only at events', 'nessun caveau — solo agli eventi'),
   gemList: L('The fifteen', 'Le quindici'),
   gifts: L('Always on', 'Sempre attivo'),
@@ -104,54 +106,41 @@ const U = {
   riftBosses: L('Rift bosses', 'Boss della Rift'),
   riftCmds: L('Your record', 'Il tuo registro'),
   // forge
-  forgeLead: L('Meteors crash down near players. Their glowing core is a forge: hammer a piece of gear on it in a timing minigame to earn a permanent buff — or ruin it. Each piece gets exactly one shot, ever.',
-               'Le meteore cadono vicino ai giocatori. Il loro nucleo incandescente è una forgia: martella un pezzo di equipaggiamento in un minigioco a tempo per un potenziamento permanente — o rovinalo. Ogni pezzo ha un solo tentativo, per sempre.'),
-  findMeteor: L('Finding a meteor', 'Trovare una meteora'),
+  forgeLead: L('The Forge is a block you craft and place, like a smithing table. Hammer a piece of gear on it in a timing minigame to earn a permanent buff — or ruin it. Each piece gets exactly one shot, ever.',
+               'La Forgia è un blocco che si crafta e si piazza, come un tavolo da forgiatura. Martellaci sopra un pezzo di equipaggiamento in un minigioco a tempo per un potenziamento permanente — o rovinalo. Ogni pezzo ha un solo tentativo, per sempre.'),
+  forgeBlock: L('The Forge block', 'Il blocco della Forgia'),
   useForge: L('Using the forge', 'Usare la forgia'),
-  tryForge: L('Try the hammer', 'Prova il martello'),
-  forgeDemoNote: L('A demo of the minigame — click, tap or press Space to strike. The real one plays in an in-game window.',
-                   'Una demo del minigioco — clicca, tocca o premi Spazio per colpire. Quello vero si gioca in una finestra in gioco.'),
-  strike: L('Strike', 'Colpisci'), start: L('Heat the forge', 'Scalda la forgia'), strikesLeft: L('strikes left', 'colpi rimasti'),
-  points: L('Points', 'Punti'), grades: L('Grades', 'Voti'), heat: L('Heat', 'Calore'),
-  heatT: L('The forge cools as the meteor burns down. The heat when you start is locked in and scales every buff you earn: 100% while white-hot, down to 50% right before it burns out. The race is to get there first.',
-           'La forgia si raffredda mentre la meteora si spegne. Il calore all\'inizio viene fissato e scala ogni potenziamento: 100% quando è incandescente, fino al 50% appena prima di spegnersi. La gara è arrivare per primi.'),
-  heatSlider: L('Minutes since the crash', 'Minuti dall\'impatto'),
+  grades: L('Grades', 'Voti'),
   buffs: L('What each piece can roll', 'Cosa può uscire per ogni pezzo'),
-  buffsNote: L('Okay / Good / Flawless strength at a full-heat forge. Buffs are normal attribute bonuses — nothing to activate.',
-               'Forza Discreto / Buono / Impeccabile con la forgia al massimo. Sono normali bonus d\'attributo — niente da attivare.'),
+  buffsNote: L('Okay / Good / Flawless strength. Buffs are normal attribute bonuses — nothing to activate.',
+               'Forza Discreto / Buono / Impeccabile. Sono normali bonus d\'attributo — niente da attivare.'),
+  coldTech: L('Frost techniques', 'Tecniche del gelo'),
+  coldTechNote: L('Okay / Good / Flawless strength. Okay and Good teach one technique; Flawless teaches two — you pick the first at full strength, the second comes at Good.',
+                  'Forza Discreto / Buono / Impeccabile. Discreto e Buono insegnano una tecnica; Impeccabile due — scegli la prima al massimo, la seconda arriva a Buono.'),
+  runesNote: L('Common / Rare / Epic: the rune\'s own rarity, rolled when it drops.', 'Comune / Rara / Epica: la rarità della runa, decisa quando cade.'),
   coldForge: L('The Cold Forge', 'La Forgia Fredda'),
   runes: L('Runes', 'Rune'),
   forgeRules: L('Good to know', 'Da sapere'),
   // bosses
   bossesLead: L('Named bosses, fought one at a time in an arena of their own, escalating through phases. Some phases need teamwork — smash crystals, break weak points, hit the vulnerability window. A boss bar and a soundtrack that shifts from calm to intense come with them.',
                 'Boss con un nome, affrontati uno alla volta nella loro arena, con fasi sempre più dure. Alcune fasi richiedono gioco di squadra — distruggi cristalli, rompi punti deboli, colpisci nella finestra giusta. Con loro arrivano una barra della vita e una colonna sonora che passa dal calmo all\'intenso.'),
-  raceBosses: L('Race bosses', 'Boss di razza'),
-  raceBossesT: L('One per race (Humans have none). Each fights as its race and uses its abilities in later phases.',
-                 'Uno per razza (gli Umani non ne hanno). Ognuno combatte come la sua razza e ne usa le abilità nelle fasi avanzate.'),
+  guardians: L('The gem guardians', 'I guardiani delle gemme'),
+  guardiansT: L('Thirteen, one at the end of each gem vault. Each fights with the very gem it guards — learn the gem and you know the fight.',
+                'Tredici, uno in fondo a ogni caveau. Ognuno combatte con la gemma stessa che custodisce — conosci la gemma e conosci lo scontro.'),
   // pvp
   pvpLead: L('PvP is on — with rules. Teams for your crew, bounties with real items, and a daily hour where nobody can hide.',
-             'Il PvP è attivo — con regole. Team per il tuo gruppo, taglie con oggetti veri, un\'ora al giorno in cui nessuno può nascondersi e un sistema di tornei completo.'),
+             'Il PvP è attivo — con regole. Team per il tuo gruppo, taglie con oggetti veri e un\'ora al giorno in cui nessuno può nascondersi.'),
   teams: L('Teams', 'Team'), teamsT: L('Up to 5 players. No stat boosts — only teamplay tools.', 'Fino a 5 giocatori. Nessun bonus alle statistiche — solo strumenti di squadra.'),
   bounties: L('Bounties', 'Taglie'), bountiesT: L('Put real items on someone\'s head. Whoever kills them next gets every item, instantly.', 'Metti oggetti veri sulla testa di qualcuno. Chi lo uccide per primo prende tutto, all\'istante.'),
   tracking: L('Tracking Hour', 'Tracking Hour'),
-  trackingT: L('Once a day the server\'s Locator Bar — the HUD strip showing the direction of every other online player — switches on for everyone. Five minutes before, everyone gets a warning in chat: hide better, get safe, or get ready to hunt.',
-               'Una volta al giorno la Locator Bar del server — la barra che mostra la direzione di ogni altro giocatore online — si accende per tutti. Cinque minuti prima arriva un avviso in chat: nasconditi meglio, mettiti al sicuro o preparati a cacciare.'),
+  trackingT: L('From one day into the season, every day at 21:00 (Italian time) the Locator Bar — the HUD strip showing the direction of every other online player — switches on for everyone, for 15 minutes. Five minutes before, everyone gets a warning in chat: hide better, get safe, or get ready to hunt.',
+               'Da un giorno dopo l\'inizio, ogni giorno alle 21:00 la Locator Bar — la barra che mostra la direzione di ogni altro giocatore online — si accende per tutti, per 15 minuti. Cinque minuti prima arriva un avviso in chat: nasconditi meglio, mettiti al sicuro o preparati a cacciare.'),
   tracker: L('The Tracker', 'Il Tracker'),
   trackerT: L('A staff-given compass that ignores Tracking Hour and works any time. Pick an online player: they\'re warned immediately, a countdown sits on your action bar, and one minute later your compass locks onto their live position for 5 minutes. It can\'t be dropped or stored while running, and it\'s consumed at the end.',
               'Una bussola data dallo staff che ignora la Tracking Hour e funziona sempre. Scegli un giocatore online: viene avvisato subito, un conto alla rovescia appare sulla tua action bar e un minuto dopo la bussola punta la sua posizione in tempo reale per 5 minuti. Non si può buttare né riporre mentre è attiva, e alla fine si consuma.'),
-  skyLimit: L('The sky limit', 'Il limite del cielo'),
-  skyLimitT: L('Climb above y = 219 on blocks (not flying) and a meteorite drops on you.', 'Sali sopra y = 219 sui blocchi (non volando) e ti cade addosso una meteora.'),
-  tournaments: L('Tournaments', 'Tornei'),
-  tournamentsT: L('Admin-run events in a throwaway arena world. Several can run at once, each in its own arena. Join an open one with /tournament join.',
-                  'Eventi gestiti dagli admin in un mondo-arena usa e getta. Ne possono girare diversi insieme, ognuno nella sua arena. Entra in uno aperto con /tournament join.'),
-  modes: L('Modes', 'Modalità'), styles: L('Styles', 'Stili'), arenas: L('Arenas', 'Arene'), prizes: L('Prizes', 'Premi'),
-  prizesT: L('Custom items given back in the normal world — all intentionally modest, none of them netherite gear.', 'Oggetti personalizzati consegnati nel mondo normale — tutti volutamente modesti, nessuno è equipaggiamento di netherite.'),
-  hallOfFame: L('Hall of fame', 'Albo d\'oro'),
-  noResults: L('No results posted yet — the first champions will be listed here.', 'Ancora nessun risultato — qui compariranno i primi campioni.'),
-  champion: L('Champion', 'Campione'), mode: L('Mode', 'Modalità'), date: L('Date', 'Data'),
   // items
   itemsLead: L('Custom gear around the server. Much of it is crafted (look in your recipe book); the rest is found in the Rift or won from bosses.',
-               'Equipaggiamento personalizzato che si trova sul server. Gran parte viene dato dallo staff o si trova nella Rift, invece che craftato.'),
+               'Equipaggiamento personalizzato sul server. Gran parte si crafta (guarda nel ricettario); il resto si trova nella Rift o si vince dai boss.'),
   // join
   joinLead: L('Everything you need to get on the server and find your way around.', 'Tutto ciò che serve per entrare e orientarsi.'),
   version: L('Version', 'Versione'),
@@ -168,12 +157,16 @@ const U = {
   calShare: L('Of calamities', 'Delle calamità'), calPortals: L('Portal every', 'Portale ogni'), calLoot: L('Rift loot', 'Bottino rift'),
   calMore: L('Calamity nights open many more.', 'Le notti di calamità ne aprono molti di più.'),
   calStar: L('During a Starfall, star-touched meteors fall too: forging on them is free.', 'Durante una Starfall cadono anche meteore toccate dalle stelle: forgiarci sopra è gratis.'),
-  open: L('Open', 'Aperto'), opensIn: L('Opens in', 'Si apre tra'),
+  open: L('Open', 'Aperto'), opensIn: L('Opens in', 'Si apre tra'), closed: L('Closed', 'Chiuso'),
+  afterStart: L('{t} after the season starts', '{t} dopo l\'inizio della stagione'),
+  seasonT: L('The season', 'La stagione'),
+  seasonLead: L('Season 3 doesn\'t hand you everything on day one. It opens up a piece at a time — each step arrives with a title on screen, and the in-game guide (/guide) gets its page.',
+               'La Stagione 3 non ti dà tutto il primo giorno. Si apre un pezzo alla volta — ogni passo arriva con un titolo a schermo, e la guida in gioco (/guide) riceve la sua pagina.'),
+  seasonStart: L('Start', 'Inizio'),
   inCombat: L('While in combat', 'Durante il combattimento'),
   inCombatT: L('These apply only while you\'re flagged as in combat. Outside of combat, vanilla behavior applies.', 'Valgono solo mentre sei segnalato come in combattimento. Fuori dal combattimento vale il comportamento vanilla.'),
   gameRules: L('In-game rules', 'Regole in gioco'),
   discordRules: L('Discord rules', 'Regole del Discord'),
-  endOpens: L('The End fight in', 'Battaglia dell\'End tra'),
   notFound: L('This page slipped through a rift.', 'Questa pagina è finita in una rift.'),
   back: L('Back home', 'Torna alla home'),
 };
@@ -184,7 +177,7 @@ const RACE   = Object.fromEntries(RACES.map(r => [r.key, r]));
 const RARITY = Object.fromEntries(RARITIES.map(r => [r.key, r]));
 const GEM_TIER  = Object.fromEntries(GEM_TIERS.map(g => [g.key, g]));
 const GEM_VAULT = Object.fromEntries(GEM_VAULTS.map(v => [v.gem, v]));
-const BOSS   = Object.fromEntries(RACE_BOSSES.map(b => [b.race, b]));
+const GEM    = Object.fromEntries(GEMS.map(g => [g.key, g]));
 const rarityIndex = k => RARITIES.findIndex(r => r.key === k);
 
 const glitchSpan = (text, label) =>
@@ -301,7 +294,18 @@ async function loadItemStatus() {
   }
 }
 
-const dayNumber = () => Math.max(1, Math.floor((Date.now() - new Date(SITE.launch)) / 86400000) + 1);
+const launchAt = () => SITE.launch ? new Date(SITE.launch).getTime() : null;
+const dayNumber = () => Math.max(1, Math.floor((Date.now() - launchAt()) / 86400000) + 1);
+// "after 2 hours" / "after 3 days" for a point `h` hours into the season
+const afterLabel = h => h < 24
+  ? t(L(`after ${h} hour${h === 1 ? '' : 's'}`, `dopo ${h} or${h === 1 ? 'a' : 'e'}`))
+  : t(L(`after ${h / 24} day${h === 24 ? '' : 's'}`, `dopo ${h / 24} giorn${h === 24 ? 'o' : 'i'}`));
+function seasonLine() {
+  const at = launchAt();
+  if (at == null) return `<span class="live-dot off"></span><b>${u('seasonName')}</b> · ${u('seasonSoon')}`;
+  if (at > Date.now()) return `<span class="live-dot off"></span><b>${u('seasonName')}</b> ${u('seasonIn')} <b data-launch>${countdown(at - Date.now())}</b>`;
+  return `<span class="live-dot"></span><b>${u('seasonName')}</b> · ${u('day')} ${dayNumber()}`;
+}
 
 // ── Pages ────────────────────────────────────────────────────────────────────
 const PAGES = {};
@@ -320,8 +324,7 @@ PAGES.home = () => `
         <a class="btn btn-ghost" href="#/join">${u('howJoin')} →</a>
       </div>
     </div>
-    <p class="since"><span class="live-dot"></span>${u('liveSince')} · <b>${u('day')} ${dayNumber()}</b></p>
-    ${openAt(DIMENSIONS[1]) > Date.now() ? `<p class="end-count" data-end>🌌 ${u('endOpens')} <b>${countdown(openAt(DIMENSIONS[1]) - Date.now())}</b></p>` : ''}
+    <p class="since">${seasonLine()}</p>
   </section>
 
   ${section(u('pillarsTitle'), `
@@ -387,7 +390,6 @@ PAGES.races = () => `
 
 function raceCard(r) {
   const rar = RARITY[r.rarity];
-  const b = BOSS[r.key];
   return `
     <article class="card race ${r.glitch ? 'is-glitch' : ''}" data-rarity="${r.rarity}" id="race-${r.key}" style="--c:${rar.color}">
       <div class="race-top">
@@ -400,7 +402,6 @@ function raceCard(r) {
       ${r.glitch ? `<div class="redacted-block">${t(r.effects).map(x => `<p>${esc(x)}</p>`).join('')}</div>` : list(r.effects)}
       <dl class="race-meta">
         <div><dt>${u('riftPerk')}</dt><dd>${esc(t(r.perk))}</dd></div>
-        ${b ? `<div><dt>${u('boss')}</dt><dd>${b.redacted ? `<span class="redact">▓▓▓▓▓▓</span>` : `<a href="#/bosses">${esc(b.name)}</a>`}</dd></div>` : ''}
       </dl>
     </article>`;
 }
@@ -426,7 +427,7 @@ PAGES.gems = () => {
         <div class="card" style="--c:${tier.color}">
           <h3 style="color:${tier.color}">${esc(t(tier.name))}</h3>
           <p>${GEMS.filter(g => g.tier === tier.key).map(g => `${g.icon} <a href="#/gems/gem-${g.key}">${esc(g.name.replace(' Gem', ''))}</a>`).join(' · ')}</p>
-          <p class="muted small">${tier.opensDay ? fillIn(u('gemOpens'), { d: tier.opensDay }) : u('gemNoVault')}</p>
+          <p class="muted small">${tier.opensDay ? fillIn(u('gemOpens'), { d: afterLabel(tier.opensDay * 24) }) : u('gemNoVault')}</p>
         </div>`).join('')}
     </div>`)}
 
@@ -473,8 +474,8 @@ PAGES.rift = () => `
   ${section(u('gettingIn'), `
     <div class="grid g2">
       <div class="card"><h3>🌀 ${t(L('Random portals', 'Portali casuali'))}</h3>
-        <p>${t(L('A tear in the air opens near a random player — about one every ~75 minutes across the server. Everyone within ~250 blocks is told the direction. It stays open 15 minutes. Click it to ready up: everyone who clicks within 20 seconds goes in together, up to 4.',
-                 'Uno squarcio nell\'aria si apre vicino a un giocatore a caso — circa uno ogni ~75 minuti su tutto il server. Chi è entro ~250 blocchi riceve la direzione. Resta aperto 15 minuti. Cliccalo per prepararti: chi clicca entro 20 secondi entra insieme, fino a 4.'))}
+        <p>${t(L('Rifts are rare. Every 3 hours there\'s an even chance a tear opens, one at a time: 30–70 blocks from a player who has been on for at least 10 minutes, never near spawn. A beam of light marks it, and everyone within 1,200 blocks is told the direction. It stays open 25 minutes. Click it to ready up: everyone who clicks within 20 seconds goes in together, up to 4.',
+                 'Le rift sono rare. Ogni 3 ore c\'è una possibilità su due che si apra uno squarcio, uno alla volta: a 30–70 blocchi da un giocatore online da almeno 10 minuti, mai vicino allo spawn. Un fascio di luce lo segna, e chi è entro 1.200 blocchi riceve la direzione. Resta aperto 25 minuti. Cliccalo per prepararti: chi clicca entro 20 secondi entra insieme, fino a 4.'))}
           <a href="#/calamity">${u('calMore')}</a></p></div>
       <div class="card"><h3>🗝️ ${t(L('Rift Key: join to help', 'Rift Key: entra per aiutare'))}</h3>
         <p>${t(L('A Rift Key lets you — and allies within 8 blocks — enter a rift someone else has already started, to help them. It can\'t open a rift on its own. A 60-minute key cooldown applies. Craft: 2 Echo Shards + an Ender Eye + an Amethyst Shard, shapeless.',
@@ -485,8 +486,8 @@ PAGES.rift = () => `
   ${section(u('kinds'), `
     <div class="kinds">
       ${RIFT_KINDS.map(k => `
-        <article class="card kind" style="--c:${k.color}">
-          <h3>${esc(t(k.name))}</h3>
+        <article class="card kind ${k.glitch ? 'is-glitch' : ''}" style="--c:${k.color}">
+          <h3>${k.glitch ? glitchSpan(t(k.name), 'Redacted rift') : esc(t(k.name))}</h3>
           <div class="kind-stats">
             <div><span>${u('rooms')}</span><b>${esc(t(k.rooms))}</b></div>
             <div><span>${u('timeLimit')}</span><b>${esc(t(k.time))}</b></div>
@@ -518,30 +519,34 @@ PAGES.rift = () => `
     <div class="grid g2">
       <div class="card">
         ${list(L([
-          'Dying costs a life and puts you back at the last room you cleared. You keep your items and XP.',
+          'A killing blow doesn\'t kill you: you\'re <b>downed</b>, and you bleed out in 30 seconds unless a teammate crouches next to you for 3.5 seconds to pick you up. Nothing drops.',
+          'Bleeding out costs a life and puts you back at the last room you cleared, with your items and XP.',
           'Out of lives, you spectate — you keep your things and the clear credit if the team wins, but you can\'t loot chests.',
-          '<b class="warn">Losing the rift costs everything you carry</b> (everyone out of lives, or time runs out). XP stays.',
-          'Walking out by the lodestone or the exit block in an ordinary rift, or winning, is always safe.',
+          '<b class="warn">Losing the rift costs everything you carry</b> (everyone out of lives, or time runs out). XP stays. The gem vaults work the same way.',
+          'Walking out by the lodestone in an ordinary rift, or winning, is always safe.',
           'Ender chests can\'t be used inside.',
         ], [
-          'Morire costa una vita e ti riporta all\'ultima stanza completata. Tieni oggetti e XP.',
+          'Un colpo letale non ti uccide: vai <b>a terra</b>, e ti dissangui in 30 secondi se un compagno non si accovaccia accanto a te per 3,5 secondi per rialzarti. Non cade niente.',
+          'Dissanguarti costa una vita e ti riporta all\'ultima stanza completata, con oggetti e XP.',
           'Senza vite fai lo spettatore — tieni la tua roba e il credito se il team vince, ma non puoi saccheggiare i forzieri.',
-          '<b class="warn">Perdere la rift ti costa tutto ciò che porti</b> (tutti senza vite o tempo scaduto). L\'XP resta.',
-          'Uscire dalla calamita o dal blocco d\'uscita in una rift ordinaria, o vincere, è sempre sicuro.',
+          '<b class="warn">Perdere la rift ti costa tutto ciò che porti</b> (tutti senza vite o tempo scaduto). L\'XP resta. I caveau delle gemme funzionano allo stesso modo.',
+          'Uscire dalla calamita in una rift ordinaria, o vincere, è sempre sicuro.',
           'Gli ender chest non si possono usare dentro.',
         ]))}
       </div>
       <div class="card">
         ${list(L([
-          'The boss drops 3 chests on a first-tier run, up to 5 on the hardest. You have 3 minutes to loot before the rift closes.',
+          'The boss drops 2 to 4 chests, more on the harder tiers — one more in a red rift. You have 3 minutes to loot before the rift closes.',
           'Diamonds, emeralds, XP bottles, golden apples, pearls, enchanted books (Mending, Protection IV, Sharpness V, Fortune III, Efficiency V from tier 3), totems, enchanted golden apples, diamond blocks, shulker shells. Top tier: a Netherite Upgrade template and, rarely, a Nether Star.',
+          'Ordinary rifts are the lean ones. <b>Red rifts pay far more</b>, plus a table of their own: Rift Cores, epic runes, netherite, totems and books.',
           'Netherite doesn\'t scale: a few ancient debris, some scrap and the occasional ingot.',
-          'A rare chest can hold a <b>rune</b> for the forge. Vaults sometimes hold a <b>Phoenix Feather</b>.',
+          'Chests sometimes hold a <b>forge rune</b> (the boss\'s chests far more often), and vaults sometimes a <b>Phoenix Feather</b>.',
         ], [
-          'Il boss lascia 3 forzieri al primo livello, fino a 5 al più difficile. Hai 3 minuti per saccheggiare prima che la rift si chiuda.',
+          'Il boss lascia da 2 a 4 forzieri, di più ai livelli difficili — uno in più in una rift rossa. Hai 3 minuti per saccheggiare prima che la rift si chiuda.',
           'Diamanti, smeraldi, bottiglie d\'XP, mele d\'oro, perle, libri incantati (Mending, Protezione IV, Affilatezza V, Fortuna III, Efficienza V dal livello 3), totem, mele d\'oro incantate, blocchi di diamante, gusci di shulker. Al livello massimo: un modello di potenziamento in netherite e, raramente, una Stella del Nether.',
+          'Le rift ordinarie sono le più magre. <b>Le rift rosse pagano molto di più</b>, più una tabella tutta loro: Nuclei della Rift, rune epiche, netherite, totem e libri.',
           'La netherite non scala: qualche detrito antico, un po\' di frammenti e ogni tanto un lingotto.',
-          'Un forziere raro può contenere una <b>runa</b> per la forgia. I caveau a volte hanno una <b>Phoenix Feather</b>.',
+          'I forzieri a volte hanno una <b>runa della forgia</b> (quelli del boss molto più spesso), e i caveau a volte una <b>Phoenix Feather</b>.',
         ]))}
       </div>
     </div>`)}
@@ -566,8 +571,8 @@ PAGES.rift = () => `
     </div>`)}
 
   ${section(u('relics'), `
-    <p>${t(L('Boss-only gear with a small drop chance in the first reward chest. You can\'t get it anywhere else.', 'Equipaggiamento solo da boss, con una piccola probabilità nel primo forziere. Non si trova altrove.'))}</p>
-    <div class="grid g3">
+    <p>${t(L('Boss-only gear: each rift boss has a small chance to drop a piece. You can\'t get it anywhere else.', 'Equipaggiamento solo da boss: ogni boss di rift ha una piccola probabilità di lasciarne un pezzo. Non si trova altrove.'))}</p>
+    <div class="grid g2">
       ${RIFT_RELICS.map(r => `
         <div class="card relic" style="--c:${r.color}"><p class="eyebrow">${esc(t(r.rift))}</p>
           ${r.items.map(([n, d]) => `<div class="relic-item"><b>${esc(n)}</b><span>${esc(t(d))}</span></div>`).join('')}</div>`).join('')}
@@ -576,8 +581,8 @@ PAGES.rift = () => `
   ${section(u('gemVaults'), `
     <p>${t(L('Thirteen sealed, themed dungeons, one for each gem (the two Chromatic gems have none). At the end of each: a guardian that fights with the very gem it guards, and a ritual that gives that gem\'s one real copy to whoever performs it. Each vault is conquered once — until its gem is lost.',
              'Tredici dungeon sigillati e a tema, uno per gemma (le due Cromatiche non ne hanno). In fondo a ognuno: un guardiano che combatte con la gemma stessa che custodisce, e un rituale che dà l\'unica copia vera di quella gemma a chi lo compie. Ogni caveau si conquista una volta — finché la sua gemma non va persa.'))}</p>
-    <p>${t(L('A key is a frame around the gem\'s own item — the rarer the gem, the costlier the frame (Gem Shards and Clusters come from Gem Ore, Rift Cores from red rifts and bosses). Every key is in your recipe book from the start, but the tiers open as the season goes on: Rare on day 1, Epic on day 3, Legendary on day 7, Mythic on day 14. A key to a gem that\'s already in the world can\'t be made or used. Right-click it to go in — up to 4 nearby go with you.',
-             'Una chiave è una cornice intorno all\'oggetto proprio della gemma — più la gemma è rara, più la cornice costa (Frammenti e Grappoli di gemma vengono dal minerale di gemma, i Nuclei della Rift dalle rift rosse e dai boss). Ogni chiave è nel ricettario dall\'inizio, ma le rarità si aprono durante la stagione: Rare dal giorno 1, Epiche dal 3, Leggendarie dal 7, Mitiche dal 14. La chiave di una gemma già nel mondo non si può fare né usare. Tasto destro per entrare — fino a 4 vicini vengono con te.'))}</p>
+    <p>${t(L('A key is a frame around the gem\'s own item — the rarer the gem, the costlier the frame (Gem Shards and Clusters come from Gem Ore, Rift Cores from red rifts and bosses). Every key is in your recipe book from the start, but the tiers open as the season goes on: Rare after 1 day, Epic after 3, Legendary after 7, Mythic after 14. A key to a gem that\'s already in the world can\'t be made or used. Right-click it to go in — up to 4 nearby go with you.',
+             'Una chiave è una cornice intorno all\'oggetto proprio della gemma — più la gemma è rara, più la cornice costa (Frammenti e Grappoli di gemma vengono dal minerale di gemma, i Nuclei della Rift dalle rift rosse e dai boss). Ogni chiave è nel ricettario dall\'inizio, ma le rarità si aprono durante la stagione: Rare dopo 1 giorno, Epiche dopo 3, Leggendarie dopo 7, Mitiche dopo 14. La chiave di una gemma già nel mondo non si può fare né usare. Tasto destro per entrare — fino a 4 vicini vengono con te.'))}</p>
     <p>${t(L('A Mythic key comes out dormant: carry it in the overworld for 20 minutes to attune it, under a beam of light that everyone can see — and come for. Log out and it starts over; die and the key drops. When a Mythic vault opens, its breach stays open behind you: up to 4 others can follow you in, and inside, PvP is on. Whoever finishes the ritual gets the gem.',
              'Una chiave Mitica nasce dormiente: portala nell\'overworld per 20 minuti per attivarla, sotto un fascio di luce che tutti vedono — e possono venire a prendertela. Se esci, si ricomincia; se muori, la chiave cade. Quando un caveau Mitico si apre, la sua breccia resta aperta dietro di te: fino a 4 altri possono seguirti, e dentro il PvP è attivo. Chi completa il rituale prende la gemma.'))}</p>
 
@@ -604,28 +609,49 @@ PAGES.rift = () => `
     </div>`)}
 `;
 
-PAGES.forge = () => `
-  ${head(u('forge'), u('forgeLead'), 'METEORS · BUFFS')}
+const craftGrid = (rows, keys, out) => `
+  <div class="craft"><div class="craft-3">${rows.flat().map(i => `<div class="slot" title="${esc(t((keys.find(k => k[0] === i) || [, ''])[1]))}">${i}</div>`).join('')}</div>
+    <div class="craft-arrow">→</div><div class="slot out">${out}</div></div>
+  <div class="craft-legend">${keys.map(([i, n]) => `<span>${i} ${esc(t(n))}</span>`).join('')}</div>`;
 
-  ${section(u('findMeteor'), `
-    <div class="grid g3">
-      <div class="card"><h3>☄️ ${t(L('The crash', 'L\'impatto'))}</h3><p>${t(L('Meteors fall on their own, landing 30–80 blocks from a random online player. Staff can also call them.', 'Le meteore cadono da sole, a 30–80 blocchi da un giocatore online a caso. Anche lo staff può evocarle.'))}
-          <a href="#/calamity">${u('calStar')}</a></p></div>
-      <div class="card"><h3>🧭 ${t(L('The rumble', 'Il boato'))}</h3><p>${t(L('Everyone within ~250 blocks hears thunder and gets the direction on their action bar (north-east, south…) — never the distance or coordinates.', 'Chi è entro ~250 blocchi sente un tuono e riceve la direzione sull\'action bar (nord-est, sud…) — mai distanza o coordinate.'))}</p></div>
-      <div class="card"><h3>⏳ ${t(L('The burn', 'Lo spegnimento'))}</h3><p>${t(L(`It burns for about ${FORGE.burn} minutes; the glowing magma core cools to blackstone as it goes.`, `Brucia per circa ${FORGE.burn} minuti; il nucleo di magma si raffredda in pietranera.`))}</p></div>
+const tabGroup = (group, sets) => `
+  <div class="tabs" role="tablist" data-group="${group}">
+    ${sets.map((b, i) => `<button type="button" role="tab" class="tab ${i === 0 ? 'on' : ''}" data-tab="${i}" aria-selected="${i === 0}">${b.icon} ${esc(t(b.slot))}</button>`).join('')}
+  </div>
+  <div class="tab-table" id="tab-${group}"></div>`;
+
+PAGES.forge = () => `
+  ${head(u('forge'), u('forgeLead'), 'CRAFT · STRIKE · BUFF')}
+
+  ${section(u('forgeBlock'), `
+    <div class="grid g2">
+      <div class="card">${craftGrid(FORGE.recipe, FORGE.recipeKey, '🔨')}</div>
+      <div class="card">
+        ${list(L([
+          'The recipe unlocks <b>one day into the season</b> — it\'s in your recipe book from then on.',
+          'Anyone can craft one and place it anywhere. Breaking it gives it back.',
+          'It\'s always at full strength — which is why it\'s dear to make.',
+          'Out in the world, <a href="#/calamity">a Starfall</a> drops <b>star-touched meteors</b>: a forge in the open, and forging on one costs nothing.',
+        ], [
+          'La ricetta si sblocca <b>un giorno dopo l\'inizio della stagione</b> — da lì è nel tuo ricettario.',
+          'Chiunque può craftarne una e piazzarla ovunque. Rompendola la riprendi.',
+          'È sempre alla massima potenza — ed è per questo che costa cara.',
+          'Nel mondo, <a href="#/calamity">una Starfall</a> fa cadere <b>meteore toccate dalle stelle</b>: una forgia all\'aperto, e forgiarci sopra non costa nulla.',
+        ]))}
+      </div>
     </div>`)}
 
   ${section(u('useForge'), `
     <div class="grid g2">
       <div class="card">
         ${list(L([
-          'Hold a piece of armor — or a sword, axe, pickaxe, shovel or hoe — in your main hand and right-click the core.',
-          `Each attempt burns <b>${FORGE.cost.en.replace(' per attempt', '')}</b>. One person at a time.`,
+          'Hold a piece of armor — or a sword, axe, pickaxe, shovel or hoe — in your main hand and right-click the Forge.',
+          `Each attempt costs <b>${FORGE.cost.en.replace(' a try', '')}</b> (a custom-named item takes 1 Netherite Ingot more). One person at a time.`,
           `A hammer sweeps back and forth along a row of slots. The green slot is the sweet spot, with yellow on either side. <b>${FORGE.strikes} strikes</b>; the hammer speeds up after the first; a strike not made within ${FORGE.timeout} seconds is a miss.`,
           'The finished piece gets an enchant glow, and its tooltip lists the grade, the buffs and who forged it.',
         ], [
-          'Tieni in mano un pezzo d\'armatura — o spada, ascia, piccone, pala o zappa — e fai tasto destro sul nucleo.',
-          `Ogni tentativo consuma <b>${FORGE.cost.it.replace(' per tentativo', '')}</b>. Una persona alla volta.`,
+          'Tieni in mano un pezzo d\'armatura — o spada, ascia, piccone, pala o zappa — e fai tasto destro sulla Forgia.',
+          `Ogni tentativo costa <b>${FORGE.cost.it.replace(' a tentativo', '')}</b> (un oggetto rinominato costa 1 Lingotto di netherite in più). Una persona alla volta.`,
           `Un martello scorre avanti e indietro su una fila di caselle. La casella verde è il punto giusto, con il giallo ai lati. <b>${FORGE.strikes} colpi</b>; il martello accelera dopo il primo; un colpo non dato entro ${FORGE.timeout} secondi è mancato.`,
           'Il pezzo finito brilla come incantato, e la descrizione mostra voto, potenziamenti e chi l\'ha forgiato.',
         ]))}
@@ -634,96 +660,94 @@ PAGES.forge = () => `
         <h3>${u('grades')}</h3>
         <div class="grades">
           ${FORGE.grades.map(g => `
-            <div class="grade${g.min == null ? ' no-pts' : ''}" style="--c:${g.color}">${g.min == null ? '' : `<div class="grade-pts">${g.min}–${g.max}</div>`}<div><b>${esc(t(g.name))}</b><p>${esc(t(g.text))}</p></div></div>`).join('')}
+            <div class="grade" style="--c:${g.color}"><div class="grade-pts">${g.min}–${g.max}</div><div><b>${esc(t(g.name))}</b><p>${esc(t(g.text))}</p></div></div>`).join('')}
         </div>
+        <p class="muted small">${t(L('The score is how close your strikes land to the green slot.', 'Il punteggio è quanto i tuoi colpi cadono vicino alla casella verde.'))}</p>
       </div>
-    </div>`)}
-
-  ${section(u('heat'), `
-    <p>${u('heatT')}</p>
-    <div class="card heat">
-      <label for="heat-range">${u('heatSlider')}: <b id="heat-min">0</b></label>
-      <input type="range" id="heat-range" min="0" max="${FORGE.burn}" step="0.5" value="0" />
-      <div class="heat-bar"><span id="heat-fill"></span></div>
-      <p class="heat-out"><b id="heat-pct">100%</b> · <span id="heat-ex"></span></p>
     </div>`)}
 
   ${section(u('buffs'), `
     <p class="muted">${u('buffsNote')}</p>
-    <div class="tabs" role="tablist">
-      ${FORGE.buffs.map((b, i) => `<button type="button" role="tab" class="tab ${i === 0 ? 'on' : ''}" data-tab="${i}" aria-selected="${i === 0}">${b.icon} ${esc(t(b.slot))}</button>`).join('')}
-    </div>
-    <div id="buff-table"></div>
+    ${tabGroup('buffs', FORGE.buffs)}
     <p class="muted small">${t(L('Shovels and hoes roll similar tool buffs. A Flawless pickaxe breaks stone and ores essentially instantly.', 'Pale e zappe hanno potenziamenti simili. Un piccone Impeccabile rompe pietra e minerali praticamente all\'istante.'))}</p>`)}
 
-  ${section(u('coldForge') + ' & ' + u('runes'), `
+  ${section(u('coldForge'), `
     <div class="grid g2">
+      <div class="card cold">${craftGrid(FORGE.coldRecipe, FORGE.coldKey, '❄️')}</div>
       <div class="card cold">
-        <h3>❄️ ${u('coldForge')}</h3>
         ${list(L([
-          'A rare blue-lit variant — about 1 in 7 meteors.',
-          'Only takes a chestplate, sword or pickaxe already forged <b>Flawless</b>, and costs <b>1 Netherite Ingot</b>.',
-          'Rolls a second, different set of buffs. A botched attempt costs nothing but the try.',
-          'Only a Cold Forge pass can open a <b>rune slot</b> (sword, axe, chestplate or pickaxe).',
+          'The recipe unlocks <b>seven days into the season</b>: a Forge, ringed with Netherite Ingots and Blue Ice, and a Nether Star.',
+          `Only takes a chestplate, sword or pickaxe already forged <b>Flawless</b>, and costs <b>${FORGE.coldCost.en.replace(' a try', '')}</b>.`,
+          'Same hammer, but instead of more stats it teaches the piece a <b>frost technique</b> — something it does in a fight, or at the rock face.',
+          'It\'s also the only way to open a <b>rune slot</b>: miss at most one strike on that pass.',
         ], [
-          'Una rara variante con luce blu — circa 1 meteora su 7.',
-          'Accetta solo corazza, spada o piccone già forgiati <b>Impeccabili</b>, e costa <b>1 Lingotto di netherite</b>.',
-          'Tira un secondo set di potenziamenti diverso. Un tentativo rovinato costa solo il tentativo.',
-          'Solo un passaggio alla Forgia Fredda può aprire uno <b>slot per rune</b> (spada, ascia, corazza o piccone).',
+          'La ricetta si sblocca <b>sette giorni dopo l\'inizio della stagione</b>: una Forgia, circondata da Lingotti di netherite e Ghiaccio blu, e una Stella del Nether.',
+          `Accetta solo corazza, spada o piccone già forgiati <b>Impeccabili</b>, e costa <b>${FORGE.coldCost.it.replace(' a tentativo', '')}</b>.`,
+          'Stesso martello, ma invece di altre statistiche insegna al pezzo una <b>tecnica del gelo</b> — qualcosa che fa in combattimento, o in miniera.',
+          'È anche l\'unico modo per aprire uno <b>slot per rune</b>: manca al massimo un colpo in quel passaggio.',
         ]))}
       </div>
-      <div class="card">
-        <h3>🔹 ${u('runes')}</h3>
-        ${list(L([
-          'Separate items found mostly in rift loot — best in red rifts and from their boss.',
-          'Each gives a substantial effect to a weapon, chestplate or pickaxe.',
-          'Socket: forged piece in the main hand, rune in the off hand, sneak + right-click.',
-          'Sneak + right-click with an empty off hand pulls it back out, unbroken.',
-        ], [
-          'Oggetti a parte, trovati soprattutto nel bottino delle rift — le migliori nelle rift rosse e dal loro boss.',
-          'Ognuna dà un effetto consistente a un\'arma, una corazza o un piccone.',
-          'Incastonare: pezzo forgiato in mano, runa nella mano secondaria, shift + tasto destro.',
-          'Shift + tasto destro con la mano secondaria vuota la toglie, intatta.',
-        ]))}
-      </div>
-    </div>`)}
+    </div>
+    <h3 class="sub">❄️ ${u('coldTech')}</h3>
+    <p class="muted">${u('coldTechNote')}</p>
+    ${tabGroup('cold', FORGE.cold)}`)}
+
+  ${section(u('runes'), `
+    <div class="card">
+      ${list(L([
+        'Separate items, found in rift chests (the boss\'s chests most often, epic ones in red rifts) and in the stars that fall during a Starfall.',
+        'A rune goes in a <b>rune slot</b> — a weapon, chestplate or pickaxe gets one from a good Cold Forge pass.',
+        'Socket: the piece in your main hand, the rune in your off hand, sneak + right-click.',
+        'Sneak + right-click with an empty off hand pulls it back out, unbroken.',
+      ], [
+        'Oggetti a parte, trovati nei forzieri delle rift (soprattutto in quelli del boss, le epiche nelle rift rosse) e nelle stelle che cadono durante una Starfall.',
+        'Una runa va in uno <b>slot per rune</b> — arma, corazza o piccone ne ottengono uno da un buon passaggio alla Forgia Fredda.',
+        'Incastonare: il pezzo in mano, la runa nella mano secondaria, shift + tasto destro.',
+        'Shift + tasto destro con la mano secondaria vuota la toglie, intatta.',
+      ]))}
+    </div>
+    <p class="muted">${u('runesNote')}</p>
+    ${tabGroup('runes', FORGE.runes)}`)}
 
   ${section(u('forgeRules'), `
     <div class="card">
       ${list(L([
-        'Each piece can be forged exactly once, ever.',
-        'The forge refuses non-forgeable items, already-forged or ruined pieces, custom-named items and one-of-a-kind items.',
+        'Each piece can be forged exactly once, ever — plus one Cold Forge pass for a Flawless chestplate, sword or pickaxe.',
+        'The forge refuses non-forgeable items, already-forged or ruined pieces and one-of-a-kind items.',
         'Walk away before your first strike and you get everything back. After you\'ve started, remaining strikes count as misses.',
-        'If the meteor burns out or the server restarts mid-attempt, you get everything back.',
+        'If the server restarts mid-attempt, you get everything back.',
+        '/forge list shows every buff and technique with its numbers, in game.',
       ], [
-        'Ogni pezzo si può forgiare una sola volta, per sempre.',
-        'La forgia rifiuta oggetti non forgiabili, pezzi già forgiati o rovinati, oggetti rinominati e oggetti unici.',
+        'Ogni pezzo si può forgiare una sola volta, per sempre — più un passaggio alla Forgia Fredda per corazza, spada o piccone Impeccabili.',
+        'La forgia rifiuta oggetti non forgiabili, pezzi già forgiati o rovinati e oggetti unici.',
         'Se te ne vai prima del primo colpo riavrai tutto. Dopo aver iniziato, i colpi rimasti contano come mancati.',
-        'Se la meteora si spegne o il server si riavvia durante un tentativo, riavrai tutto.',
+        'Se il server si riavvia durante un tentativo, riavrai tutto.',
+        '/forge list mostra ogni potenziamento e tecnica con i numeri, in gioco.',
       ]))}
     </div>`)}
 `;
 
 PAGES.bosses = () => `
   ${head(u('bosses'), u('bossesLead'), 'BESTIARY')}
-  ${section(u('raceBosses'), `
-    <p>${u('raceBossesT')}</p>
-    <div class="grid g3 bestiary">
-      ${RACE_BOSSES.map(b => {
-        const r = RACE[b.race], rar = RARITY[r.rarity];
-        return `
-        <article class="card boss ${b.redacted ? 'is-glitch' : ''}" style="--c:${rar.color}">
-          <div class="boss-sigil" aria-hidden="true">${r.icon}</div>
-          <p class="eyebrow">${raceName(r)}</p>
-          <h3>${b.redacted ? glitchSpan(b.name, 'Redacted boss') : esc(b.name)}</h3>
-          <p class="boss-title">${esc(t(b.title))}</p>
-          <p>${esc(t(b.style))}</p>
-        </article>`;
-      }).join('')}
-    </div>`)}
   ${section(u('riftBosses'), `
     <div class="grid g2">
       ${RIFT_BOSSES.map(b => `<article class="card boss-card"><p class="eyebrow">${esc(t(b.where))}</p><h3>${esc(b.name)}</h3>${list(b.moves)}</article>`).join('')}
+    </div>`)}
+  ${section(u('guardians'), `
+    <p>${u('guardiansT')}</p>
+    <div class="grid g3 bestiary">
+      ${GUARDIANS.map(b => {
+        const g = GEM[b.gem], tier = GEM_TIER[g.tier], v = GEM_VAULT[b.gem];
+        return `
+        <article class="card boss" style="--c:${tier.color}">
+          <div class="boss-sigil" aria-hidden="true">${g.icon}</div>
+          <p class="eyebrow"><a href="#/gems/gem-${g.key}">${esc(g.name)}</a> · ${esc(t(tier.name))}</p>
+          <h3>${esc(b.name)}</h3>
+          <p class="boss-title">${esc(t(b.title))}</p>
+          <p>${esc(t(b.style))}</p>
+          <p class="muted small">${esc(v.dungeon)}</p>
+        </article>`;
+      }).join('')}
     </div>`)}
 `;
 
@@ -781,22 +805,34 @@ PAGES.join = () => `
   ${section(u('faq'), `<div class="faq">${FAQ.map(([q, a]) => `<details class="card"><summary>${esc(t(q))}</summary><p>${esc(t(a))}</p></details>`).join('')}</div>`)}
 `;
 
-const openAt = d => d.opensAt ? new Date(d.opensAt) : new Date(new Date(SITE.launch).getTime() + d.opensAfterHours * 3600000);
+// When a dimension opens: a fixed date, or hours after the season starts (null while the start isn't set).
+const openAt = d => d.opensAt ? new Date(d.opensAt).getTime() : launchAt() == null ? null : launchAt() + d.opensAfterHours * 3600000;
 function countdown(ms) {
   const s = Math.max(0, Math.floor(ms / 1000));
   const d = Math.floor(s / 86400), h = Math.floor(s % 86400 / 3600), m = Math.floor(s % 3600 / 60), sec = s % 60;
   return (d ? `${d}d ` : '') + `${h}h ${String(m).padStart(2, '0')}m ${String(sec).padStart(2, '0')}s`;
 }
 const dimState = d => {
-  const left = openAt(d) - Date.now();
+  if (d.closed) return `<span class="dim-closed">● ${u('closed')}</span>`;
+  const at = openAt(d);
+  if (at == null) return esc(fillIn(u('afterStart'), { t: t(L(`${d.opensAfterHours} h`, `${d.opensAfterHours} ore`)) }));
+  const left = at - Date.now();
   return left <= 0 ? `<span class="dim-open">● ${u('open')}</span>` : `${u('opensIn')} <b>${countdown(left)}</b>`;
+};
+// A season step: when it comes, and whether it already has.
+const stepState = s => {
+  const at = launchAt();
+  if (at == null || at > Date.now()) return s.at ? afterLabel(s.at) : u('seasonStart');
+  const when = at + s.at * 3600000;
+  return when <= Date.now() ? `<span class="dim-open">● ${u('open')}</span>` : `${u('opensIn')} <b>${countdown(when - Date.now())}</b>`;
 };
 function tickCountdowns() {
   const tick = () => {
     document.querySelectorAll('[data-dim]').forEach(el => { el.innerHTML = dimState(DIMENSIONS.find(d => d.key === el.dataset.dim)); });
-    document.querySelectorAll('[data-end]').forEach(el => {
-      const left = openAt(DIMENSIONS.find(d => d.key === 'end')) - Date.now();
-      if (left <= 0) el.remove(); else el.querySelector('b').textContent = countdown(left);
+    document.querySelectorAll('[data-step]').forEach(el => { el.innerHTML = stepState(SEASON[+el.dataset.step]); });
+    document.querySelectorAll('[data-launch]').forEach(el => {
+      const left = launchAt() - Date.now();
+      if (left <= 0) el.closest('.since').innerHTML = seasonLine(); else el.textContent = countdown(left);
     });
   };
   tick();
@@ -806,6 +842,20 @@ function tickCountdowns() {
 
 PAGES.rules = () => `
   ${head(u('rules'), u('rulesLead'))}
+
+  ${section(u('seasonT'), `
+    <p>${u('seasonLead')}</p>
+    <ol class="season">
+      ${SEASON.map((s, i) => `
+        <li class="season-step ${s.glitch ? 'is-glitch' : ''}">
+          <span class="season-icon" aria-hidden="true">${s.icon}</span>
+          <div>
+            <p class="season-when" data-step="${i}">${stepState(s)}</p>
+            <h3>${s.glitch ? glitchSpan(t(s.name), 'Redacted') : esc(t(s.name))}</h3>
+            <p>${esc(t(s.text))}</p>
+          </div>
+        </li>`).join('')}
+    </ol>`, 'season')}
 
   ${section(u('dimensions'), `
     <div class="grid g2">
@@ -896,39 +946,30 @@ MOUNT.rift = () => {
 };
 
 MOUNT.forge = () => {
-  // buff tabs
-  const table = document.getElementById('buff-table');
-  const renderTab = i => {
-    const b = FORGE.buffs[i];
-    table.innerHTML = `<div class="table-wrap"><table class="table buffs">
-      <thead><tr><th>Buff</th><th>${t(L('Stat', 'Statistica'))}</th><th class="c-okay">${t(FORGE.grades[2].name)}</th><th class="c-good">${t(FORGE.grades[1].name)}</th><th class="c-flaw">${t(FORGE.grades[0].name)}</th></tr></thead>
-      <tbody>${b.rows.map(([n, o, g, f, stat]) => `<tr><td><b>${esc(n)}</b></td><td class="muted">${esc(t(stat))}</td><td>${o || '·'}</td><td>${g || '·'}</td><td class="flaw">${f || '·'}</td></tr>`).join('')}</tbody>
-    </table></div>`;
+  const cols = {
+    buffs: [FORGE.grades[2].name, FORGE.grades[1].name, FORGE.grades[0].name],
+    cold:  [FORGE.grades[2].name, FORGE.grades[1].name, FORGE.grades[0].name],
+    runes: [L('Common', 'Comune'), L('Rare', 'Rara'), L('Epic', 'Epica')],
   };
-  document.querySelectorAll('.tab').forEach(tab => tab.addEventListener('click', () => {
-    document.querySelectorAll('.tab').forEach(x => { x.classList.toggle('on', x === tab); x.setAttribute('aria-selected', x === tab); });
-    renderTab(+tab.dataset.tab);
-  }));
-  renderTab(0);
-
-  // heat slider
-  const range = document.getElementById('heat-range');
-  const upd = () => {
-    const m = +range.value;
-    const pct = Math.round(100 - (m / FORGE.burn) * (100 - FORGE.heatMin));
-    document.getElementById('heat-min').textContent = m;
-    document.getElementById('heat-pct').textContent = pct + '%';
-    const fill = document.getElementById('heat-fill');
-    fill.style.width = pct + '%';
-    fill.style.setProperty('--h', (pct - FORGE.heatMin) / (100 - FORGE.heatMin));
-    document.getElementById('heat-ex').textContent =
-      `${t(L('Flawless Vitality', 'Vitality Impeccabile'))}: +${(5 * pct / 100).toFixed(1)} ${t(L('max health', 'vita massima'))}`;
-  };
-  range.addEventListener('input', upd); upd();
-
+  const sets = { buffs: FORGE.buffs, cold: FORGE.cold, runes: FORGE.runes };
+  document.querySelectorAll('.tabs[data-group]').forEach(bar => {
+    const group = bar.dataset.group, table = document.getElementById('tab-' + group);
+    const head = group === 'cold' ? L('What it does', 'Cosa fa') : L('Stat', 'Statistica');
+    const render = i => {
+      const [c1, c2, c3] = cols[group];
+      table.innerHTML = `<div class="table-wrap"><table class="table buffs">
+        <thead><tr><th>${group === 'runes' ? t(L('Rune', 'Runa')) : group === 'cold' ? t(L('Technique', 'Tecnica')) : 'Buff'}</th><th>${t(head)}</th><th class="c-okay">${t(c1)}</th><th class="c-good">${t(c2)}</th><th class="c-flaw">${t(c3)}</th></tr></thead>
+        <tbody>${sets[group][i].rows.map(([n, o, g, f, stat]) => `<tr><td><b>${esc(n)}</b></td><td class="muted">${esc(t(stat))}</td><td>${o}</td><td>${g}</td><td class="flaw">${f}</td></tr>`).join('')}</tbody>
+      </table></div>`;
+    };
+    bar.querySelectorAll('.tab').forEach(tab => tab.addEventListener('click', () => {
+      bar.querySelectorAll('.tab').forEach(x => { x.classList.toggle('on', x === tab); x.setAttribute('aria-selected', x === tab); });
+      render(+tab.dataset.tab);
+    }));
+    render(0);
+  });
 };
 
-// ── Decode effect on headings (readable within ~0.4s) ────────────────────────
 const GLYPHS = '▓▒░█▚▞#%&@$<>/\\';
 function decode(el) {
   if (reduceMotion) return;

@@ -522,3 +522,14 @@ kbd { background: var(--panel2); border: 1px solid var(--line2); border-bottom-w
 .w-status.out { border-style: dashed; }
 .card.item .w-status { margin: .75rem 0 0; }
 .gem .abilities ul.ticks { margin: 0; }
+
+/* Season 3: the season timeline */
+.live-dot.off { background: var(--muted); animation: none; box-shadow: none; }
+.dim-closed { color: var(--muted); font-weight: 600; }
+.season { list-style: none; margin: 1.2rem 0 0; padding: 0 0 0 1.4rem; border-left: 2px solid var(--line2); display: grid; gap: .9rem; }
+.season-step { position: relative; display: grid; grid-template-columns: auto 1fr; gap: .9rem; align-items: start; background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: .9rem 1rem; }
+.season-step::before { content: ''; position: absolute; left: calc(-1.4rem - 7px); top: 1.3rem; width: 12px; height: 12px; border-radius: 50%; background: var(--ember); box-shadow: 0 0 10px var(--ember); }
+.season-icon { font-size: 1.5rem; line-height: 1; }
+.season-when { font: 600 .78rem var(--mono); color: var(--ember2); margin: 0 0 .2rem; text-transform: uppercase; letter-spacing: .04em; }
+.season-step h3 { margin: 0 0 .25rem; }
+.season-step p:last-child { margin: 0; color: var(--text2); }

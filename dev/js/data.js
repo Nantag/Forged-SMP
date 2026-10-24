@@ -15,68 +15,82 @@ export const SITE = {
   // (empty = hide it). Never where they are.
   itemStatus: 'https://raw.githubusercontent.com/Nantag/forged-smp-data/main/items.json',
   version:  'Java Edition 26.2',
-  launch:   '2026-09-23T18:30:00+02:00',
+  season:   3,
+  // When Season 3 starts (empty = not announced yet: the site says "starting soon").
+  launch:   '',
   updated:  '2026-10-24',
 };
 
 // ── News (newest first) ─────────────────────────────────────────────────────
 export const NEWS = [
   {
-    date: '2026-09-29',
-    title: L('The End fight: Saturday 3 October, 17:30', 'Battaglia dell\'End: sabato 3 ottobre, 17:30'),
+    date: '2026-10-24',
+    title: L('Season 3', 'Stagione 3'),
     body: L(
-      'The End now opens with the End fight on Saturday 3 October at 17:30 (Italian time). Get your gear ready.',
-      'L\'End ora si apre con la battaglia dell\'End sabato 3 ottobre alle 17:30 (ora italiana). Preparate l\'equipaggiamento.'),
-  },
-  {
-    date: '2026-09-28',
-    title: L('Calamity nights', 'Notti di calamità'),
-    body: L(
-      'Now and then a night is not an ordinary night. A Blood Moon brings stronger monsters and red rifts, a Starfall drops stars full of loot and meteors you can forge on for free, and a Thin Veil lets the rift press through. Nobody sleeps until dawn. <a href="#/calamity">What each night does</a>.',
-      'Ogni tanto una notte non è una notte qualunque. Una Blood Moon porta mostri più forti e rift rosse, una Starfall fa cadere stelle piene di bottino e meteore su cui forgiare gratis, e un Thin Veil fa passare la rift. Nessuno dorme fino all\'alba. <a href="#/calamity">Cosa fa ogni notte</a>.'),
-  },
-  {
-    date: '2026-09-25',
-    title: L('Weapon Rifts are open', 'Aperte le Weapon Rift'),
-    body: L(
-      'Thirteen sealed dungeons, one per race weapon, opened with race Rift Keys. Also new: a gear score that counts your supplies, a solo bonus, rift challenges, streak fatigue, an exit block in ordinary rifts — and rift portals and meteors now show up more often.',
-      'Tredici dungeon sigillati, uno per ogni arma di razza, aperti con le Rift Key di razza. Novità anche: un gear score che conta le tue scorte, bonus solo, sfide nelle rift, affaticamento da serie, un blocco d\'uscita nelle rift ordinarie — e portali e meteore ora compaiono più spesso.'),
-  },
-  {
-    date: '2026-09-23',
-    title: L('The server is live', 'Il server è online'),
-    body: L(
-      'Forged SMP opened on Wednesday 23 September at 18:30 (Italian time). Roll your race and good luck.',
-      'Forged SMP ha aperto mercoledì 23 settembre alle 18:30. Tira la tua razza e buona fortuna.'),
+      'A new world, and it opens up a piece at a time: one hour of grace, then races, PvP and the Rift, then the Nether and a border that grows to 15,000 blocks. The race weapons are gone — <a href="#/gems">fifteen gems</a> took their place, one of each, won in the Rift\'s gem vaults. The <a href="#/forge">Forge</a> is a block you craft now, with a Cold Forge and runes later on. New <a href="#/items">Starsteel and Riftborn gear, reworked relics and new potions</a>, and rule 8 for everything one of a kind.',
+      'Un mondo nuovo, che si apre un pezzo alla volta: un\'ora di tregua, poi razze, PvP e Rift, poi il Nether e un confine che cresce fino a 15.000 blocchi. Le armi di razza non ci sono più — al loro posto <a href="#/gems">quindici gemme</a>, una per tipo, vinte nei caveau delle gemme della Rift. La <a href="#/forge">Forgia</a> ora è un blocco che si crafta, con la Forgia Fredda e le rune più avanti. Nuovo <a href="#/items">equipaggiamento Starsteel e Riftborn, reliquie riviste e nuove pozioni</a>, e la regola 8 per tutto ciò che è unico.'),
   },
 ];
 
 // ── Pillars (home / about) ──────────────────────────────────────────────────
 export const PILLARS = [
+  { icon: '🗓️', page: 'rules', title: L('A season that opens up', 'Una stagione che si apre'),
+    text: L('One hour of grace, then the world opens a piece at a time over two weeks: races and the Rift, the Nether, the Forge, red rifts, calamity nights, the gem vaults tier by tier.',
+            'Un\'ora di tregua, poi il mondo si apre un pezzo alla volta in due settimane: razze e Rift, il Nether, la Forgia, le rift rosse, le notti di calamità, i caveau delle gemme una rarità alla volta.') },
   { icon: '🎲', page: 'races', title: L('Races', 'Razze'),
-    text: L('Everyone rolls a permanent race with real stat and ability differences. Rarer races are stronger — and one is 1 in 10,000.',
-            'Ognuno tira una razza permanente con statistiche e abilità diverse. Le più rare sono più forti — e una è 1 su 10.000.') },
-  { icon: '🕳️', page: 'rift', title: L('The Rift', 'La Rift'),
-    text: L('The main endgame: instanced cave dungeons for parties of up to 4, built fresh every time.',
-            'L\'endgame principale: dungeon in grotta istanziati per gruppi fino a 4, generati da zero ogni volta.') },
+    text: L('Everyone rolls a race for the season — three spins, the last one sticks. Rarer races are stronger, and one is 1 in 10,000.',
+            'Ognuno tira una razza per la stagione — tre giri, l\'ultimo resta. Le più rare sono più forti, e una è 1 su 10.000.') },
   { icon: '💎', page: 'gems', title: L('Gems', 'Gemme'),
     text: L('Fifteen gems, and only one of each exists. Win them in the Rift\'s gem vaults — and keep them.',
             'Quindici gemme, e ne esiste una sola per tipo. Vincile nei caveau delle gemme della Rift — e tienile.') },
-  { icon: '🔨', page: 'forge', title: L('Meteors & the Forge', 'Meteore e Forgia'),
-    text: L('Meteors fall from the sky. Hammer your gear on one in a timing minigame for a permanent buff — or ruin it.',
-            'Le meteore cadono dal cielo. Martella il tuo equipaggiamento su una in un minigioco a tempo per un potenziamento permanente — o rovinalo.') },
-  { icon: '⛓️', page: 'forge', title: L('Scarce netherite', 'Netherite scarsa'),
-    text: L('There is very little netherite on purpose. Progress is a steady trickle, not a flood.',
-            'La netherite è pochissima, di proposito. Si progredisce goccia a goccia, non a valanga.') },
+  { icon: '🕳️', page: 'rift', title: L('The Rift', 'La Rift'),
+    text: L('Rare portals into instanced dungeons for parties of up to 4, built fresh every time. Red rifts drag you in.',
+            'Portali rari verso dungeon istanziati per gruppi fino a 4, generati da zero ogni volta. Le rift rosse ti trascinano dentro.') },
+  { icon: '🔨', page: 'forge', title: L('The Forge', 'La Forgia'),
+    text: L('Craft a Forge, place it, and hammer your gear on it in a timing minigame for a permanent buff — or ruin it.',
+            'Crafta una Forgia, piazzala e martellaci sopra il tuo equipaggiamento in un minigioco a tempo per un potenziamento permanente — o rovinalo.') },
+  { icon: '⛓️', page: 'items', title: L('Scarce netherite', 'Netherite scarsa'),
+    text: L('Very little netherite, on purpose — Starsteel and one-of-a-kind Riftborn gear are the way up.',
+            'Pochissima netherite, di proposito — lo Starsteel e l\'equipaggiamento Riftborn, unico, sono la via per salire.') },
   { icon: '⚔️', page: 'pvp', title: L('PvP with rules', 'PvP con regole'),
     text: L('Teams, bounties on real items and a daily Tracking Hour when nobody can hide.',
             'Team, taglie con oggetti veri e una Tracking Hour giornaliera in cui nessuno può nascondersi.') },
   { icon: '🤖', page: 'bosses', title: L('Bosses with real AI', 'Boss con vera IA'),
-    text: L('Fake players with real combat AI power bosses, dungeon guardians and world events.',
-            'Finti giocatori con vera IA da combattimento animano boss, guardiani dei dungeon ed eventi nel mondo.') },
+    text: L('Fake players with real combat AI power the rift bosses and the gem vaults\' guardians — each guardian fights with the gem it guards.',
+            'Finti giocatori con vera IA da combattimento animano i boss delle rift e i guardiani dei caveau — ognuno combatte con la gemma che custodisce.') },
   { icon: '🌘', page: 'calamity', title: L('Calamity nights', 'Notti di calamità'),
     text: L('Now and then a night turns: a Blood Moon, a Starfall or a Thin Veil. Stronger monsters, falling stars, rifts tearing open, and nobody sleeps.',
             'Ogni tanto una notte cambia: Blood Moon, Starfall o Thin Veil. Mostri più forti, stelle cadenti, rift che si aprono, e nessuno dorme.') },
+];
+
+// ── The season, step by step (Season plugin) ─────────────────────────────────
+// at: hours after the start. Each step arrives with a title and a toast, and the in-game Guide fills in.
+export const SEASON = [
+  { at: 0, icon: '🕊️', name: L('Grace', 'Tregua'),
+    text: L('The first hour: nobody can hurt anybody and nobody gets hungry. The world is 2,000 blocks across. Make your team.',
+            'La prima ora: nessuno può ferire nessuno e nessuno ha fame. Il mondo è largo 2.000 blocchi. Fai il tuo team.') },
+  { at: 1, icon: '🎲', name: L('Races, PvP & the Rift', 'Razze, PvP e Rift'),
+    text: L('Grace ends: PvP is on, roll your race, bounties open, and now and then a rift portal tears open.',
+            'Finisce la tregua: PvP attivo, tira la tua razza, si aprono le taglie, e ogni tanto si squarcia un portale della Rift.') },
+  { at: 2, icon: '🔥', name: L('The Nether', 'Il Nether'),
+    text: L('Nether portals work, and the border moves out to 5,000 blocks.', 'I portali del Nether funzionano, e il confine si allarga a 5.000 blocchi.') },
+  { at: 4, icon: '🗺️', name: L('The full world', 'Il mondo intero'),
+    text: L('The border opens all the way: 15,000 blocks across, for the rest of the season.', 'Il confine si apre del tutto: 15.000 blocchi, per il resto della stagione.') },
+  { at: 24, icon: '🔨', name: L('The Forge · Tracking Hour · the first gem vaults', 'La Forgia · Tracking Hour · i primi caveau'),
+    text: L('The Forge can be crafted, the daily Tracking Hour starts, and the Rare gem vaults open (Stone, Verdant).',
+            'La Forgia si può craftare, parte la Tracking Hour giornaliera, e si aprono i caveau Rari (Stone, Verdant).') },
+  { at: 48, icon: '🩸', name: L('Red rifts · Calamity nights', 'Rift rosse · Notti di calamità'),
+    text: L('Red rifts start tearing open, and a night can turn into a calamity.', 'Iniziano ad aprirsi le rift rosse, e una notte può diventare una calamità.') },
+  { at: 72, icon: '🔷', name: L('Epic gem vaults', 'Caveau Epici'),
+    text: L('Magma, Venom, Fortune.', 'Magma, Venom, Fortune.') },
+  { at: 168, icon: '❄️', name: L('The Cold Forge · Legendary gem vaults', 'La Forgia Fredda · Caveau Leggendari'),
+    text: L('The Cold Forge can be crafted, and the Legendary vaults open: Rime, Tempest, Umbral, Lumen, Echo.',
+            'Si può craftare la Forgia Fredda, e si aprono i caveau Leggendari: Rime, Tempest, Umbral, Lumen, Echo.') },
+  { at: 168, icon: '▓', name: L('???', '???'), glitch: true,
+    text: L('Not every portal is what it looks like.', 'Non tutti i portali sono quello che sembrano.') },
+  { at: 336, icon: '🌟', name: L('Mythic gem vaults', 'Caveau Mitici'),
+    text: L('Briar, Anchor, Chrono — the keys must be attuned, and everyone can see you do it.',
+            'Briar, Anchor, Chrono — le chiavi vanno attivate, e tutti ti vedono mentre lo fai.') },
 ];
 
 // ── Rarities ────────────────────────────────────────────────────────────────
@@ -289,19 +303,21 @@ export const OTHER_UNIQUES = [
 ];
 
 // ── Bosses ──────────────────────────────────────────────────────────────────
-export const RACE_BOSSES = [
-  { race: 'stone',   name: 'Kraghold',  title: L('the Riverstone Colossus', 'il Colosso di Pietrafiume'), style: L('Earth and water.', 'Terra e acqua.') },
-  { race: 'swift',   name: 'Kaien',     title: L('Blade of a Thousand Cuts', 'Lama dei Mille Tagli'),     style: L('Blinding blade work.', 'Lavoro di lama accecante.') },
-  { race: 'verdant', name: 'Sylvara',   title: L('the Overgrowth Warden', 'la Custode del Rigoglio'),     style: L('Thorns, pinning roots and poison clouds.', 'Spine, radici che bloccano e nubi velenose.') },
-  { race: 'ember',   name: 'Nyxara',    title: L('the Ember Conjurer', 'l\'Evocatrice di Braci'),          style: L('Fire magic and summons.', 'Magia del fuoco ed evocazioni.') },
-  { race: 'frost',   name: 'Hrimvar',   title: L('the Winter Sovereign', 'il Sovrano dell\'Inverno'),      style: L('Freezing novas, ice lanes and a whiteout.', 'Nove gelide, corsie di ghiaccio e una tormenta bianca.') },
-  { race: 'void',    name: 'Ithrax',    title: L('the Void Sovereign', 'il Sovrano del Vuoto'),            style: L('Void lances and rifts.', 'Lance del vuoto e squarci.') },
-  { race: 'iron',    name: 'Molgor',    title: L('the Ashen Titan', 'il Titano di Cenere'),                style: L('An armored bruiser.', 'Un picchiatore corazzato.') },
-  { race: 'storm',   name: 'Aerix',     title: L('the Tempest Sovereign', 'il Sovrano della Tempesta'),    style: L('Gravity and lightning.', 'Gravità e fulmini.') },
-  { race: 'blood',   name: 'Vaelric',   title: L('the Crimson Count', 'il Conte Cremisi'),                 style: L('Heals off the damage it deals.', 'Si cura con il danno che infligge.') },
-  { race: 'aether',  name: 'Wemmbu',    title: L('Hammer of the Heavens', 'Martello dei Cieli'),           style: L('A sky-borne mace.', 'Una mazza che piove dal cielo.') },
-  { race: 'abyss',   name: 'Nocthar',   title: L('the Deep Watcher', 'l\'Osservatore degli Abissi'),       style: L('Blinds you, vanishes, strikes from behind.', 'Ti acceca, svanisce, colpisce alle spalle.') },
-  { race: 'anomaly', name: 'X̷̢e̶r̸a̴t̵h̶', title: L('▓▓▓▓▓▓▓▓▓', '▓▓▓▓▓▓▓▓▓'), style: L('[ENTRY REDACTED]', '[VOCE OSCURATA]'), redacted: true },
+// The gem vaults' guardians: each fights with the gem it guards.
+export const GUARDIANS = [
+  { gem: 'stone',   name: 'Ostrak',    title: L('the Unmoved', 'l\'Irremovibile'),                style: L('It doesn\'t move for anything — stomps, stone spikes, a skin of rock.', 'Non si sposta per nulla — pestoni, spuntoni di pietra, una pelle di roccia.') },
+  { gem: 'verdant', name: 'Elowen',    title: L('the Greenwarden', 'la Custode Verde'),            style: L('The orchard fights for her: roots that hold, blossoms that bloom, and she heals while she takes root.', 'Il frutteto combatte per lei: radici che trattengono, fiori che sbocciano, e si cura mentre mette radici.') },
+  { gem: 'magma',   name: 'Pyrrhos',   title: L('the Living Forge', 'la Forgia Vivente'),          style: L('Molten bolts and burning ground; slag from above, the forge\'s own breath.', 'Dardi fusi e terreno in fiamme; scorie dall\'alto, il respiro della forgia.') },
+  { gem: 'venom',   name: 'Vesska',    title: L('the Blight Mother', 'la Madre della Peste'),      style: L('Everything she touches carries her venom; her brood comes, and the air goes bad.', 'Tutto ciò che tocca porta il suo veleno; arriva la sua covata, e l\'aria si guasta.') },
+  { gem: 'fortune', name: 'Aurum',     title: L('the Gilded Hoarder', 'l\'Accumulatore Dorato'),   style: L('It sweeps through anything near it, flings its gold, and calls its keepers.', 'Spazza tutto ciò che ha vicino, scaglia il suo oro e chiama i suoi custodi.') },
+  { gem: 'rime',    name: 'Isolde',    title: L('the White Silence', 'il Silenzio Bianco'),        style: L('Lances of ice, walls of it, and a whiteout nobody sees through.', 'Lance di ghiaccio, muri di ghiaccio, e una tormenta in cui nessuno vede.') },
+  { gem: 'tempest', name: 'Kaelos',    title: L('the Unbroken Storm', 'la Tempesta Indomita'),     style: L('Always in the air, always somewhere else; the sky answers it.', 'Sempre in aria, sempre altrove; il cielo gli risponde.') },
+  { gem: 'umbral',  name: 'Sable',     title: L('the Quiet Knife', 'la Lama Silenziosa'),          style: L('Behind you, then gone; the lights go out and she is faster in the dark.', 'Alle tue spalle, poi sparita; le luci si spengono e al buio è più veloce.') },
+  { gem: 'lumen',   name: 'Auriel',    title: L('the Last Light', 'l\'Ultima Luce'),               style: L('She heals herself with her own light — break her channel, or the fight goes on forever.', 'Si cura con la sua luce — interrompi il suo canale, o lo scontro non finisce mai.') },
+  { gem: 'echo',    name: 'Hollowmaw', title: L('the Listener', 'l\'Ascoltatore'),                 style: L('It hears everything that moves. When it shrieks, sneak — or be heard.', 'Sente tutto ciò che si muove. Quando urla, accovacciati — o verrai sentito.') },
+  { gem: 'briar',   name: 'Morwen',    title: L('the Thorn Queen', 'la Regina delle Spine'),       style: L('Thornwheels and binding vines; she roots you, then the ground itself grows teeth.', 'Ruote di spine e liane che legano; ti blocca, poi il terreno stesso mette i denti.') },
+  { gem: 'anchor',  name: 'Thalassar', title: L('the Drowned Admiral', 'l\'Ammiraglio Annegato'),  style: L('Harpoons, anchor drops and keelhauls; his guns walk across the room, and the sea comes in.', 'Arpioni, ancore che piombano e chiglie; i suoi cannoni spazzano la sala, e il mare entra.') },
+  { gem: 'chrono',  name: 'Aeon',      title: L('the Hour Thief', 'il Ladro di Ore'),              style: L('It is where it was, then where it will be; what you lose, you lose twice.', 'È dov\'era, poi dove sarà; ciò che perdi, lo perdi due volte.') },
 ];
 
 export const RIFT_BOSSES = [
@@ -315,19 +331,15 @@ export const RIFT_BOSSES = [
 
 // ── The Rift ────────────────────────────────────────────────────────────────
 export const RIFT_KINDS = [
-  { key: 'ordinary', color: '#b56cff', name: L('Ordinary', 'Ordinaria'), rooms: '8', time: '40 min', lives: '3',
-    notes: L('The baseline. You can walk out by the lodestone or the exit block and keep everything.', 'La base. Puoi uscire dalla calamita o dal blocco d\'uscita e tenere tutto.') },
-  { key: 'red', color: '#ff3b3b', name: L('Red Rift', 'Rift Rossa'), rooms: '11', time: '75 min', lives: '2',
-    notes: L('~1 in 5 random portals. The bleeding portal pulls you in within ~14 blocks. No way back until it\'s cleared or you\'re out of lives. Boss: the Crimson Sovereign. Better loot plus an extra table (netherite, ancient debris, totems, books, runes).',
-             '~1 portale casuale su 5. Il portale sanguinante ti risucchia entro ~14 blocchi. Non si torna indietro finché non è completata o finite le vite. Boss: il Sovrano Cremisi. Bottino migliore più una tabella extra (netherite, detriti antichi, totem, libri, rune).') },
-  { key: 'anomaly', color: '#35f2e0', name: L('Anomaly', 'Anomalia'), rooms: '3–22', time: L('20 min + 4/room', '20 min + 4/stanza'), lives: '1',
-    notes: L('~1 in 14, the rarest. Its portal looks exactly like an ordinary one. Inside, everything is wrong — and every room rolls its own tier. No way out, a randomly assembled boss. The best-paying thing on the server.',
-             '~1 su 14, la più rara. Il portale è identico a quello ordinario. Dentro è tutto sbagliato — e ogni stanza ha il suo livello. Nessuna uscita, un boss assemblato a caso. La cosa che paga di più sul server.') },
-  { key: 'void', color: '#e8e8ff', name: L('Void Rift', 'Rift del Vuoto'), rooms: L('short', 'breve'), time: '30 min', lives: '5',
-    notes: L('Staff events only. A pillar of light visible from far away, up to 10 players, the biggest room in any rift and one boss chosen for the event. Not a trap: failing costs nothing you carry.',
-             'Solo eventi dello staff. Un pilastro di luce visibile da lontano, fino a 10 giocatori, la stanza più grande di ogni rift e un boss scelto per l\'evento. Non è una trappola: fallire non ti costa ciò che porti.') },
+  { key: 'ordinary', color: '#b56cff', name: L('Ordinary', 'Ordinaria'), rooms: '7', time: '25 min', lives: '3',
+    notes: L('The baseline. You can walk out by the lodestone and keep everything.', 'La base. Puoi uscire dalla calamita e tenere tutto.') },
+  { key: 'red', color: '#ff3b3b', name: L('Red Rift', 'Rift Rossa'), rooms: '9', time: '55 min', lives: '2',
+    notes: L('Two days in, red rifts start: about 1 in 5 portals. A red portal doesn\'t wait to be clicked: it drags in anyone within 14 blocks, and there\'s no way back until it\'s cleared or you\'re out of lives. Boss: the Crimson Sovereign. Harder — and far richer: an extra table with Rift Cores, epic runes, netherite, totems and books.',
+             'Dopo due giorni arrivano le rift rosse: circa 1 portale su 5. Un portale rosso non aspetta il clic: trascina dentro chiunque sia entro 14 blocchi, e non si torna indietro finché non è completata o finite le vite. Boss: il Sovrano Cremisi. Più dura — e molto più ricca: una tabella extra con Nuclei della Rift, rune epiche, netherite, totem e libri.') },
+  { key: 'anomaly', color: '#35f2e0', name: L('▓▓▓▓▓▓▓', '▓▓▓▓▓▓▓'), rooms: '▓', time: '▓▓', lives: '▓', glitch: true,
+    notes: L('[ENTRY REDACTED] — some portals look ordinary. Some aren\'t.', '[VOCE OSCURATA] — alcuni portali sembrano ordinari. Alcuni no.') },
   { key: 'weapon', color: '#ffd84a', name: L('Gem Vaults', 'Caveau delle gemme'), rooms: L('themed', 'a tema'), time: '45 min', lives: '3',
-    notes: L('13 sealed dungeons, one per gem, opened with that gem\'s key. See below.', '13 dungeon sigillati, uno per gemma, aperti con la chiave di quella gemma. Vedi sotto.') },
+    notes: L('13 sealed dungeons, one per gem, opened with that gem\'s key, up to 4 players. Fail and you lose what you carried in. See below.', '13 dungeon sigillati, uno per gemma, aperti con la chiave di quella gemma, fino a 4 giocatori. Se fallisci perdi ciò che hai portato. Vedi sotto.') },
 ];
 
 export const RIFT_TIERS = [
@@ -356,12 +368,10 @@ export const RIFT_CHALLENGES = [
 ];
 
 export const RIFT_RELICS = [
-  { rift: L('Ordinary · ~1 in 16 kills', 'Ordinaria · ~1 ogni 16 uccisioni'), color: '#b56cff',
+  { rift: L('Ordinary · 6% per boss', 'Ordinaria · 6% per boss'), color: '#b56cff',
     items: [['Riftfang', L('Chills what it hits.', 'Congela ciò che colpisce.')], ['Sovereign\'s Mantle', L('+2 hearts.', '+2 cuori.')]] },
-  { rift: L('Red · ~1 in 7', 'Rossa · ~1 su 7'), color: '#ff3b3b',
+  { rift: L('Red · 14% per boss', 'Rossa · 14% per boss'), color: '#ff3b3b',
     items: [['Crimson Cleaver', L('Sets things alight.', 'Dà fuoco alle cose.')], ['Bloodmoon Greaves', L('Faster and tougher.', 'Più veloce e più resistente.')]] },
-  { rift: L('Anomaly · ~1 in 4–5', 'Anomalia · ~1 su 4–5'), color: '#35f2e0',
-    items: [['Unfinished Blade', L('Different stats every time, odd on-hit effects.', 'Statistiche diverse ogni volta, strani effetti al colpo.')], ['Halo of Nothing', L('+3 hearts and luck.', '+3 cuori e fortuna.')]] },
 ];
 
 // ── Gem vaults (Season 3) ───────────────────────────────────────────────────
@@ -394,23 +404,28 @@ export const GEM_VAULTS = [
 
 // ── The Forge ───────────────────────────────────────────────────────────────
 export const FORGE = {
-  cost:     L('1 Ancient Debris per attempt', '1 Detrito antico per tentativo'),
-  burn:     10,     // minutes a meteor stays lit
+  // The Forge block's recipe, row by row (Forge plugin). Opens on day 1.
+  recipe: [['🟫', '⚒️', '🟫'], ['⬛', '🛠️', '⬛'], ['💎', '🔥', '💎']],
+  recipeKey: [['🟫', L('Netherite Scrap', 'Frammento di netherite')], ['⚒️', L('Anvil', 'Incudine')], ['⬛', L('Obsidian', 'Ossidiana')],
+              ['🛠️', L('Smithing Table', 'Tavolo da forgiatura')], ['💎', L('Diamond Block', 'Blocco di diamante')], ['🔥', L('Blast Furnace', 'Altoforno')]],
+  // The Cold Forge: a Forge in the middle. Opens on day 7.
+  coldRecipe: [['🧊', '🟪', '🧊'], ['🟪', '🔨', '🟪'], ['🧊', '⭐', '🧊']],
+  coldKey: [['🧊', L('Blue Ice', 'Ghiaccio blu')], ['🟪', L('Netherite Ingot', 'Lingotto di netherite')], ['🔨', L('Forge', 'Forgia')], ['⭐', L('Nether Star', 'Stella del Nether')]],
+  cost:     L('2 Netherite Scrap a try', '2 Frammenti di netherite a tentativo'),
+  coldCost: L('2 Netherite Ingots a try', '2 Lingotti di netherite a tentativo'),
   strikes:  5,
   timeout:  6,      // seconds before a strike counts as a miss
-  heatMin:  50,
-  // min/max = point ranges; null until the thresholds for 5 strikes are confirmed
   grades: [
-    { key: 'flawless', min: null, max: null, color: '#c07bff', name: L('Flawless', 'Impeccabile'),
-      text: L('Two buffs: the first at top strength, the second at the middle tier. Server-wide announcement.', 'Due potenziamenti: il primo al massimo, il secondo al livello medio. Annuncio a tutto il server.') },
-    { key: 'good', min: null, max: null, color: '#5fe36a', name: L('Good', 'Buono'),
+    { key: 'flawless', min: '85%', max: '100%', color: '#c07bff', name: L('Flawless', 'Impeccabile'),
+      text: L('Two buffs: you pick the first from the piece\'s list, at top strength; the second is random, at middle strength. Announced to the whole server.', 'Due potenziamenti: scegli il primo dalla lista del pezzo, al massimo; il secondo è a caso, di forza media. Annunciato a tutto il server.') },
+    { key: 'good', min: '60%', max: '84%', color: '#5fe36a', name: L('Good', 'Buono'),
       text: L('One buff at middle strength.', 'Un potenziamento di forza media.') },
-    { key: 'okay', min: null, max: null, color: '#ffd84a', name: L('Okay', 'Discreto'),
+    { key: 'okay', min: '35%', max: '59%', color: '#ffd84a', name: L('Okay', 'Discreto'),
       text: L('One buff at the weakest strength.', 'Un potenziamento debole.') },
-    { key: 'botched', min: null, max: null, color: '#ff4a4a', name: L('Botched', 'Rovinato'),
-      text: L('No buff, and the piece is ruined (1 durability, can never be forged again).', 'Nessun potenziamento e il pezzo è rovinato (1 di durabilità, non si potrà mai più forgiare).') },
+    { key: 'botched', min: '0%', max: '34%', color: '#ff4a4a', name: L('Botched', 'Rovinato'),
+      text: L('No buff, and the piece is left nearly broken — and can never be forged again.', 'Nessun potenziamento, e il pezzo resta quasi rotto — e non si potrà mai più forgiare.') },
   ],
-  // [name, okay, good, flawless] at full heat
+  // [name, okay, good, flawless, stat]
   buffs: [
     { slot: L('Helmet', 'Elmo'), icon: '🪖', rows: [
       ['Vitality', '+1', '+2', '+5', L('Max Health', 'Vita massima')],
@@ -418,10 +433,11 @@ export const FORGE = {
       ['Deep Breath', '+1', '+2', '+5', L('Breath', 'Respiro')],
       ['Steadfast', '+5%', '+10%', '+25%', L('Knockback Resistance', 'Resistenza al contraccolpo')] ] },
     { slot: L('Chestplate', 'Corazza'), icon: '🛡️', rows: [
-      ['Bulwark', '+0.5', '+1', '+2.5', L('Armor', 'Armatura')],
-      ['Ironhide', '+5%', '+10%', '+25%', L('Knockback Resistance', 'Resistenza al contraccolpo')],
-      ['Blast Ward', '+10%', '+20%', '+50%', L('Explosion Knockback Res.', 'Res. contraccolpo esplosioni')],
-      ['Vitality', '+1', '+2', '+5', L('Max Health', 'Vita massima')] ] },
+      ['Bulwark', '+1', '+2', '+4', L('Armor', 'Armatura')],
+      ['Resolve', '+1', '+2', '+4', L('Armor Toughness', 'Robustezza armatura')],
+      ['Vitality', '+2', '+4', '+8', L('Max Health', 'Vita massima')],
+      ['Ironhide', '+10%', '+20%', '+40%', L('Knockback Resistance', 'Resistenza al contraccolpo')],
+      ['Blast Ward', '+20%', '+40%', '+80%', L('Explosion Knockback Res.', 'Res. contraccolpo esplosioni')] ] },
     { slot: L('Leggings', 'Gambali'), icon: '👖', rows: [
       ['Swiftstep', '+3%', '+5%', '+12%', L('Move Speed', 'Velocità')],
       ['Bulwark', '+0.5', '+1', '+2.5', L('Armor', 'Armatura')],
@@ -432,16 +448,58 @@ export const FORGE = {
       ['Sure-Footed', '+0.2', '+0.3', '+0.6', L('Step Height', 'Altezza del passo')],
       ['Swiftstep', '+3%', '+5%', '+12%', L('Move Speed', 'Velocità')],
       ['Ironhide', '+5%', '+10%', '+25%', L('Knockback Resistance', 'Resistenza al contraccolpo')] ] },
-    { slot: L('Sword / Axe', 'Spada / Ascia'), icon: '⚔️', rows: [
+    { slot: L('Sword', 'Spada'), icon: '🗡️', rows: [
       ['Keen', '+0.25', '+0.5', '+1', L('Attack Damage', 'Danno d\'attacco')],
-      ['Swift Blade', '', '', '', L('Attack speed', 'Velocità d\'attacco')],
-      ['Sweeping Edge / Lumberjack', '', '', '', L('Sweep / wood', 'Spazzata / legna')],
-      ['Long Reach', '', '', '', L('Reach', 'Portata')] ] },
+      ['Swift Blade', '+0.05', '+0.1', '+0.2', L('Attack Speed', 'Velocità d\'attacco')],
+      ['Sweeping Edge', '+10%', '+20%', '+40%', L('Sweep Damage', 'Danno della spazzata')],
+      ['Long Reach', '+0.05', '+0.1', '+0.25', L('Attack Reach', 'Portata d\'attacco')] ] },
+    { slot: L('Axe', 'Ascia'), icon: '🪓', rows: [
+      ['Keen', '+0.25', '+0.5', '+1', L('Attack Damage', 'Danno d\'attacco')],
+      ['Swift Blade', '+0.05', '+0.1', '+0.2', L('Attack Speed', 'Velocità d\'attacco')],
+      ['Lumberjack', '+3', '+7', '+20', L('Chopping Speed', 'Velocità di taglio')],
+      ['Long Reach', '+0.05', '+0.1', '+0.25', L('Attack Reach', 'Portata d\'attacco')] ] },
     { slot: L('Pickaxe', 'Piccone'), icon: '⛏️', rows: [
       ['Excavator', '+6', '+14', '+40', L('Mining Speed', 'Velocità di scavo')],
       ['Quickbreak', '+50%', '+100%', '+300%', L('Break Speed', 'Velocità di rottura')],
-      ['Far Reach', '', '', '', L('Block reach', 'Portata blocchi')],
-      ['Deep Diver', '', '', '', L('Mining underwater', 'Scavo sott\'acqua')] ] },
+      ['Far Reach', '+1', '+2', '+4', L('Block Reach', 'Portata blocchi')],
+      ['Deep Diver', '+20%', '+40%', '+80%', L('Underwater Mining', 'Scavo sott\'acqua')] ] },
+  ],
+  // The Cold Forge's frost techniques: [name, okay, good, flawless, what it does]
+  cold: [
+    { slot: L('Sword', 'Spada'), icon: '🗡️', rows: [
+      ['Grievous Edge', '30%', '40%', '50%', L('hits cut the target\'s healing for 3 s', 'i colpi riducono le cure del bersaglio per 3 s')],
+      ['Rime', '1 s', '1.5 s', '2 s', L('every 3rd hit in a row freezes the target', 'ogni 3° colpo di fila congela il bersaglio')],
+      ['Shatter', '+10%', '+15%', '+25%', L('damage to slowed or frozen targets', 'danno a bersagli rallentati o congelati')],
+      ['Executioner', '+8%', '+12%', '+20%', L('damage to targets under 30% health', 'danno a bersagli sotto il 30% di vita')] ] },
+    { slot: L('Chestplate', 'Corazza'), icon: '🛡️', rows: [
+      ['Frost Shell', '2', '4', '6', L('hearts of ice when brought under 30% health (90 s cooldown)', 'cuori di ghiaccio quando scendi sotto il 30% (cooldown 90 s)')],
+      ['Chilling Retort', '1 s', '1.5 s', '2 s', L('whoever hits you in melee is slowed', 'chi ti colpisce in mischia viene rallentato')],
+      ['Thaw', '30%', '50%', '75%', L('weaker Grievous Wounds, Poison and Wither on you', 'Ferite gravi, Veleno e Wither più deboli su di te')],
+      ['Cold Snap', '20%', '30%', '50%', L('less from the first hit after 10 s untouched', 'meno danno dal primo colpo dopo 10 s senza essere colpito')] ] },
+    { slot: L('Pickaxe', 'Piccone'), icon: '⛏️', rows: [
+      ['Cold Fortune', '5%', '10%', '20%', L('chance of one more drop from an ore', 'probabilità di un drop in più da un minerale')],
+      ['Lava Seal', '33%', '66%', '100%', L('chance lava you uncover freezes over', 'probabilità che la lava che scopri si congeli')],
+      ['Deep Cold', '30%', '50%', '80%', L('weaker Mining Fatigue on you', 'Affaticamento più debole su di te')],
+      ['Hardened Haft', '25%', '40%', '50%', L('slower wear (after Unbreaking)', 'si consuma più piano (dopo Indistruttibilità)')] ] },
+  ],
+  // Runes: [name, common, rare, epic, stat]
+  runes: [
+    { slot: L('Weapon', 'Arma'), icon: '⚔️', rows: [
+      ['Brutal Edge', '+1.5', '+3', '+6', L('Attack Damage', 'Danno d\'attacco')],
+      ['Frenzy', '+0.15', '+0.3', '+0.6', L('Attack Speed', 'Velocità d\'attacco')],
+      ['Reach', '+0.1', '+0.2', '+0.4', L('Attack Reach', 'Portata d\'attacco')],
+      ['Sweeper', '+30%', '+60%', '+120%', L('Sweep Damage', 'Danno della spazzata')] ] },
+    { slot: L('Chestplate', 'Corazza'), icon: '🛡️', rows: [
+      ['Titan\'s Heart', '+2', '+3', '+6', L('Max Health', 'Vita massima')],
+      ['Aegis', '+2', '+4', '+8', L('Armor', 'Armatura')],
+      ['Unshakable', '+5%', '+10%', '+20%', L('Knockback Resistance', 'Resistenza al contraccolpo')],
+      ['Juggernaut', '+2', '+4', '+8', L('Armor Toughness', 'Robustezza armatura')],
+      ['Featherweight', '+5%', '+10%', '+20%', L('Move Speed', 'Velocità')] ] },
+    { slot: L('Pickaxe', 'Piccone'), icon: '⛏️', rows: [
+      ['Deep Vein', '+10', '+25', '+60', L('Mining Speed', 'Velocità di scavo')],
+      ['Overclock', '+100%', '+200%', '+500%', L('Break Speed', 'Velocità di rottura')],
+      ['Long Arm', '+0.5', '+1', '+2', L('Block Reach', 'Portata blocchi')],
+      ['Prospector', '+1', '+2', '+4', L('Luck', 'Fortuna')] ] },
   ],
 };
 
@@ -529,30 +587,40 @@ export const ITEM_GROUPS = [
 
 // ── Commands players actually use ───────────────────────────────────────────
 export const COMMANDS = [
+  ['/guide', L('The in-game guide book — it fills in as the season opens up.', 'La guida in gioco — si riempie man mano che la stagione si apre.')],
+  ['/race roll · info · list', L('Roll your race, see what yours does, see every race.', 'Tira la tua razza, vedi cosa fa la tua, vedi tutte le razze.')],
   ['/team …  ·  /tc <msg>', L('Teams and team chat.', 'Team e chat di team.')],
   ['/bounty put · cancel · list  ·  /bounties', L('Bounties.', 'Taglie.')],
+  ['/rule8', L('How long until rule 8 takes your one-of-a-kind items.', 'Quanto manca prima che la regola 8 ti tolga i tuoi oggetti unici.')],
   ['/rift leave · status', L('Leave a rift / see its state.', 'Esci da una rift / vedine lo stato.')],
   ['/rift journal [player]', L('Your rift record book.', 'Il tuo diario delle rift.')],
   ['/rift top [cleared|bosses|rooms|deaths]', L('Server rankings.', 'Classifiche del server.')],
   ['/rift perks', L('Your race\'s rift perk.', 'Il vantaggio della tua razza nelle rift.')],
-  ['/race …', L('Race info.', 'Info sulle razze.')],
+  ['/forge list', L('Every forge buff and frost technique, with its numbers.', 'Ogni potenziamento della forgia e tecnica del gelo, con i numeri.')],
 ];
 
 export const CONTROLS = [
-  [L('Sneak + right-click', 'Shift + tasto destro'), L('Ability 1', 'Abilità 1')],
-  [L('Sneak + swap hands (F)', 'Shift + cambia mano (F)'), L('Ability 2 — own race only', 'Abilità 2 — solo la propria razza')],
+  [L('F (swap hands)', 'F (cambia mano)'), L('Your gem\'s power', 'Il potere della tua gemma')],
+  [L('Sneak + F', 'Shift + F'), L('Your gem\'s second power — with no gem carried, your race\'s active (Voidkin, Stormcaller, Aetherborn)', 'Il secondo potere della gemma — senza gemme, l\'attiva della tua razza (Voidkin, Stormcaller, Aetherborn)')],
+  [L('Right-click / Sneak + right-click', 'Tasto destro / Shift + tasto destro'), L('A relic\'s powers (the Permafrost Lance, the Blood Scythe…)', 'I poteri delle reliquie (Lancia di Permagelo, Falce di Sangue…)')],
 ];
 
 // ── FAQ ─────────────────────────────────────────────────────────────────────
 export const FAQ = [
+  [L('When does everything open?', 'Quando si apre tutto?'),
+   L('A piece at a time over the first two weeks — see "The season" on the Rules page. The in-game guide (/guide) gets a new page each time something opens.', 'Un pezzo alla volta nelle prime due settimane — vedi "La stagione" nella pagina Regole. La guida in gioco (/guide) riceve una pagina nuova ogni volta che si apre qualcosa.')],
   [L('Can I change my race?', 'Posso cambiare razza?'),
    L('Yes, with a Vial of Fate\'s Undoing (Nether Star, 2 Totems, 6 Diamond Blocks). It\'s expensive on purpose. A Race Container lets you keep a second race.', 'Sì, con una Vial of Fate\'s Undoing (Stella del Nether, 2 Totem, 6 Blocchi di diamante). È costosa di proposito. Un Race Container ti fa tenere una seconda razza.')],
+  [L('What happened to the race weapons?', 'Che fine hanno fatto le armi di razza?'),
+   L('They\'re gone. The fifteen gems took their place — one of each, won in the Rift\'s gem vaults.', 'Non ci sono più. Al loro posto ci sono le quindici gemme — una per tipo, vinte nei caveau delle gemme della Rift.')],
   [L('Do I lose my items if I die in the Rift?', 'Perdo gli oggetti se muoio nella Rift?'),
-   L('Dying only costs a life — you keep your stuff. Losing the whole rift (everyone out of lives, or time runs out) costs everything you carry. Your XP stays.', 'Morire costa solo una vita — tieni la tua roba. Perdere la rift intera (tutti senza vite o tempo scaduto) ti costa tutto ciò che porti. L\'XP resta.')],
+   L('No — a killing blow knocks you down, a teammate can pick you up, and bleeding out only costs a life. Losing the whole rift (everyone out of lives, or time runs out) costs everything you carry. Your XP stays.', 'No — un colpo letale ti mette a terra, un compagno può rialzarti, e dissanguarti costa solo una vita. Perdere la rift intera (tutti senza vite o tempo scaduto) ti costa tutto ciò che porti. L\'XP resta.')],
+  [L('I stopped playing for a week — where\'s my gem?', 'Ho smesso di giocare per una settimana — dov\'è la mia gemma?'),
+   L('Rule 8: hold a one-of-a-kind item and don\'t really play for 7 days (at least 30 minutes, not AFK) and it\'s lost — free for someone else to win. /rule8 shows how long you have.', 'Regola 8: se tieni un oggetto unico e per 7 giorni non giochi davvero (almeno 30 minuti, non AFK) lo perdi — libero per qualcun altro. /rule8 mostra quanto ti resta.')],
   [L('Can I forge the same piece twice?', 'Posso forgiare due volte lo stesso pezzo?'),
-   L('No. Every piece gets exactly one forge, ever — except a Flawless chestplate, sword or pickaxe, which can take a second pass on a rare Cold Forge.', 'No. Ogni pezzo si forgia una volta sola — tranne corazza, spada o piccone Impeccabili, che possono avere un secondo passaggio su una rara Forgia Fredda.')],
+   L('No. Every piece gets exactly one forge, ever — except a Flawless chestplate, sword or pickaxe, which can take a second pass on the Cold Forge.', 'No. Ogni pezzo si forgia una volta sola — tranne corazza, spada o piccone Impeccabili, che possono avere un secondo passaggio sulla Forgia Fredda.')],
   [L('Why is there so little netherite?', 'Perché c\'è così poca netherite?'),
-   L('On purpose. Progress is meant to be a steady trickle. Rifts, red rifts and the forge are where it comes from.', 'Di proposito. Il progresso deve essere lento e costante. Arriva da rift, rift rosse e forgia.')],
+   L('On purpose. Progress is meant to be a steady trickle. Rifts — red rifts above all — are where it comes from, and Starsteel and Riftborn are the way up.', 'Di proposito. Il progresso deve essere lento e costante. Arriva dalle rift — soprattutto quelle rosse — e Starsteel e Riftborn sono la via per salire.')],
   [L('Can I use a minimap?', 'Posso usare una minimappa?'),
    L('No — minimaps and maps of any kind are banned. Waypoints are allowed.', 'No — minimappe e mappe di qualsiasi tipo sono vietate. I waypoint sono permessi.')],
   [L('What happens if I log out mid-fight?', 'Cosa succede se esco durante un combattimento?'),
@@ -563,75 +631,70 @@ export const FAQ = [
 
 // ── Special mechanics ───────────────────────────────────────────────────────
 export const DIMENSIONS = [
-  { key: 'nether', icon: '🔥', name: L('The Nether', 'Il Nether'), opensAfterHours: 5,
-    text: L('Locked for the first 5 hours after launch, then opens automatically.', 'Bloccato per le prime 5 ore dal lancio, poi si apre da solo.') },
-  { key: 'end', icon: '🌌', name: L('The End', 'L\'End'), opensAt: '2026-10-03T17:30:00+02:00',
-    text: L('Opens with the End fight on Saturday 3 October at 17:30 (Italian time).', 'Si apre con la battaglia dell\'End sabato 3 ottobre alle 17:30 (ora italiana).') },
+  { key: 'nether', icon: '🔥', name: L('The Nether', 'Il Nether'), opensAfterHours: 2,
+    text: L('Opens two hours into the season, when the border grows to 5,000 blocks.', 'Si apre due ore dopo l\'inizio della stagione, quando il confine cresce a 5.000 blocchi.') },
+  { key: 'end', icon: '🌌', name: L('The End', 'L\'End'), closed: true,
+    text: L('Closed for now.', 'Chiuso, per ora.') },
 ];
 
 // ── Calamity nights ─────────────────────────────────────────────────────────
 // From the Calamity plugin's config: roll chance, the weights (share), each night's buffs and intervals.
 export const CALAMITY = {
   rules: L([
-    'At dusk a night has a <b>1 in 5</b> chance of becoming a calamity, with at least <b>two ordinary nights</b> between two calamities.',
+    'From two days in, at dusk a night has a <b>1 in 5</b> chance of becoming a calamity, with at least <b>two ordinary nights</b> between two calamities.',
     'It lasts <b>until dawn</b>. Everyone in the Overworld sees it rise, and the whole server is told.',
     '<b>Nobody sleeps through it</b>: beds refuse everyone until it is over.',
     'Only the Overworld is touched. The Nether and the End carry on as usual.',
-    'A rift that opens during a calamity keeps its bonus to the end of the run, even past dawn. More portals can be open at once on these nights.',
+    'A rift that opens during a calamity keeps its bonus to the end of the run, even past dawn.',
   ], [
-    'Al tramonto una notte ha <b>1 possibilità su 5</b> di diventare una calamità, con almeno <b>due notti normali</b> tra una calamità e l\'altra.',
+    'Dopo due giorni, al tramonto una notte ha <b>1 possibilità su 5</b> di diventare una calamità, con almeno <b>due notti normali</b> tra una calamità e l\'altra.',
     'Dura <b>fino all\'alba</b>. Chi è nell\'Overworld la vede sorgere, e tutto il server viene avvisato.',
     '<b>Nessuno la salta dormendo</b>: i letti rifiutano tutti finché non finisce.',
     'Tocca solo l\'Overworld. Nether ed End vanno avanti come sempre.',
-    'Una rift aperta durante una calamità tiene il suo bonus fino alla fine della run, anche dopo l\'alba. In queste notti possono esserci più portali aperti insieme.',
+    'Una rift aperta durante una calamità tiene il suo bonus fino alla fine della run, anche dopo l\'alba.',
   ]),
   nights: [
     { key: 'blood-moon', icon: '🩸', color: '#ff3b3b', name: 'Blood Moon', rising: 'THE BLOOD MOON RISES',
-      share: '45%', portals: '5 min', loot: '+50%',
+      share: '45%', portals: '25 min', loot: '+50%',
       effects: L([
         'A <b>red full moon</b>, and red at the edges of your sight.',
         'Monsters spawn <b>twice as thick</b>, with +50% health, +35% damage and +15% speed.',
-        'They pay <b>double XP</b>, and about 1 in 50 drops a <b>forge rune</b>.',
-        '<b>Rift:</b> a portal tears open near someone every 5 minutes, mostly <b>red rifts</b>. Rifts opened tonight have tougher, more numerous mobs and pay +50% loot and XP.',
+        'They pay <b>double XP</b>.',
+        '<b>Rift:</b> a portal tears open near someone every 25 minutes, mostly <b>red rifts</b>. Rifts opened tonight have tougher, more numerous mobs and pay +50% loot and XP.',
       ], [
         'Una <b>luna piena rossa</b>, e rosso ai bordi della vista.',
         'I mostri compaiono <b>il doppio</b>, con +50% di vita, +35% di danno e +15% di velocità.',
-        'Danno <b>il doppio dell\'XP</b>, e circa 1 su 50 lascia una <b>runa della forgia</b>.',
-        '<b>Rift:</b> ogni 5 minuti si apre un portale vicino a qualcuno, per lo più <b>rift rosse</b>. Le rift aperte stanotte hanno mob più forti e numerosi e danno +50% di bottino e XP.',
+        'Danno <b>il doppio dell\'XP</b>.',
+        '<b>Rift:</b> ogni 25 minuti si apre un portale vicino a qualcuno, per lo più <b>rift rosse</b>. Le rift aperte stanotte hanno mob più forti e numerosi e danno +50% di bottino e XP.',
       ]) },
     { key: 'starfall', icon: '🌠', color: '#ffd84a', name: 'Starfall', rising: 'THE SKY IS BREAKING',
-      share: '35%', portals: '10 min', loot: '+30%',
+      share: '35%', portals: '40 min', loot: '+30%',
       effects: L([
         '<b>Shooting stars</b> streak across the sky.',
         'Every 40 seconds a <b>star falls</b> near someone, under a column of light. It leaves glowing loot for whoever gets there first: XP bottles, lapis, amethyst, emeralds, gold, sometimes diamonds or a forge rune.',
-        '<b>Forge:</b> <b>star-touched meteors</b> fall every 4 minutes. Forging on one <b>costs nothing</b>, and each forging takes only half as much heat out of it.',
-        '<b>Rift:</b> a portal opens every 10 minutes, now and then an anomaly. Rifts opened tonight pay +30% loot and +25% XP.',
+        '<b>Forge:</b> <b>star-touched meteors</b> fall every 4 minutes — a forge out in the open, and forging on one <b>costs nothing</b>.',
+        '<b>Rift:</b> a portal opens every 40 minutes. Rifts opened tonight pay +30% loot and +25% XP.',
       ], [
         '<b>Stelle cadenti</b> attraversano il cielo.',
         'Ogni 40 secondi una <b>stella cade</b> vicino a qualcuno, sotto una colonna di luce. Lascia bottino luccicante per chi arriva per primo: bottiglie di XP, lapislazzuli, ametista, smeraldi, oro, a volte diamanti o una runa della forgia.',
-        '<b>Forgia:</b> ogni 4 minuti cadono <b>meteore toccate dalle stelle</b>. Forgiarci sopra <b>non costa nulla</b>, e ogni forgiatura toglie solo metà del calore.',
-        '<b>Rift:</b> ogni 10 minuti si apre un portale, a volte un\'anomalia. Le rift aperte stanotte danno +30% di bottino e +25% di XP.',
+        '<b>Forgia:</b> ogni 4 minuti cadono <b>meteore toccate dalle stelle</b> — una forgia all\'aperto, e forgiarci sopra <b>non costa nulla</b>.',
+        '<b>Rift:</b> ogni 40 minuti si apre un portale. Le rift aperte stanotte danno +30% di bottino e +25% di XP.',
       ]) },
     { key: 'thin-veil', icon: '🌫️', color: '#b56cff', name: 'Thin Veil', rising: 'THE VEIL GROWS THIN',
-      share: '20%', portals: '3 min', loot: '+25%',
+      share: '20%', portals: '20 min', loot: '+25%',
       effects: L([
         'The rift presses through: purple motes drift around you, and something whispers nearby.',
         '3 in 10 natural monster spawns are <b>endermen</b> instead.',
-        '<b>Rift:</b> a portal opens every 3 minutes, <b>half of them anomalies</b>. Rifts opened tonight are a little tougher and pay +25% loot and +30% XP.',
-        '<b>Forge:</b> <b>Cold Forge</b> meteors fall every 7 minutes.',
+        '<b>Rift:</b> a portal opens every 20 minutes. Rifts opened tonight are a little tougher and pay +25% loot and +30% XP.',
       ], [
         'La rift preme per passare: particelle viola ti fluttuano intorno, e qualcosa sussurra lì vicino.',
         '3 mostri naturali su 10 compaiono come <b>enderman</b>.',
-        '<b>Rift:</b> ogni 3 minuti si apre un portale, <b>metà sono anomalie</b>. Le rift aperte stanotte sono un po\' più dure e danno +25% di bottino e +30% di XP.',
-        '<b>Forgia:</b> ogni 7 minuti cadono meteore da <b>Forgia Fredda</b>.',
+        '<b>Rift:</b> ogni 20 minuti si apre un portale. Le rift aperte stanotte sono un po\' più dure e danno +25% di bottino e +30% di XP.',
       ]) },
   ],
 };
 
 export const MECHANICS = [
-  { icon: '🔨', title: L('The Mace', 'La Mazza'),
-    text: L('There is only one Mace on the entire server. It is unique: no other copy can be crafted or obtained.',
-            'Esiste una sola Mazza su tutto il server. È unica: nessun\'altra copia si può craftare o ottenere.') },
   { icon: '💎', title: L('No crystal or anchor PvP', 'Niente crystal o anchor PvP'),
     text: L('End Crystals and Respawn Anchors can\'t be used to damage players.',
             'I Cristalli dell\'End e le Ancore di rinascita non possono danneggiare i giocatori.') },
