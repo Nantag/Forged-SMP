@@ -2,7 +2,7 @@ import {
   SITE, NEWS, PILLARS, GEM_TIERS, GEMS, OTHER_UNIQUES, GUARDIANS, RIFT_BOSSES, SEASON,
   RIFT_KINDS, RIFT_TIERS, RIFT_ROOMS, RIFT_CHALLENGES, GEM_KEY_FRAMES, GEM_VAULTS,
   FORGE, TEAM_COMMANDS, TEAM_PERKS, BOUNTY_RULES, ITEM_GROUPS, COMMANDS, CONTROLS, FAQ,
-  DIMENSIONS, CALAMITY, MECHANICS, COMBAT_RULES, RULES_DISCORD, RULES_GAME,
+  DIMENSIONS, MECHANICS, COMBAT_RULES, RULES_DISCORD, RULES_GAME,
 } from './data.js';
 
 // ── Language ─────────────────────────────────────────────────────────────────
@@ -47,13 +47,13 @@ const U = {
   updated: L('Last updated', 'Ultimo aggiornamento'),
   notMojang: L('Not an official Minecraft product. Not approved by or associated with Mojang or Microsoft.', 'Non è un prodotto ufficiale Minecraft. Non approvato né associato a Mojang o Microsoft.'),
   // gems
-  gemsLead: L('Fifteen gems, and only one of each exists. Thirteen are won in the Rift\'s gem vaults; the two Chromatic gems turn up only at events. Carry one and it\'s yours: F for its power, Sneak + F for its other one.',
-              'Quindici gemme, e ne esiste una sola per tipo. Tredici si vincono nei caveau delle gemme della Rift; le due Cromatiche compaiono solo agli eventi. Portane una ed è tua: F per il suo potere, Shift + F per l\'altro.'),
+  gemsLead: L('Thirteen gems, and only one of each exists. Eleven are won in the Rift\'s gem vaults; the two Chromatic gems turn up only at events. Carry one and it\'s yours: F for its power, Sneak + F for its other one.',
+              'Tredici gemme, e ne esiste una sola per tipo. Undici si vincono nei caveau delle gemme della Rift; le due Cromatiche compaiono solo agli eventi. Portane una ed è tua: F per il suo potere, Shift + F per l\'altro.'),
   gemRules: L('How gems work', 'Come funzionano le gemme'),
   gemTiersT: L('Tiers', 'Rarità'),
   gemOpens: L('vaults open {d}', 'caveau aperti {d}'),
   gemNoVault: L('no vault — only at events', 'nessun caveau — solo agli eventi'),
-  gemList: L('The fifteen', 'Le quindici'),
+  gemList: L('The thirteen', 'Le tredici'),
   gifts: L('Always on', 'Sempre attivo'),
   power1: L('Power', 'Potere'), power2: L('Second power', 'Secondo potere'),
   vault: L('Vault', 'Caveau'),
@@ -344,7 +344,7 @@ PAGES.gems = () => {
   const order = GEM_TIERS.map(g => g.key);
   const sorted = [...GEMS].sort((a, b) => order.indexOf(a.tier) - order.indexOf(b.tier));
   return `
-  ${head(u('gems'), u('gemsLead'), '15 · ONE OF EACH')}
+  ${head(u('gems'), u('gemsLead'), `${GEMS.length} · ONE OF EACH`)}
   ${section(u('gemRules'), `
     <div class="grid g2 rule-cards">
       <div class="card rule good"><h3>☝️ ${t(L('One at a time', 'Una alla volta'))}</h3><p>${t(L('Only one gem works: the one in your hand (main hand first, then off hand) — or, with none in hand, the first gem on your hotbar. Gems deeper in your bag do nothing. Switching is easy.', 'Funziona una gemma sola: quella in mano (prima la mano principale, poi la secondaria) — oppure, senza gemme in mano, la prima gemma della hotbar. Quelle più in fondo all\'inventario non fanno niente. Cambiarla è facile.'))}</p></div>
@@ -407,8 +407,7 @@ PAGES.rift = () => `
     <div class="grid g2">
       <div class="card"><h3>🌀 ${t(L('Random portals', 'Portali casuali'))}</h3>
         <p>${t(L('Rifts are rare. Every 3 hours there\'s an even chance a tear opens, one at a time: 30–70 blocks from a player who has been on for at least 10 minutes, never near spawn. A beam of light marks it, and everyone within 1,200 blocks is told the direction. It stays open 25 minutes. Click it to ready up: everyone who clicks within 20 seconds goes in together, up to 4.',
-                 'Le rift sono rare. Ogni 3 ore c\'è una possibilità su due che si apra uno squarcio, uno alla volta: a 30–70 blocchi da un giocatore online da almeno 10 minuti, mai vicino allo spawn. Un fascio di luce lo segna, e chi è entro 1.200 blocchi riceve la direzione. Resta aperto 25 minuti. Cliccalo per prepararti: chi clicca entro 20 secondi entra insieme, fino a 4.'))}
-          <a href="#/calamity">${u('calMore')}</a></p></div>
+                 'Le rift sono rare. Ogni 3 ore c\'è una possibilità su due che si apra uno squarcio, uno alla volta: a 30–70 blocchi da un giocatore online da almeno 10 minuti, mai vicino allo spawn. Un fascio di luce lo segna, e chi è entro 1.200 blocchi riceve la direzione. Resta aperto 25 minuti. Cliccalo per prepararti: chi clicca entro 20 secondi entra insieme, fino a 4.'))}</p></div>
       <div class="card"><h3>🗝️ ${t(L('Rift Key: join to help', 'Rift Key: entra per aiutare'))}</h3>
         <p>${t(L('A Rift Key lets you — and allies within 8 blocks — enter a rift someone else has already started, to help them. It can\'t open a rift on its own. A 60-minute key cooldown applies. Craft: 2 Echo Shards + an Ender Eye + an Amethyst Shard, shapeless.',
                  'Una Rift Key fa entrare te — e gli alleati entro 8 blocchi — in una rift già avviata da altri, per aiutarli. Da sola non apre rift. Si applica un cooldown di 60 minuti. Craft: 2 Frammenti di eco + un Occhio di ender + un Frammento di ametista, senza forma.'))}</p>
@@ -552,15 +551,13 @@ PAGES.forge = () => `
       <div class="card">${craftGrid(FORGE.recipe, FORGE.recipeKey, '🔨')}</div>
       <div class="card">
         ${list(L([
-          'The recipe unlocks <b>one day into the season</b> — it\'s in your recipe book from then on.',
+          'The recipe unlocks <b>twelve hours into the season</b> — it\'s in your recipe book from then on.',
           'Anyone can craft one and place it anywhere. Breaking it gives it back.',
           'It\'s always at full strength — which is why it\'s dear to make.',
-          'Out in the world, <a href="#/calamity">a Starfall</a> drops <b>star-touched meteors</b>: a forge in the open, and forging on one costs nothing.',
         ], [
-          'La ricetta si sblocca <b>un giorno dopo l\'inizio della stagione</b> — da lì è nel tuo ricettario.',
+          'La ricetta si sblocca <b>dodici ore dopo l\'inizio della stagione</b> — da lì è nel tuo ricettario.',
           'Chiunque può craftarne una e piazzarla ovunque. Rompendola la riprendi.',
           'È sempre alla massima potenza — ed è per questo che costa cara.',
-          'Nel mondo, <a href="#/calamity">una Starfall</a> fa cadere <b>meteore toccate dalle stelle</b>: una forgia all\'aperto, e forgiarci sopra non costa nulla.',
         ]))}
       </div>
     </div>`)}
@@ -600,12 +597,12 @@ PAGES.forge = () => `
       <div class="card cold">${craftGrid(FORGE.coldRecipe, FORGE.coldKey, '❄️')}</div>
       <div class="card cold">
         ${list(L([
-          'The recipe unlocks <b>seven days into the season</b>: a Forge, ringed with Netherite Ingots and Blue Ice, and a Nether Star.',
+          'The recipe unlocks <b>four days into the season</b>: a Forge, ringed with Netherite Ingots and Blue Ice, and a Nether Star.',
           `Only takes a chestplate, sword or pickaxe already forged <b>Flawless</b>, and costs <b>${FORGE.coldCost.en.replace(' a try', '')}</b>.`,
           'Same hammer, but instead of more stats it teaches the piece a <b>frost technique</b> — something it does in a fight, or at the rock face.',
           'It\'s also the only way to open a <b>rune slot</b>: miss at most one strike on that pass.',
         ], [
-          'La ricetta si sblocca <b>sette giorni dopo l\'inizio della stagione</b>: una Forgia, circondata da Lingotti di netherite e Ghiaccio blu, e una Stella del Nether.',
+          'La ricetta si sblocca <b>quattro giorni dopo l\'inizio della stagione</b>: una Forgia, circondata da Lingotti di netherite e Ghiaccio blu, e una Stella del Nether.',
           `Accetta solo corazza, spada o piccone già forgiati <b>Impeccabili</b>, e costa <b>${FORGE.coldCost.it.replace(' a tentativo', '')}</b>.`,
           'Stesso martello, ma invece di altre statistiche insegna al pezzo una <b>tecnica del gelo</b> — qualcosa che fa in combattimento, o in miniera.',
           'È anche l\'unico modo per aprire uno <b>slot per rune</b>: manca al massimo un colpo in quel passaggio.',
@@ -619,12 +616,12 @@ PAGES.forge = () => `
   ${section(u('runes'), `
     <div class="card">
       ${list(L([
-        'Separate items, found in rift chests (the boss\'s chests most often, epic ones in red rifts) and in the stars that fall during a Starfall.',
+        'Separate items, found in rift chests (the boss\'s chests most often, epic ones in red rifts).',
         'A rune goes in a <b>rune slot</b> — a weapon, chestplate or pickaxe gets one from a good Cold Forge pass.',
         'Socket: the piece in your main hand, the rune in your off hand, sneak + right-click.',
         'Sneak + right-click with an empty off hand pulls it back out, unbroken.',
       ], [
-        'Oggetti a parte, trovati nei forzieri delle rift (soprattutto in quelli del boss, le epiche nelle rift rosse) e nelle stelle che cadono durante una Starfall.',
+        'Oggetti a parte, trovati nei forzieri delle rift (soprattutto in quelli del boss, le epiche nelle rift rosse).',
         'Una runa va in uno <b>slot per rune</b> — arma, corazza o piccone ne ottengono uno da un buon passaggio alla Forgia Fredda.',
         'Incastonare: il pezzo in mano, la runa nella mano secondaria, shift + tasto destro.',
         'Shift + tasto destro con la mano secondaria vuota la toglie, intatta.',
@@ -799,27 +796,6 @@ PAGES.rules = () => `
   ${section(u('discordRules'), `<ol class="rules-list">${t(RULES_DISCORD).map(r => `<li>${esc(r)}</li>`).join('')}</ol>`, 'discord')}
 `;
 
-PAGES.calamity = () => `
-  ${head(u('calamityTitle'), u('calamityT'), 'WORLD EVENTS')}
-
-  ${section(u('calHow'), `<div class="card">${list(CALAMITY.rules)}</div>`)}
-
-  ${section(u('calNights'), `
-    <div class="kinds nights">
-      ${CALAMITY.nights.map(n => `
-        <article class="card kind night" style="--c:${n.color}">
-          <h3><span aria-hidden="true">${n.icon}</span> ${esc(n.name)}</h3>
-          <p class="night-rising">${esc(n.rising)}</p>
-          <div class="kind-stats">
-            <div><span>${u('calShare')}</span><b>${n.share}</b></div>
-            <div><span>${u('calPortals')}</span><b>${n.portals}</b></div>
-            <div><span>${u('calLoot')}</span><b>${n.loot}</b></div>
-          </div>
-          ${list(n.effects)}
-        </article>`).join('')}
-    </div>`)}
-`;
-
 PAGES.notfound = () => `
   <section class="notfound">
     <h1 class="glitch" data-text="404">404</h1>
@@ -901,7 +877,7 @@ function decode(el) {
 }
 
 // ── Chrome: nav, footer, language ────────────────────────────────────────────
-const NAV = ['home', 'gems', 'rift', 'forge', 'calamity', 'bosses', 'pvp', 'items', 'rules', 'join'];
+const NAV = ['home', 'gems', 'rift', 'forge', 'bosses', 'pvp', 'items', 'rules', 'join'];
 let cleanupFns = [];
 
 function renderChrome(page) {
