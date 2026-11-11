@@ -1,6 +1,6 @@
 import {
-  SITE, NEWS, PILLARS, RARITIES, RACES, ANOMALY_GLITCH, GEM_TIERS, GEMS, OTHER_UNIQUES, GUARDIANS, RIFT_BOSSES, SEASON,
-  RIFT_KINDS, RIFT_TIERS, RIFT_ROOMS, RIFT_CHALLENGES, RIFT_RELICS, GEM_KEY_FRAMES, GEM_VAULTS,
+  SITE, NEWS, PILLARS, GEM_TIERS, GEMS, OTHER_UNIQUES, GUARDIANS, RIFT_BOSSES, SEASON,
+  RIFT_KINDS, RIFT_TIERS, RIFT_ROOMS, RIFT_CHALLENGES, GEM_KEY_FRAMES, GEM_VAULTS,
   FORGE, TEAM_COMMANDS, TEAM_PERKS, BOUNTY_RULES, ITEM_GROUPS, COMMANDS, CONTROLS, FAQ,
   DIMENSIONS, CALAMITY, MECHANICS, COMBAT_RULES, RULES_DISCORD, RULES_GAME,
 } from './data.js';
@@ -22,7 +22,7 @@ const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 // UI copy (game facts live in data.js)
 const U = {
-  home: L('Home', 'Home'), races: L('Races', 'Razze'), gems: L('Gems', 'Gemme'), rift: L('The Rift', 'La Rift'),
+  home: L('Home', 'Home'), gems: L('Gems', 'Gemme'), rift: L('The Rift', 'La Rift'),
   forge: L('Forge', 'Forgia'), bosses: L('Bosses', 'Boss'), pvp: L('PvP', 'PvP'), items: L('Items', 'Oggetti'), rules: L('Rules', 'Regole'), join: L('Join', 'Entra'),
   tagline: L('Something in this world is wrong. Forge anyway.', 'Qualcosa in questo mondo non va. Forgia comunque.'),
   eyebrow: L('Minecraft Java · Story-driven survival SMP · Season 3', 'Minecraft Java · SMP survival a storia · Stagione 3'),
@@ -42,20 +42,10 @@ const U = {
   stepsTitle: L('Get in, in three steps', 'Entra in tre passi'),
   step1: L('Join the Discord', 'Entra nel Discord'), step1t: L('Rules, announcements and the server guide live there.', 'Lì trovi regole, annunci e la guida del server.'),
   step2: L('Connect', 'Connettiti'), step2t: L(`Launch Minecraft ${SITE.version} and add the server address.`, `Avvia Minecraft ${SITE.version} e aggiungi l'indirizzo del server.`),
-  step3: L('Roll your race', 'Tira la tua razza'), step3t: L('Three spins once the grace hour is over. The last one is yours for the season.', 'Tre giri finita l\'ora di tregua. L\'ultimo è tuo per tutta la stagione.'),
+  step3: L('Make your team', 'Fai la tua squadra'), step3t: L('The first hour is grace: nobody can hurt anybody. Team up with /team before PvP opens.', 'La prima ora è di tregua: nessuno può ferire nessuno. Fai squadra con /team prima che si apra il PvP.'),
   news: L('Latest news', 'Ultime novità'),
   updated: L('Last updated', 'Ultimo aggiornamento'),
   notMojang: L('Not an official Minecraft product. Not approved by or associated with Mojang or Microsoft.', 'Non è un prodotto ufficiale Minecraft. Non approvato né associato a Mojang o Microsoft.'),
-  // races
-  racesLead: L('Everyone rolls a race for the season when the grace hour ends: three spins in a roll screen, and the last one you land on is yours (or confirm early). Rarer races are stronger. Three races also have an active on Sneak + F.',
-               'Ognuno tira una razza per la stagione quando finisce l\'ora di tregua: tre giri nella schermata di tiro, e l\'ultima su cui atterri è tua (o conferma prima). Le razze più rare sono più forti. Tre razze hanno anche un\'attiva su Shift + F.'),
-  odds: L('Roll odds', 'Probabilità'), oneIn: L('1 in', '1 su'),
-  tryRoll: L('Try a roll', 'Prova un tiro'), rollBtn: L('Spin', 'Gira'), spinsLeft: L('spins left', 'giri rimasti'),
-  rollAgain: L('Start over', 'Ricomincia'), lockedIn: L('Locked in', 'Confermata'), confirm: L('Confirm', 'Conferma'),
-  rollNote: L('Just for fun — uses the real odds. Your in-game roll is separate.', 'Solo per gioco — usa le probabilità reali. Il tiro in gioco è un\'altra cosa.'),
-  all: L('All', 'Tutte'),
-  riftPerk: L('In the Rift', 'Nella Rift'), weapon: L('Weapon', 'Arma'), boss: L('Boss', 'Boss'), weaponRift: L('Weapon rift', 'Weapon rift'),
-  changeRace: L('Changing your race', 'Cambiare razza'),
   // gems
   gemsLead: L('Fifteen gems, and only one of each exists. Thirteen are won in the Rift\'s gem vaults; the two Chromatic gems turn up only at events. Carry one and it\'s yours: F for its power, Sneak + F for its other one.',
               'Quindici gemme, e ne esiste una sola per tipo. Tredici si vincono nei caveau delle gemme della Rift; le due Cromatiche compaiono solo agli eventi. Portane una ed è tua: F per il suo potere, Shift + F per l\'altro.'),
@@ -100,7 +90,6 @@ const U = {
   livesLoot: L('Lives, death and loot', 'Vite, morte e bottino'),
   modifiers: L('Loot modifiers', 'Modificatori del bottino'),
   challenges: L('Challenges', 'Sfide'),
-  relics: L('Rift relics', 'Reliquie della Rift'),
   gemVaults: L('The 13 gem vaults', 'I 13 caveau delle gemme'),
   keyVis: L('Key recipe', 'Ricetta della chiave'),
   riftBosses: L('Rift bosses', 'Boss della Rift'),
@@ -173,17 +162,11 @@ const U = {
 const u = k => t(U[k]);
 
 // ── Lookups ──────────────────────────────────────────────────────────────────
-const RACE   = Object.fromEntries(RACES.map(r => [r.key, r]));
-const RARITY = Object.fromEntries(RARITIES.map(r => [r.key, r]));
 const GEM_TIER  = Object.fromEntries(GEM_TIERS.map(g => [g.key, g]));
 const GEM_VAULT = Object.fromEntries(GEM_VAULTS.map(v => [v.gem, v]));
 const GEM    = Object.fromEntries(GEMS.map(g => [g.key, g]));
-const rarityIndex = k => RARITIES.findIndex(r => r.key === k);
-
 const glitchSpan = (text, label) =>
   `<span class="glitch-text" data-text="${esc(text)}" aria-label="${esc(label)}"><span aria-hidden="true">${esc(text)}</span></span>`;
-const raceName = r => r.glitch ? glitchSpan(ANOMALY_GLITCH, t(r.name)) : esc(t(r.name));
-const rarityBadge = key => `<span class="rarity r-${key}">${esc(t(RARITY[key].name))}</span>`;
 const list = arr => `<ul class="ticks">${t(arr).map(x => `<li>${x}</li>`).join('')}</ul>`;
 const head = (title, lead, kicker = '') => `
   <header class="page-head">
@@ -355,57 +338,6 @@ PAGES.home = () => `
     </div>`)}
 `;
 
-PAGES.races = () => `
-  ${head(u('races'), u('racesLead'))}
-
-  ${section(u('odds'), `
-    <div class="odds-bar" role="img" aria-label="${u('odds')}">
-      ${RARITIES.map(r => `<span style="--w:${Math.max(r.chance, 0.6)};--c:${r.color}" title="${esc(t(r.name))} ${r.chance}%"></span>`).join('')}
-    </div>
-    <div class="odds-list">
-      ${RARITIES.map(r => `
-        <div class="odds-row">
-          <span class="swatch" style="--c:${r.color}"></span>
-          <span class="odds-name" style="color:${r.color}">${esc(t(r.name))}</span>
-          <span class="odds-pct">${r.chance}%</span>
-          <span class="odds-in">${u('oneIn')} ${Math.round(100 / r.chance).toLocaleString(lang)}</span>
-        </div>`).join('')}
-    </div>`)}
-
-  ${section(u('races'), `
-    <div class="chips" role="group" aria-label="Filter">
-      <button class="chip on" data-filter="all" type="button">${u('all')}</button>
-      ${RARITIES.map(r => `<button class="chip" data-filter="${r.key}" type="button" style="--c:${r.color}">${esc(t(r.name))}</button>`).join('')}
-    </div>
-    <div class="grid g2 race-grid">
-      ${RACES.map(r => raceCard(r)).join('')}
-    </div>`, 'list')}
-
-  ${section(u('changeRace'), `
-    <div class="grid g3">
-      ${ITEM_GROUPS[0].items.map(([icon, name, desc]) => `
-        <div class="card item"><div class="item-icon" aria-hidden="true">${icon}</div><h3>${esc(name)}</h3><p>${t(desc)}</p></div>`).join('')}
-    </div>`)}
-`;
-
-function raceCard(r) {
-  const rar = RARITY[r.rarity];
-  return `
-    <article class="card race ${r.glitch ? 'is-glitch' : ''}" data-rarity="${r.rarity}" id="race-${r.key}" style="--c:${rar.color}">
-      <div class="race-top">
-        <div class="race-icon" aria-hidden="true">${r.icon}</div>
-        <div>
-          <h3>${raceName(r)}</h3>
-          ${rarityBadge(r.rarity)} <span class="muted small">${rar.chance}%</span>
-        </div>
-      </div>
-      ${r.glitch ? `<div class="redacted-block">${t(r.effects).map(x => `<p>${esc(x)}</p>`).join('')}</div>` : list(r.effects)}
-      <dl class="race-meta">
-        <div><dt>${u('riftPerk')}</dt><dd>${esc(t(r.perk))}</dd></div>
-      </dl>
-    </article>`;
-}
-
 const gemTierBadge = key => `<span class="rarity" style="--c:${GEM_TIER[key].color};color:${GEM_TIER[key].color}">${esc(t(GEM_TIER[key].name))}</span>`;
 
 PAGES.gems = () => {
@@ -568,14 +500,6 @@ PAGES.rift = () => `
     <div class="grid g2">
       ${RIFT_BOSSES.map(b => `
         <article class="card boss-card"><p class="eyebrow">${esc(t(b.where))}</p><h3>${esc(b.name)}</h3>${list(b.moves)}</article>`).join('')}
-    </div>`)}
-
-  ${section(u('relics'), `
-    <p>${t(L('Boss-only gear: each rift boss has a small chance to drop a piece. You can\'t get it anywhere else.', 'Equipaggiamento solo da boss: ogni boss di rift ha una piccola probabilità di lasciarne un pezzo. Non si trova altrove.'))}</p>
-    <div class="grid g2">
-      ${RIFT_RELICS.map(r => `
-        <div class="card relic" style="--c:${r.color}"><p class="eyebrow">${esc(t(r.rift))}</p>
-          ${r.items.map(([n, d]) => `<div class="relic-item"><b>${esc(n)}</b><span>${esc(t(d))}</span></div>`).join('')}</div>`).join('')}
     </div>`)}
 
   ${section(u('gemVaults'), `
@@ -911,16 +835,6 @@ MOUNT.rules = () => tickCountdowns();
 MOUNT.join = () => loadStatus();
 MOUNT.gems = () => loadItemStatus();
 
-MOUNT.races = () => {
-  // filter
-  document.querySelectorAll('.chip').forEach(chip => chip.addEventListener('click', () => {
-    document.querySelectorAll('.chip').forEach(c => c.classList.toggle('on', c === chip));
-    const f = chip.dataset.filter;
-    document.querySelectorAll('.race').forEach(card => { card.hidden = f !== 'all' && card.dataset.rarity !== f; });
-  }));
-
-};
-
 MOUNT.rift = () => {
   const grid = document.getElementById('key-grid');
   const info = document.getElementById('key-info');
@@ -987,7 +901,7 @@ function decode(el) {
 }
 
 // ── Chrome: nav, footer, language ────────────────────────────────────────────
-const NAV = ['home', 'races', 'gems', 'rift', 'forge', 'calamity', 'bosses', 'pvp', 'items', 'rules', 'join'];
+const NAV = ['home', 'gems', 'rift', 'forge', 'calamity', 'bosses', 'pvp', 'items', 'rules', 'join'];
 let cleanupFns = [];
 
 function renderChrome(page) {

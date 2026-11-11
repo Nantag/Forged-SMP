@@ -3,7 +3,7 @@
 The full Season 3 site, served at `/dev/` until the season starts. Every page is the Season 3 one:
 
 - **Home / Rules:** "Season 3" in the hero; until `SITE.launch` is set it says "starting soon", then counts down, then
-  shows the day. The Rules page has the season timeline (grace, races and the Rift, the Nether, the border, the Forge,
+  shows the day. The Rules page has the season timeline (grace, PvP and the Rift, the Nether, the border, the Forge,
   Tracking Hour, red rifts and calamity, the gem vault tiers, the Cold Forge) and counts down to each step once the
   launch date is set. The End is shown as closed.
 - **Gems:** the fifteen gems with the live status of every one-of-a-kind item.

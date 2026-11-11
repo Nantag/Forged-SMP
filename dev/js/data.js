@@ -27,19 +27,16 @@ export const NEWS = [
     date: '2026-10-24',
     title: L('Season 3', 'Stagione 3'),
     body: L(
-      'A new world, and it opens up a piece at a time: one hour of grace, then races, PvP and the Rift, then the Nether and a border that grows to 15,000 blocks. The race weapons are gone — <a href="#/gems">fifteen gems</a> took their place, one of each, won in the Rift\'s gem vaults. The <a href="#/forge">Forge</a> is a block you craft now, with a Cold Forge and runes later on. New <a href="#/items">Starsteel and Riftborn gear, reworked relics and new potions</a>, and rule 8 for everything one of a kind.',
-      'Un mondo nuovo, che si apre un pezzo alla volta: un\'ora di tregua, poi razze, PvP e Rift, poi il Nether e un confine che cresce fino a 15.000 blocchi. Le armi di razza non ci sono più — al loro posto <a href="#/gems">quindici gemme</a>, una per tipo, vinte nei caveau delle gemme della Rift. La <a href="#/forge">Forgia</a> ora è un blocco che si crafta, con la Forgia Fredda e le rune più avanti. Nuovo <a href="#/items">equipaggiamento Starsteel e Riftborn, reliquie riviste e nuove pozioni</a>, e la regola 8 per tutto ciò che è unico.'),
+      'A new world, and it opens up a piece at a time: one hour of grace, then PvP and the Rift, then the Nether and a border that grows to 15,000 blocks. Races and race weapons are gone — <a href="#/gems">fifteen gems</a> took their place, one of each, won in the Rift\'s gem vaults. The <a href="#/forge">Forge</a> is a block you craft now, with a Cold Forge and runes later on. New <a href="#/items">Starsteel and Riftborn gear, reworked relics and new potions</a>, and rule 8 for everything one of a kind.',
+      'Un mondo nuovo, che si apre un pezzo alla volta: un\'ora di tregua, poi PvP e Rift, poi il Nether e un confine che cresce fino a 15.000 blocchi. Le razze e le armi di razza non ci sono più — al loro posto <a href="#/gems">quindici gemme</a>, una per tipo, vinte nei caveau delle gemme della Rift. La <a href="#/forge">Forgia</a> ora è un blocco che si crafta, con la Forgia Fredda e le rune più avanti. Nuovo <a href="#/items">equipaggiamento Starsteel e Riftborn, reliquie riviste e nuove pozioni</a>, e la regola 8 per tutto ciò che è unico.'),
   },
 ];
 
 // ── Pillars (home / about) ──────────────────────────────────────────────────
 export const PILLARS = [
   { icon: '🗓️', page: 'rules', title: L('A season that opens up', 'Una stagione che si apre'),
-    text: L('One hour of grace, then the world opens a piece at a time over two weeks: races and the Rift, the Nether, the Forge, red rifts, calamity nights, the gem vaults tier by tier.',
-            'Un\'ora di tregua, poi il mondo si apre un pezzo alla volta in due settimane: razze e Rift, il Nether, la Forgia, le rift rosse, le notti di calamità, i caveau delle gemme una rarità alla volta.') },
-  { icon: '🎲', page: 'races', title: L('Races', 'Razze'),
-    text: L('Everyone rolls a race for the season — three spins, the last one sticks. Rarer races are stronger, and one is 1 in 10,000.',
-            'Ognuno tira una razza per la stagione — tre giri, l\'ultimo resta. Le più rare sono più forti, e una è 1 su 10.000.') },
+    text: L('One hour of grace, then the world opens a piece at a time over two weeks: PvP and the Rift, the Nether, the Forge, red rifts, calamity nights, the gem vaults tier by tier.',
+            'Un\'ora di tregua, poi il mondo si apre un pezzo alla volta in due settimane: PvP e Rift, il Nether, la Forgia, le rift rosse, le notti di calamità, i caveau delle gemme una rarità alla volta.') },
   { icon: '💎', page: 'gems', title: L('Gems', 'Gemme'),
     text: L('Fifteen gems, and only one of each exists. Win them in the Rift\'s gem vaults — and keep them.',
             'Quindici gemme, e ne esiste una sola per tipo. Vincile nei caveau delle gemme della Rift — e tienile.') },
@@ -69,9 +66,9 @@ export const SEASON = [
   { at: 0, icon: '🕊️', name: L('Grace', 'Tregua'),
     text: L('The first hour: nobody can hurt anybody and nobody gets hungry. The world is 2,000 blocks across. Make your team.',
             'La prima ora: nessuno può ferire nessuno e nessuno ha fame. Il mondo è largo 2.000 blocchi. Fai il tuo team.') },
-  { at: 1, icon: '🎲', name: L('Races, PvP & the Rift', 'Razze, PvP e Rift'),
-    text: L('Grace ends: PvP is on, roll your race, bounties open, and now and then a rift portal tears open.',
-            'Finisce la tregua: PvP attivo, tira la tua razza, si aprono le taglie, e ogni tanto si squarcia un portale della Rift.') },
+  { at: 1, icon: '⚔️', name: L('PvP & the Rift', 'PvP e Rift'),
+    text: L('Grace ends: PvP is on, bounties open, and now and then a rift portal tears open.',
+            'Finisce la tregua: PvP attivo, si aprono le taglie, e ogni tanto si squarcia un portale della Rift.') },
   { at: 2, icon: '🔥', name: L('The Nether', 'Il Nether'),
     text: L('Nether portals work, and the border moves out to 5,000 blocks.', 'I portali del Nether funzionano, e il confine si allarga a 5.000 blocchi.') },
   { at: 4, icon: '🗺️', name: L('The full world', 'Il mondo intero'),
@@ -91,88 +88,6 @@ export const SEASON = [
   { at: 336, icon: '🌟', name: L('Mythic gem vaults', 'Caveau Mitici'),
     text: L('Briar, Anchor, Chrono — the keys must be attuned, and everyone can see you do it.',
             'Briar, Anchor, Chrono — le chiavi vanno attivate, e tutti ti vedono mentre lo fai.') },
-];
-
-// ── Rarities ────────────────────────────────────────────────────────────────
-export const RARITIES = [
-  { key: 'common',      name: L('Common', 'Comune'),          chance: 40,    color: '#b9b9c2' },
-  { key: 'uncommon',    name: L('Uncommon', 'Non comune'),    chance: 36,    color: '#5fe36a' },
-  { key: 'rare',        name: L('Rare', 'Raro'),              chance: 14.4,  color: '#4aa6ff' },
-  { key: 'epic',        name: L('Epic', 'Epico'),             chance: 7.2,   color: '#b56cff' },
-  { key: 'legendary',   name: L('Legendary', 'Leggendario'),  chance: 2.16,  color: '#ff9a2e' },
-  { key: 'divine',      name: L('Divine', 'Divino'),          chance: 0.23,  color: '#ffd84a' },
-  { key: 'singularity', name: L('Singularity', 'Singolarità'), chance: 0.01, color: '#ff4fd8' },
-];
-
-export const ANOMALY_GLITCH = 'T̸h̷e̶ ̴A̵n̷o̸m̶a̴l̷y̶';
-
-// ── Races ───────────────────────────────────────────────────────────────────
-// id: the race's name on the server.
-export const RACES = [
-  { key: 'human', id: 'HUMAN', icon: '🙂', rarity: 'common', name: L('Human', 'Human'),
-    effects: L(['The baseline. No perks, no penalties.'],
-               ['La base. Nessun vantaggio, nessuna penalità.']),
-    perk: L('More XP from everything you kill.', 'Più XP da tutto ciò che uccidi.') },
-
-  { key: 'swift', id: 'SWIFT_BLOODED', icon: '💨', rarity: 'uncommon', name: L('Swift-Blooded', 'Swift-Blooded'),
-    effects: L(['Quick on your feet and quick with a blade.', 'Always swims like you have Dolphin\'s Grace.', 'Costs half a heart.'],
-               ['Veloce a piedi e con la lama.', 'Nuota sempre come con la Grazia del delfino.', 'Costa mezzo cuore.']),
-    perk: L('Speed I for the whole run.', 'Velocità I per tutta la run.') },
-
-  { key: 'ember', id: 'EMBERBORN', icon: '🔥', rarity: 'uncommon', name: L('Emberborn', 'Emberborn'),
-    effects: L(['Fire and lava can\'t hurt you.', 'Furnaces near you cook faster.', 'Rain makes you noticeably squishier.'],
-               ['Fuoco e lava non ti feriscono.', 'Le fornaci vicino a te cuociono più in fretta.', 'La pioggia ti rende molto più fragile.']),
-    perk: L('Sets what you hit on fire.', 'Dà fuoco a ciò che colpisci.') },
-
-  { key: 'stone', id: 'STONEKIN', icon: '🪨', rarity: 'rare', name: L('Stonekin', 'Stonekin'),
-    effects: L(['A heart tougher, a little slower.', 'Ores sometimes drop extra.', 'Level up 30% faster.', 'Sinks like a boulder in water.'],
-               ['Un cuore in più, un po\' più lento.', 'I minerali a volte droppano di più.', 'Sali di livello il 30% più in fretta.', 'In acqua affonda come un macigno.']),
-    perk: L('You take less damage.', 'Subisci meno danni.') },
-
-  { key: 'verdant', id: 'VERDANT_TOUCHED', icon: '🌿', rarity: 'rare', name: L('Verdant-Touched', 'Verdant-Touched'),
-    effects: L(['Regenerates passively, forever.', 'Food fills you up more.', 'Crops grow faster just for you being nearby.'],
-               ['Rigenera passivamente, per sempre.', 'Il cibo sazia di più.', 'I raccolti crescono più in fretta se sei vicino.']),
-    perk: L('Every cleared room heals you, and your party a bit.', 'Ogni stanza completata cura te e un po\' il tuo gruppo.') },
-
-  { key: 'frost', id: 'FROSTVEIL', icon: '❄️', rarity: 'rare', name: L('Frostveil', 'Frostveil'),
-    effects: L(['Chilling Aura: hostile mobs near you slow down.', 'Immune to cold, walks on powder snow.', 'Fire hurts a bit more; floats upward in water.'],
-               ['Aura Gelida: i mob ostili vicini rallentano.', 'Immune al freddo, cammina sulla neve polverosa.', 'Il fuoco fa un po\' più male; in acqua galleggia verso l\'alto.']),
-    perk: L('Slows what you hit.', 'Rallenta ciò che colpisci.') },
-
-  { key: 'void', id: 'VOIDKIN', icon: '☠️', rarity: 'epic', name: L('Voidkin', 'Voidkin'),
-    effects: L(['Open your ender chest anywhere (sneak + right-click).', 'Ender pearls with no cooldown; 1 in 4 comes back.', 'Endermen ignore you; no chorus fruit cooldown.', 'Falling into the void sends you back where you fell from (long cooldown).', 'Costs half a heart.'],
-               ['Apri l\'ender chest ovunque (shift + tasto destro).', 'Perle di ender senza cooldown; 1 su 4 ritorna.', 'Gli Enderman ti ignorano; niente cooldown sui frutti di chorus.', 'Cadere nel vuoto ti riporta da dove sei caduto (cooldown lungo).', 'Costa mezzo cuore.']),
-    perk: L('Once per run, a killing blow leaves you on a sliver of health.', 'Una volta per run, un colpo letale ti lascia con un filo di vita.') },
-
-  { key: 'storm', id: 'STORMCALLER', icon: '⚡', rarity: 'epic', name: L('Stormcaller', 'Stormcaller'),
-    effects: L(['Lightning-proof.', '+50% damage while it\'s storming.', 'Sneak + right-click with a trident calls three real bolts on your target.'],
-               ['Immune ai fulmini.', '+50% danni durante i temporali.', 'Shift + tasto destro con un tridente evoca tre fulmini veri sul bersaglio.']),
-    perk: L('Your hits sometimes call down a bolt.', 'I tuoi colpi a volte evocano un fulmine.') },
-
-  { key: 'iron', id: 'IRONCLAD', icon: '⚙️', rarity: 'legendary', name: L('Ironclad', 'Ironclad'),
-    effects: L(['Gear wears out slower.', 'No anvil job ever costs more than 30 levels — nothing is "Too Expensive!".', 'Moves a little slower.'],
-               ['L\'equipaggiamento si consuma più lentamente.', 'Nessun lavoro all\'incudine costa più di 30 livelli — mai "Troppo costoso!".', 'Si muove un po\' più lentamente.']),
-    perk: L('You take less damage.', 'Subisci meno danni.') },
-
-  { key: 'blood', id: 'BLOODFORGED', icon: '🩸', rarity: 'legendary', name: L('Bloodforged', 'Bloodforged'),
-    effects: L(['Every melee hit heals you a little.', 'Immune to poison, weakness and wither.', 'A Totem brings you back at full health.', 'Food regenerates you slower.'],
-               ['Ogni colpo in mischia ti cura un po\'.', 'Immune a veleno, debolezza e wither.', 'Un Totem ti riporta a vita piena.', 'Il cibo ti rigenera più lentamente.']),
-    perk: L('Kills heal you.', 'Le uccisioni ti curano.') },
-
-  { key: 'aether', id: 'AETHERBORN', icon: '✨', rarity: 'divine', name: L('Aetherborn', 'Aetherborn'),
-    effects: L(['Glides like an elytra without wearing one.', 'With a real elytra: a long powered boost on every takeoff, free of charge.', 'No fall damage and an extra heart.', 'Projectiles hurt more.'],
-               ['Plana come con un\'elytra anche senza indossarla.', 'Con un\'elytra vera: una lunga spinta a ogni decollo, gratis.', 'Niente danni da caduta e un cuore in più.', 'I proiettili fanno più male.']),
-    perk: L('No fall damage.', 'Niente danni da caduta.') },
-
-  { key: 'abyss', id: 'ABYSSBORN', icon: '🌑', rarity: 'divine', name: L('Abyssborn', 'Abyssborn'),
-    effects: L(['Permanent night vision.', 'Turns invisible on its own when the light gets low.', 'Hostile mobs lose you in the dark — and you see them glow faintly.'],
-               ['Visione notturna permanente.', 'Diventa invisibile da solo quando la luce cala.', 'I mob ostili ti perdono al buio — e tu li vedi brillare debolmente.']),
-    perk: L('You see in the dark.', 'Vedi al buio.') },
-
-  { key: 'anomaly', id: 'THE_ANOMALY', icon: '🌀', rarity: 'singularity', name: L('The Anomaly', 'The Anomaly'), glitch: true,
-    effects: L(['[ RECORD ▓▓▓▓▓▓▓ — 1 in 10,000 — REMAINDER OF ENTRY CORRUPTED ]', 'Nobody who has rolled it has explained it the same way twice.'],
-               ['[ REGISTRO ▓▓▓▓▓▓▓ — 1 su 10.000 — RESTO DELLA VOCE CORROTTO ]', 'Nessuno che l\'abbia tirata l\'ha mai spiegata due volte allo stesso modo.']),
-    perk: L('▓▓▓ [REDACTED]', '▓▓▓ [OSCURATO]') },
 ];
 
 // ── Gems (Season 3) ─────────────────────────────────────────────────────────
@@ -290,8 +205,6 @@ export const GEMS = [
 
 // The other things that exist only once (their live status comes from the same file).
 export const OTHER_UNIQUES = [
-  { id: 'relic:blood_scythe', icon: '🩸', name: 'Blood Scythe', note: L('Relic · crafted, only while it isn\'t in the world', 'Reliquia · si crafta solo quando non è nel mondo') },
-  { id: 'relic:frost_lance',  icon: '🧊', name: 'Permafrost Lance', note: L('Relic · never crafted', 'Reliquia · non si crafta mai') },
   { id: 'relic:dragon_egg',   icon: '🥚', name: 'Dragon Egg', note: L('[ENTRY REDACTED]', '[VOCE OSCURATA]'), redacted: true },
   { id: 'riftborn:helmet',     icon: '🪖', name: 'Riftborn Helmet',     note: L('Riftborn · forged', 'Riftborn · forgiato') },
   { id: 'riftborn:chestplate', icon: '🛡️', name: 'Riftborn Chestplate', note: L('Riftborn · forged', 'Riftborn · forgiato') },
@@ -367,15 +280,6 @@ export const RIFT_CHALLENGES = [
     list: L(['Take no damage at all', 'Wear no armor', 'Clear in under 15% of the time limit'], ['Non subire alcun danno', 'Nessuna armatura', 'Completa in meno del 15% del tempo']) },
 ];
 
-export const RIFT_RELICS = [
-  { rift: L('Ordinary · 6% per boss', 'Ordinaria · 6% per boss'), color: '#b56cff',
-    items: [['Riftfang', L('Chills what it hits.', 'Congela ciò che colpisce.')], ['Sovereign\'s Mantle', L('+2 hearts.', '+2 cuori.')]] },
-  { rift: L('Red · 14% per boss', 'Rossa · 14% per boss'), color: '#ff3b3b',
-    items: [['Crimson Cleaver', L('Sets things alight.', 'Dà fuoco alle cose.')], ['Bloodmoon Greaves', L('Faster and tougher.', 'Più veloce e più resistente.')]] },
-];
-
-// ── Gem vaults (Season 3) ───────────────────────────────────────────────────
-// A key is the same frame for every gem of a tier, around that gem's own item.
 export const GEM_KEY_FRAMES = {
   rare:      { corner: { icon: '💠', name: L('Gem Shard', 'Frammento di gemma') },   vert: { icon: '👁️', name: L('Eye of Ender', 'Occhio di ender') }, side: { icon: '🟨', name: L('Gold Block', 'Blocco d\'oro') } },
   epic:      { corner: { icon: '🔷', name: L('Gem Cluster', 'Grappolo di gemme') }, vert: { icon: '👁️', name: L('Eye of Ender', 'Occhio di ender') }, side: { icon: '💎', name: L('Diamond Block', 'Blocco di diamante') } },
@@ -539,16 +443,6 @@ export const BOUNTY_RULES = L([
 
 // ── Items ───────────────────────────────────────────────────────────────────
 export const ITEM_GROUPS = [
-  { name: L('Race items', 'Oggetti di razza'), items: [
-    ['🧪', 'Vial of Fate\'s Undoing', L('Rerolls your race from scratch. Craft: a Nether Star in the middle, 2 Totems of Undying and 6 Diamond Blocks around it.', 'Ritira la tua razza da zero. Craft: una Stella del Nether al centro, 2 Totem dell\'immortalità e 6 Blocchi di diamante intorno.')],
-    ['🍀', 'Vial of Fortunate Odds', L('Biases your next race roll toward rarer tiers. Stacks with no limit; spent the instant you spin.', 'Sposta il prossimo tiro verso le rarità più alte. Si accumula senza limiti; si consuma appena tiri.')],
-    ['📦', 'Race Container', L('A shulker shell that holds one extra race. Right-click to store your race (you become Human), again to swap. Swap has a cooldown; tradeable — the race goes with it.', 'Un guscio di shulker che contiene una razza in più. Tasto destro per riporre la tua razza (diventi Umano), di nuovo per scambiarle. Lo scambio ha un cooldown; si può scambiare — la razza va con lui.')],
-  ]},
-  { name: L('Weapons', 'Armi'), items: [
-    ['🧊', 'Permafrost Lance', L('Only one exists, and it\'s never crafted. A real netherite spear that freezes what it hits, with a chance to Shatter for more, through armour. Right-click: Rime Lunge, a dash through everyone in a line. Sneak + right-click: Glacial Prison, rooting and freezing everyone around you. You never freeze.', 'Ne esiste una sola, e non si crafta mai. Una vera lancia di netherite che congela ciò che colpisce, con la probabilità di frantumarlo per altro danno, attraverso l\'armatura. Tasto destro: Affondo di brina, uno scatto attraverso chiunque sia in linea. Shift + tasto destro: Prigione glaciale, che blocca e congela chi ti sta intorno. Tu non congeli mai.')],
-    ['🩸', 'Blood Scythe', L('Only one exists. Hits and kills fill it with blood, and blood pays for its powers: Unholy Strength (Strength II, while players near you are slowed and blinded), Bloody Boom (a wind-up, then a blast) and Last Breath (a killing blow turned aside). Crafted — only while it isn\'t in the world.', 'Ne esiste una sola. Colpi e uccisioni la riempiono di sangue, e il sangue paga i suoi poteri: Forza empia (Forza II, mentre i giocatori vicini vengono rallentati e accecati), Esplosione di sangue (una carica, poi un\'esplosione) e Ultimo respiro (un colpo mortale deviato). Si crafta — solo quando non è nel mondo.')],
-    ['🔴', 'Redliner', L('Legendary netherite sword built on momentum: sprint to climb up to tier 4 (Speed + cleave). Whiffing costs your tier. Tier 3–4 turns your next hit into an Execute. Sneak + right-click: wall-phasing dash with recharging charges.', 'Spada di netherite leggendaria basata sullo slancio: corri per salire fino al livello 4 (Velocità + fendente ad area). Mancare un colpo ti fa perdere il livello. Al livello 3–4 il colpo successivo diventa un\'Esecuzione. Shift + tasto destro: scatto attraverso i muri con cariche che si ricaricano.')],
-  ]},
   { name: L('Starsteel & Riftborn', 'Starsteel e Riftborn'), items: [
     ['🔹', 'Starsteel', L('Starsteel Ore — deepslate flecked with blue and gold, deep down — gives Shards; shards and gold make Ingots. A diamond piece plus ingots in a crafting table makes Starsteel armour or a sword, axe or pickaxe: tougher than diamond, each with a small passive, enchantments kept. Full set — Starguard: when a hit leaves you low, starlight shields you.', 'Il minerale di Starsteel — ardesia profonda screziata di blu e oro, molto in basso — dà Frammenti; frammenti e oro fanno Lingotti. Un pezzo di diamante più lingotti nel banco da lavoro fa un\'armatura Starsteel o una spada, ascia o piccone: più resistenti del diamante, ognuno con una piccola passiva, incantesimi conservati. Set completo — Guardia stellare: quando un colpo ti lascia a poca vita, la luce delle stelle ti protegge.')],
     ['🟣', 'Riftborn', L('Only one of each piece and tool exists. A Starsteel piece plus Rift Cores (from red rifts and bosses): far stronger, fireproof, better passives. If one is destroyed, or nobody sees it for 14 days, it can be forged again. Full set — Riftstep: when a hit leaves you low, the rift pulls you out of the fight.', 'Esiste un solo esemplare di ogni pezzo e strumento. Un pezzo Starsteel più Nuclei della Rift (dalle rift rosse e dai boss): molto più forti, ignifughi, passive migliori. Se uno viene distrutto, o nessuno lo vede per 14 giorni, si può forgiare di nuovo. Set completo — Passo della Rift: quando un colpo ti lascia a poca vita, la rift ti tira fuori dallo scontro.')],
@@ -588,31 +482,27 @@ export const ITEM_GROUPS = [
 // ── Commands players actually use ───────────────────────────────────────────
 export const COMMANDS = [
   ['/guide', L('The in-game guide book — it fills in as the season opens up.', 'La guida in gioco — si riempie man mano che la stagione si apre.')],
-  ['/race roll · info · list', L('Roll your race, see what yours does, see every race.', 'Tira la tua razza, vedi cosa fa la tua, vedi tutte le razze.')],
   ['/team …  ·  /tc <msg>', L('Teams and team chat.', 'Team e chat di team.')],
   ['/bounty put · cancel · list  ·  /bounties', L('Bounties.', 'Taglie.')],
   ['/rule8', L('How long until rule 8 takes your one-of-a-kind items.', 'Quanto manca prima che la regola 8 ti tolga i tuoi oggetti unici.')],
   ['/rift leave · status', L('Leave a rift / see its state.', 'Esci da una rift / vedine lo stato.')],
   ['/rift journal [player]', L('Your rift record book.', 'Il tuo diario delle rift.')],
   ['/rift top [cleared|bosses|rooms|deaths]', L('Server rankings.', 'Classifiche del server.')],
-  ['/rift perks', L('Your race\'s rift perk.', 'Il vantaggio della tua razza nelle rift.')],
   ['/forge list', L('Every forge buff and frost technique, with its numbers.', 'Ogni potenziamento della forgia e tecnica del gelo, con i numeri.')],
 ];
 
 export const CONTROLS = [
   [L('F (swap hands)', 'F (cambia mano)'), L('Your gem\'s power', 'Il potere della tua gemma')],
-  [L('Sneak + F', 'Shift + F'), L('Your gem\'s second power — with no gem carried, your race\'s active (Voidkin, Stormcaller, Aetherborn)', 'Il secondo potere della gemma — senza gemme, l\'attiva della tua razza (Voidkin, Stormcaller, Aetherborn)')],
-  [L('Right-click / Sneak + right-click', 'Tasto destro / Shift + tasto destro'), L('A relic\'s powers (the Permafrost Lance, the Blood Scythe…)', 'I poteri delle reliquie (Lancia di Permagelo, Falce di Sangue…)')],
+  [L('Sneak + F', 'Shift + F'), L('Your gem\'s second power', 'Il secondo potere della gemma')],
+  [L('Right-click / Sneak + right-click', 'Tasto destro / Shift + tasto destro'), L('A relic\'s powers (The Stopped Clock…)', 'I poteri delle reliquie (The Stopped Clock…)')],
 ];
 
 // ── FAQ ─────────────────────────────────────────────────────────────────────
 export const FAQ = [
   [L('When does everything open?', 'Quando si apre tutto?'),
    L('A piece at a time over the first two weeks — see "The season" on the Rules page. The in-game guide (/guide) gets a new page each time something opens.', 'Un pezzo alla volta nelle prime due settimane — vedi "La stagione" nella pagina Regole. La guida in gioco (/guide) riceve una pagina nuova ogni volta che si apre qualcosa.')],
-  [L('Can I change my race?', 'Posso cambiare razza?'),
-   L('Yes, with a Vial of Fate\'s Undoing (Nether Star, 2 Totems, 6 Diamond Blocks). It\'s expensive on purpose. A Race Container lets you keep a second race.', 'Sì, con una Vial of Fate\'s Undoing (Stella del Nether, 2 Totem, 6 Blocchi di diamante). È costosa di proposito. Un Race Container ti fa tenere una seconda razza.')],
-  [L('What happened to the race weapons?', 'Che fine hanno fatto le armi di razza?'),
-   L('They\'re gone. The fifteen gems took their place — one of each, won in the Rift\'s gem vaults.', 'Non ci sono più. Al loro posto ci sono le quindici gemme — una per tipo, vinte nei caveau delle gemme della Rift.')],
+  [L('What happened to races and the race weapons?', 'Che fine hanno fatto le razze e le armi di razza?'),
+   L('They\'re gone — no rolls, no race items. The fifteen gems took their place: one of each, won in the Rift\'s gem vaults.', 'Non ci sono più — niente tiri, niente oggetti di razza. Al loro posto ci sono le quindici gemme: una per tipo, vinte nei caveau delle gemme della Rift.')],
   [L('Do I lose my items if I die in the Rift?', 'Perdo gli oggetti se muoio nella Rift?'),
    L('No — a killing blow knocks you down, a teammate can pick you up, and bleeding out only costs a life. Losing the whole rift (everyone out of lives, or time runs out) costs everything you carry. Your XP stays.', 'No — un colpo letale ti mette a terra, un compagno può rialzarti, e dissanguarti costa solo una vita. Perdere la rift intera (tutti senza vite o tempo scaduto) ti costa tutto ciò che porti. L\'XP resta.')],
   [L('I stopped playing for a week — where\'s my gem?', 'Ho smesso di giocare per una settimana — dov\'è la mia gemma?'),
