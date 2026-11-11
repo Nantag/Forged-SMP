@@ -248,7 +248,7 @@ export const RIFT_KINDS = [
   { key: 'anomaly', color: '#35f2e0', name: L('▓▓▓▓▓▓▓', '▓▓▓▓▓▓▓'), rooms: '▓', time: '▓▓', lives: '▓', glitch: true,
     notes: L('[ENTRY REDACTED] — some portals look ordinary. Some aren\'t.', '[VOCE OSCURATA] — alcuni portali sembrano ordinari. Alcuni no.') },
   { key: 'weapon', color: '#ffd84a', name: L('Gem Vaults', 'Caveau delle gemme'), rooms: L('themed', 'a tema'), time: '45 min', lives: '3',
-    notes: L('13 sealed dungeons, one per gem, opened with that gem\'s key, up to 4 players. Fail and you lose what you carried in. See below.', '13 dungeon sigillati, uno per gemma, aperti con la chiave di quella gemma, fino a 4 giocatori. Se fallisci perdi ciò che hai portato. Vedi sotto.') },
+    notes: L('11 sealed dungeons, one per gem, opened with that gem\'s key, up to 4 players. Fail and you lose what you carried in. See below.', '11 dungeon sigillati, uno per gemma, aperti con la chiave di quella gemma, fino a 4 giocatori. Se fallisci perdi ciò che hai portato. Vedi sotto.') },
 ];
 
 export const RIFT_TIERS = [
@@ -453,6 +453,7 @@ export const ITEM_GROUPS = [
     ['🛡️', 'Potion of Armor Resistance', L('An armadillo scute on an Awkward Potion — your armour wears at half.', 'Uno scudo di armadillo su una Pozione Strana — la tua armatura si consuma la metà.')],
     ['💥', 'Potion of Fragility', L('Only from Armor Resistance and a Brittle Eye (4 echo shards round a fermented spider eye). Throw it: armour and shields wear far faster, Unbreaking or not, and every hit does more.', 'Solo da Resistenza dell\'armatura e un Occhio fragile (4 frammenti di eco intorno a un occhio di ragno fermentato). Lanciala: armature e scudi si consumano molto più in fretta, Indistruttibilità o no, e ogni colpo fa di più.')],
     ['🕊️', 'Elixir of Flight', L('A golden apple on Slow Falling. You fly until it runs out — even starting in mid-air. Not in a fight. Glowstone: faster. Corrupted: Levitation.', 'Una mela d\'oro su Caduta lenta. Voli finché dura — anche partendo a mezz\'aria. Non durante uno scontro. Polvere di luminite: più veloce. Corrotta: Levitazione.')],
+    ['🕶️', 'Potion of Concealment', L('An ink sac on an Awkward Potion. You vanish from the Locator Bar (Tracking Hour included), a Tracker\'s compass and the Echo Gem\'s senses — 2:00, or 5:00 with Redstone. Milk or dying ends it. Drink, splash or lingering.', 'Una sacca d\'inchiostro su una Pozione Strana. Sparisci dalla Locator Bar (anche durante la Tracking Hour), dalla bussola di un Tracker e dai sensi della Gemma Echo — 2:00, o 5:00 con la Redstone. Il latte o la morte la fanno finire. Da bere, splash o persistente.')],
   ]},
   { name: L('Consumables', 'Consumabili'), items: [
     ['🪨', 'Powder of Petrification', L('Smelt a pufferfish. Right-click: everyone within 3 blocks is rooted, blinded and can\'t jump for 2 seconds.', 'Cuoci un pesce palla. Tasto destro: chi è entro 3 blocchi viene bloccato, accecato e non può saltare per 2 secondi.')],
@@ -464,6 +465,8 @@ export const ITEM_GROUPS = [
     ['🗝️', 'Rift Key', L('2 Echo Shards, an Ender Eye and an Amethyst Shard, shapeless. Lets you join a rift someone else has already started, to help them.', '2 Frammenti di eco, un Occhio di ender e un Frammento di ametista, senza forma. Ti fa entrare in una rift già avviata da altri, per aiutarli.')],
     ['🧭', 'Tracker', L('Staff-given compass. Pick an online player: they\'re warned, and a minute later it locks onto them for 5 minutes. Then it\'s consumed.', 'Bussola data dallo staff. Scegli un giocatore online: viene avvisato e un minuto dopo la bussola lo segue per 5 minuti. Poi si consuma.')],
     ['👁️', 'Sight Vial', L('Craftable. Toggles teammate glow for your whole team.', 'Craftabile. Attiva il bagliore dei compagni per tutto il team.')],
+    ['🎒', 'Super Bundle', L('Crafted. A bundle with 9 real slots — and what\'s inside travels on the item itself.', 'Si crafta. Un bundle con 9 slot veri — e quello che c\'è dentro viaggia sull\'oggetto stesso.')],
+    ['🪨', 'Bedrock Drill', L('Craft a Drill Core, set it on a bedrock block and box it in with four iron blocks, then right-click: 30 seconds later that bedrock is gone — and most of the machine with it.', 'Crafta un Drill Core, mettilo su un blocco di bedrock e chiudilo con quattro blocchi di ferro, poi tasto destro: 30 secondi dopo quella bedrock non c\'è più — e con lei quasi tutta la macchina.')],
   ]},
   { name: L('Traps', 'Trappole'), items: [
     ['🪤', 'Bear Trap', L('Crafted. Planted at your feet, armed for 5 minutes: whoever steps on it is rooted, hurt and glows — and you\'re told where. A faint wisp of sparks gives it away to anyone who looks. Never goes off on you.', 'Si crafta. Piazzata ai tuoi piedi, armata per 5 minuti: chi ci passa viene bloccato, ferito e brilla — e tu sai dove. Un debole filo di scintille la rivela a chi guarda bene. Non scatta mai su di te.')],
@@ -527,6 +530,9 @@ export const DIMENSIONS = [
 ];
 
 export const MECHANICS = [
+  { icon: '🟣', title: L('Pearls never vanish', 'Le perle non spariscono'),
+    text: L('A thrown ender pearl stays until it pulls you: logging out, changing world or a restart don\'t eat it, and a stasis pearl survives your death. A pearl thrown mid-fight still disappears when you die.',
+            'Una perla di ender lanciata resta finché non ti tira: uscire, cambiare mondo o un riavvio non la cancellano, e una perla in stasi sopravvive alla tua morte. Una perla lanciata in combattimento sparisce comunque quando muori.') },
   { icon: '💎', title: L('No crystal or anchor PvP', 'Niente crystal o anchor PvP'),
     text: L('End Crystals and Respawn Anchors can\'t be used to damage players.',
             'I Cristalli dell\'End e le Ancore di rinascita non possono danneggiare i giocatori.') },
