@@ -18,7 +18,7 @@ export const SITE = {
   season:   3,
   // When Season 3 starts (empty = not announced yet: the site says "starting soon").
   launch:   '',
-  updated:  '2026-11-11',
+  updated:  '2026-11-14',
 };
 
 // ── News (newest first) ─────────────────────────────────────────────────────
@@ -27,8 +27,8 @@ export const NEWS = [
     date: '2026-11-11',
     title: L('Season 3, slimmed down', 'Stagione 3, alleggerita'),
     body: L(
-      'Fewer systems, done better. No calamity nights this season, and the Stone and Verdant gems are gone. The world stops at <b>2,500 blocks</b> from the centre in every direction — and past the border lie the real <b>Far Lands</b> from the Beta days, with diamonds, ancient debris and loot hidden in the walls.',
-      'Meno sistemi, fatti meglio. Niente notti di calamità in questa stagione, e le gemme Stone e Verdant non ci sono più. Il mondo si ferma a <b>2.500 blocchi</b> dal centro in ogni direzione — e oltre il confine ci sono le vere <b>Far Lands</b> dei tempi della Beta, con diamanti, detriti antichi e bottino nascosto nelle pareti.'),
+      'Fewer systems, done better. No calamity nights this season, and the Stone and Verdant gems are gone. The world is <b>2,500 blocks</b> from the centre in every direction, and the season opens up over three weeks instead of one: something new every few days.',
+      'Meno sistemi, fatti meglio. Niente notti di calamità in questa stagione, e le gemme Stone e Verdant non ci sono più. Il mondo è largo <b>2.500 blocchi</b> dal centro in ogni direzione, e la stagione si apre in tre settimane invece di una: qualcosa di nuovo ogni pochi giorni.'),
   },
   {
     date: '2026-10-24',
@@ -42,8 +42,8 @@ export const NEWS = [
 // ── Pillars (home / about) ──────────────────────────────────────────────────
 export const PILLARS = [
   { icon: '🗓️', page: 'rules', title: L('A season that opens up', 'Una stagione che si apre'),
-    text: L('One hour of grace, then something new almost every day for the first week: PvP and the Rift, the Nether, the Forge and Starsteel, red rifts, the gem vaults tier by tier.',
-            'Un\'ora di tregua, poi qualcosa di nuovo quasi ogni giorno per la prima settimana: PvP e Rift, il Nether, la Forgia e lo Starsteel, le rift rosse, i caveau delle gemme una rarità alla volta.') },
+    text: L('One hour of grace, then something new every few days for three weeks: PvP and the Rift, the Nether, the Forge and Starsteel, red rifts, the gem vaults tier by tier.',
+            'Un\'ora di tregua, poi qualcosa di nuovo ogni pochi giorni per tre settimane: PvP e Rift, il Nether, la Forgia e lo Starsteel, le rift rosse, i caveau delle gemme una rarità alla volta.') },
   { icon: '💎', page: 'gems', title: L('Gems', 'Gemme'),
     text: L('Thirteen gems, and only one of each exists. Win them in the Rift\'s gem vaults — and keep them.',
             'Tredici gemme, e ne esiste una sola per tipo. Vincile nei caveau delle gemme della Rift — e tienile.') },
@@ -62,9 +62,6 @@ export const PILLARS = [
   { icon: '🤖', page: 'bosses', title: L('Bosses with real AI', 'Boss con vera IA'),
     text: L('Fake players with real combat AI power the rift bosses and the gem vaults\' guardians — each guardian fights with the gem it guards.',
             'Finti giocatori con vera IA da combattimento animano i boss delle rift e i guardiani dei caveau — ognuno combatte con la gemma che custodisce.') },
-  { icon: '🧱', page: 'rules', title: L('The Far Lands', 'Le Far Lands'),
-    text: L('Past the border the world breaks: the real Far Lands from Beta. Out there the border stops hurting, and the walls hide diamonds, ancient debris, sealed vaults and shrines.',
-            'Oltre il confine il mondo si rompe: le vere Far Lands della Beta. Lì il confine smette di far male, e le pareti nascondono diamanti, detriti antichi, caveau sigillati e santuari.') },
 ];
 
 // ── The season, step by step (Season plugin) ─────────────────────────────────
@@ -79,23 +76,26 @@ export const SEASON = [
   { at: 2, icon: '🔥', name: L('The Nether · the full world · Relics', 'Il Nether · il mondo intero · Reliquie'),
     text: L('Nether portals work, and the border moves out to 2,500 blocks each way (5,000 across) for the rest of the season. Traps and wifi tools can be crafted.',
             'I portali del Nether funzionano, e il confine si allarga a 2.500 blocchi per lato (5.000 in tutto) per il resto della stagione. Trappole e strumenti wifi si possono craftare.') },
-  { at: 12, icon: '🔨', name: L('The Forge · Starsteel', 'La Forgia · Starsteel'),
-    text: L('The Forge can be crafted, and Starsteel ingots can be made from Starsteel Ore.',
-            'La Forgia si può craftare, e i lingotti di Starsteel si fanno dal minerale di Starsteel.') },
-  { at: 24, icon: '🔷', name: L('Tracking Hour · Alchemy · the first gem vaults', 'Tracking Hour · Alchimia · i primi caveau'),
-    text: L('The daily Tracking Hour starts, the new potions can be brewed, and the Epic gem vaults open: Magma, Venom, Fortune.',
-            'Parte la Tracking Hour giornaliera, si possono distillare le nuove pozioni, e si aprono i caveau Epici: Magma, Venom, Fortune.') },
-  { at: 48, icon: '🩸', name: L('Red rifts', 'Rift rosse'),
+  { at: 12, icon: '🔨', name: L('The Forge', 'La Forgia'),
+    text: L('The Forge can be crafted: hammer your gear for a permanent buff.', 'La Forgia si può craftare: martella il tuo equipaggiamento per un potenziamento permanente.') },
+  { at: 24, icon: '🔹', name: L('Starsteel · Tracking Hour', 'Starsteel · Tracking Hour'),
+    text: L('Starsteel ingots can be made from Starsteel Ore, and the daily Tracking Hour starts.',
+            'I lingotti di Starsteel si fanno dal minerale di Starsteel, e parte la Tracking Hour giornaliera.') },
+  { at: 72, icon: '⚗️', name: L('Alchemy', 'Alchimia'),
+    text: L('The new potions can be brewed.', 'Si possono distillare le nuove pozioni.') },
+  { at: 96, icon: '🔷', name: L('The first gem vaults', 'I primi caveau'),
+    text: L('The Epic gem vaults open: Magma, Venom, Fortune.', 'Si aprono i caveau Epici: Magma, Venom, Fortune.') },
+  { at: 144, icon: '🩸', name: L('Red rifts', 'Rift rosse'),
     text: L('Red rifts start tearing open — and they drag you in.', 'Iniziano ad aprirsi le rift rosse — e ti trascinano dentro.') },
-  { at: 72, icon: '💜', name: L('Legendary gem vaults', 'Caveau Leggendari'),
+  { at: 216, icon: '💜', name: L('Legendary gem vaults', 'Caveau Leggendari'),
     text: L('Rime, Tempest, Umbral, Lumen, Echo.', 'Rime, Tempest, Umbral, Lumen, Echo.') },
-  { at: 96, icon: '❄️', name: L('The Cold Forge', 'La Forgia Fredda'),
+  { at: 288, icon: '❄️', name: L('The Cold Forge', 'La Forgia Fredda'),
     text: L('The Cold Forge can be crafted: frost techniques and rune slots for Flawless pieces.',
             'Si può craftare la Forgia Fredda: tecniche del gelo e slot per rune per i pezzi Impeccabili.') },
-  { at: 120, icon: '🌟', name: L('Mythic gem vaults', 'Caveau Mitici'),
+  { at: 384, icon: '🌟', name: L('Mythic gem vaults', 'Caveau Mitici'),
     text: L('Briar, Anchor, Chrono — the keys must be attuned, and everyone can see you do it.',
             'Briar, Anchor, Chrono — le chiavi vanno attivate, e tutti ti vedono mentre lo fai.') },
-  { at: 144, icon: '▓', name: L('???', '???'), glitch: true,
+  { at: 504, icon: '▓', name: L('???', '???'), glitch: true,
     text: L('Not every portal is what it looks like.', 'Non tutti i portali sono quello che sembrano.') },
 ];
 
@@ -103,9 +103,9 @@ export const SEASON = [
 // id: the gem's id on the server, used to match the live status (SITE.itemStatus).
 // opensDay: the season day its tier's vaults open (null: no vault).
 export const GEM_TIERS = [
-  { key: 'epic',      name: L('Epic', 'Epica'),            color: '#50a0ff', opensDay: 1 },
-  { key: 'legendary', name: L('Legendary', 'Leggendaria'), color: '#be5aff', opensDay: 3 },
-  { key: 'mythic',    name: L('Mythic', 'Mitica'),         color: '#ffa028', opensDay: 5 },
+  { key: 'epic',      name: L('Epic', 'Epica'),            color: '#50a0ff', opensDay: 4 },
+  { key: 'legendary', name: L('Legendary', 'Leggendaria'), color: '#be5aff', opensDay: 9 },
+  { key: 'mythic',    name: L('Mythic', 'Mitica'),         color: '#ffa028', opensDay: 16 },
   { key: 'chromatic', name: L('Chromatic', 'Cromatica'),   color: '#ffffff', opensDay: null },
 ];
 
@@ -305,7 +305,7 @@ export const FORGE = {
   recipe: [['🟫', '⚒️', '🟫'], ['⬛', '🛠️', '⬛'], ['💎', '🔥', '💎']],
   recipeKey: [['🟫', L('Netherite Scrap', 'Frammento di netherite')], ['⚒️', L('Anvil', 'Incudine')], ['⬛', L('Obsidian', 'Ossidiana')],
               ['🛠️', L('Smithing Table', 'Tavolo da forgiatura')], ['💎', L('Diamond Block', 'Blocco di diamante')], ['🔥', L('Blast Furnace', 'Altoforno')]],
-  // The Cold Forge: a Forge in the middle. Opens 4 days in.
+  // The Cold Forge: a Forge in the middle. Opens 12 days in.
   coldRecipe: [['🧊', '🟪', '🧊'], ['🟪', '🔨', '🟪'], ['🧊', '⭐', '🧊']],
   coldKey: [['🧊', L('Blue Ice', 'Ghiaccio blu')], ['🟪', L('Netherite Ingot', 'Lingotto di netherite')], ['🔨', L('Forge', 'Forgia')], ['⭐', L('Nether Star', 'Stella del Nether')]],
   cost:     L('2 Netherite Scrap a try', '2 Frammenti di netherite a tentativo'),
@@ -496,7 +496,7 @@ export const CONTROLS = [
 // ── FAQ ─────────────────────────────────────────────────────────────────────
 export const FAQ = [
   [L('When does everything open?', 'Quando si apre tutto?'),
-   L('A piece at a time over the first week — see "The season" on the Rules page. The in-game guide (/guide) gets a new page each time something opens.', 'Un pezzo alla volta nella prima settimana — vedi "La stagione" nella pagina Regole. La guida in gioco (/guide) riceve una pagina nuova ogni volta che si apre qualcosa.')],
+   L('A piece at a time over the first three weeks — see "The season" on the Rules page. The in-game guide (/guide) gets a new page each time something opens.', 'Un pezzo alla volta nelle prime tre settimane — vedi "La stagione" nella pagina Regole. La guida in gioco (/guide) riceve una pagina nuova ogni volta che si apre qualcosa.')],
   [L('What happened to races and the race weapons?', 'Che fine hanno fatto le razze e le armi di razza?'),
    L('They\'re gone — no rolls, no race items. The thirteen gems took their place: one of each, won in the Rift\'s gem vaults.', 'Non ci sono più — niente tiri, niente oggetti di razza. Al loro posto ci sono le tredici gemme: una per tipo, vinte nei caveau delle gemme della Rift.')],
   [L('Do I lose my items if I die in the Rift?', 'Perdo gli oggetti se muoio nella Rift?'),
@@ -511,9 +511,6 @@ export const FAQ = [
    L('No — minimaps and maps of any kind are banned. Waypoints are allowed.', 'No — minimappe e mappe di qualsiasi tipo sono vietate. I waypoint sono permessi.')],
   [L('What happens if I log out mid-fight?', 'Cosa succede se esco durante un combattimento?'),
    L('A Zombie spawns in your place. Killing it counts as killing you — your loot drops.', 'Al tuo posto compare uno Zombie. Ucciderlo vale come uccidere te — il tuo bottino cade.')],
-  [L('What\'s past the border?', 'Cosa c\'è oltre il confine?'),
-   L('Keep going and the world breaks: the Far Lands, the real ones from Beta. Out there the border stops hurting you, and you can mine, fight and open chests again. The walls are full of diamonds and ancient debris, and the further out you go, the better the loot.',
-     'Continua e il mondo si rompe: le Far Lands, quelle vere della Beta. Lì il confine smette di farti male, e puoi di nuovo scavare, combattere e aprire le casse. Le pareti sono piene di diamanti e detriti antichi, e più ti allontani, migliore è il bottino.')],
   [L('Where are the rules?', 'Dove sono le regole?'),
    L('On the Rules page, and in the Discord.', 'Nella pagina Regole, e sul Discord.')],
 ];
@@ -522,9 +519,6 @@ export const FAQ = [
 export const DIMENSIONS = [
   { key: 'nether', icon: '🔥', name: L('The Nether', 'Il Nether'), opensAfterHours: 2,
     text: L('Opens two hours into the season, when the border grows to 2,500 blocks each way.', 'Si apre due ore dopo l\'inizio della stagione, quando il confine cresce a 2.500 blocchi per lato.') },
-  { key: 'farlands', icon: '🧱', name: L('The Far Lands', 'Le Far Lands'), opensAfterHours: 2,
-    text: L('Past the border, the real Far Lands from Beta: a broken wall of terrain full of holes and flooded tunnels. Out there the border stops hurting, and the walls hide extra diamonds, ancient debris, lost camps, sealed vaults with spawners and shrines on the highest peaks. The further out, the better the loot.',
-            'Oltre il confine, le vere Far Lands della Beta: un muro di terreno spezzato, pieno di buchi e tunnel allagati. Lì il confine smette di far male, e le pareti nascondono diamanti in più, detriti antichi, accampamenti perduti, caveau sigillati con spawner e santuari sulle vette più alte. Più ti allontani, migliore è il bottino.') },
   { key: 'end', icon: '🌌', name: L('The End', 'L\'End'), closed: true,
     text: L('Closed for now.', 'Chiuso, per ora.') },
 ];
