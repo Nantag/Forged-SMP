@@ -27,8 +27,8 @@ export const NEWS = [
     date: '2026-11-11',
     title: L('Season 3, slimmed down', 'Stagione 3, alleggerita'),
     body: L(
-      'Fewer systems, done better. No calamity nights this season, and the Stone and Verdant gems are gone. The world is <b>2,500 blocks</b> from the centre in every direction, and the season opens up over three weeks instead of one: something new every few days.',
-      'Meno sistemi, fatti meglio. Niente notti di calamità in questa stagione, e le gemme Stone e Verdant non ci sono più. Il mondo è largo <b>2.500 blocchi</b> dal centro in ogni direzione, e la stagione si apre in tre settimane invece di una: qualcosa di nuovo ogni pochi giorni.'),
+      'Fewer systems, done better. No calamity nights this season, and the Stone and Verdant gems are gone. The world is <b>2,500 blocks</b> from the centre in every direction, and the season opens up over two weeks instead of one: something new every few days.',
+      'Meno sistemi, fatti meglio. Niente notti di calamità in questa stagione, e le gemme Stone e Verdant non ci sono più. Il mondo è largo <b>2.500 blocchi</b> dal centro in ogni direzione, e la stagione si apre in due settimane invece di una: qualcosa di nuovo ogni pochi giorni.'),
   },
   {
     date: '2026-10-24',
@@ -42,8 +42,8 @@ export const NEWS = [
 // ── Pillars (home / about) ──────────────────────────────────────────────────
 export const PILLARS = [
   { icon: '🗓️', page: 'rules', title: L('A season that opens up', 'Una stagione che si apre'),
-    text: L('One hour of grace, then something new every few days for three weeks: PvP and the Rift, the Nether, the Forge and Starsteel, red rifts, the gem vaults tier by tier.',
-            'Un\'ora di tregua, poi qualcosa di nuovo ogni pochi giorni per tre settimane: PvP e Rift, il Nether, la Forgia e lo Starsteel, le rift rosse, i caveau delle gemme una rarità alla volta.') },
+    text: L('One hour of grace, then something new every few days for two weeks: PvP and the Rift, the Nether, the Forge and Starsteel, red rifts, the gem vaults tier by tier.',
+            'Un\'ora di tregua, poi qualcosa di nuovo ogni pochi giorni per due settimane: PvP e Rift, il Nether, la Forgia e lo Starsteel, le rift rosse, i caveau delle gemme una rarità alla volta.') },
   { icon: '💎', page: 'gems', title: L('Gems', 'Gemme'),
     text: L('Thirteen gems, and only one of each exists. Win them in the Rift\'s gem vaults — and keep them.',
             'Tredici gemme, e ne esiste una sola per tipo. Vincile nei caveau delle gemme della Rift — e tienile.') },
@@ -93,7 +93,7 @@ export const SEASON = [
   { at: 216, icon: '🌟', name: L('Mythic gem vaults', 'Caveau Mitici'),
     text: L('Briar, Anchor, Chrono — the keys must be attuned, and everyone can see you do it.',
             'Briar, Anchor, Chrono — le chiavi vanno attivate, e tutti ti vedono mentre lo fai.') },
-  { at: 504, icon: '▓', name: L('???', '???'), glitch: true,
+  { at: 336, icon: '▓', name: L('???', '???'), glitch: true,
     text: L('Not every portal is what it looks like.', 'Non tutti i portali sono quello che sembrano.') },
 ];
 
@@ -494,7 +494,7 @@ export const CONTROLS = [
 // ── FAQ ─────────────────────────────────────────────────────────────────────
 export const FAQ = [
   [L('When does everything open?', 'Quando si apre tutto?'),
-   L('A piece at a time over the first three weeks — see "The season" on the Rules page. The in-game guide (/guide) gets a new page each time something opens.', 'Un pezzo alla volta nelle prime tre settimane — vedi "La stagione" nella pagina Regole. La guida in gioco (/guide) riceve una pagina nuova ogni volta che si apre qualcosa.')],
+   L('A piece at a time over the first two weeks — see "The season" on the Rules page. The in-game guide (/guide) gets a new page each time something opens.', 'Un pezzo alla volta nelle prime due settimane — vedi "La stagione" nella pagina Regole. La guida in gioco (/guide) riceve una pagina nuova ogni volta che si apre qualcosa.')],
   [L('What happened to races and the race weapons?', 'Che fine hanno fatto le razze e le armi di razza?'),
    L('They\'re gone — no rolls, no race items. The thirteen gems took their place: one of each, won in the Rift\'s gem vaults.', 'Non ci sono più — niente tiri, niente oggetti di razza. Al loro posto ci sono le tredici gemme: una per tipo, vinte nei caveau delle gemme della Rift.')],
   [L('Do I lose my items if I die in the Rift?', 'Perdo gli oggetti se muoio nella Rift?'),
