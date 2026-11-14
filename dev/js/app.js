@@ -597,12 +597,12 @@ PAGES.forge = () => `
       <div class="card cold">${craftGrid(FORGE.coldRecipe, FORGE.coldKey, '❄️')}</div>
       <div class="card cold">
         ${list(L([
-          'The recipe unlocks <b>twelve days into the season</b>: a Forge, ringed with Netherite Ingots and Blue Ice, and a Nether Star.',
+          'The recipe unlocks <b>nine days into the season</b>: a Forge, ringed with Netherite Ingots and Blue Ice, and a Nether Star.',
           `Only takes a chestplate, sword or pickaxe already forged <b>Flawless</b>, and costs <b>${FORGE.coldCost.en.replace(' a try', '')}</b>.`,
           'Same hammer, but instead of more stats it teaches the piece a <b>frost technique</b> — something it does in a fight, or at the rock face.',
           'It\'s also the only way to open a <b>rune slot</b>: miss at most one strike on that pass.',
         ], [
-          'La ricetta si sblocca <b>dodici giorni dopo l\'inizio della stagione</b>: una Forgia, circondata da Lingotti di netherite e Ghiaccio blu, e una Stella del Nether.',
+          'La ricetta si sblocca <b>nove giorni dopo l\'inizio della stagione</b>: una Forgia, circondata da Lingotti di netherite e Ghiaccio blu, e una Stella del Nether.',
           `Accetta solo corazza, spada o piccone già forgiati <b>Impeccabili</b>, e costa <b>${FORGE.coldCost.it.replace(' a tentativo', '')}</b>.`,
           'Stesso martello, ma invece di altre statistiche insegna al pezzo una <b>tecnica del gelo</b> — qualcosa che fa in combattimento, o in miniera.',
           'È anche l\'unico modo per aprire uno <b>slot per rune</b>: manca al massimo un colpo in quel passaggio.',
